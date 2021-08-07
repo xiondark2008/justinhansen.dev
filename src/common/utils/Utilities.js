@@ -1,4 +1,4 @@
-export function toHTMLName(val) {
+export function toHTMLName(val='') {
     return (val+'').toLowerCase().replaceAll(' ', '_')
 }
 
