@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/app/*": [
+                "src/app/*"
+            ],
+            "@/common/*": [
+                "src/common/*"
+            ],
+            "@/components/*": [
+                "src/common/components/*"
+            ],
+            "@/styles/*": [
+                "src/common/styles/*"
+            ],
+            "@/utils/*": [
+                "src/common/utils/*"
+            ],
+            "@/layouts/*": [
+                "src/layouts/*"
+            ],
+            "@/modules/*": [
+                "src/modules/*"
+            ],
+            "@/roll_probability/*": [
+                "src/modules/roll_probability_calculator/*"
+            ],
+            "@/starmap_db/*": [
+                "src/modules/starmap_db/*"
+            ],
+            "@/pages/*": [
+                "src/pages/*"
+            ]
+        }
+    }
+}

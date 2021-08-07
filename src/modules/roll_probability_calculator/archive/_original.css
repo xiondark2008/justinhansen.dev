@@ -1,0 +1,71 @@
+/* </style>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+<style> */
+
+* {
+    box-sizing: border-box;
+    line-height: 100% !important;
+}
+.setHeight {
+    font-size: 7vh !important;
+    line-height: 100%;
+}
+html, body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: calc(100% - 10px);
+    margin: 0 5px;
+}
+
+.dieType {
+    display: inline-block;
+    width: calc(100% / 3);
+}
+.dieType input {
+    width: calc(50% + .5em - 2px);
+    max-width: calc(100% - 2em);
+    border-width: 0;
+}
+.dieType label {
+    margin: 0;
+}
+
+hr {
+    margin: 1vh 0;
+}
+
+.form-group {
+    margin: 0;
+}
+.form-group h4{
+    /* font-size: 7vh; */
+    margin: 0;
+}
+/* .form-group .btn {
+    font-size: 7vh;
+    line-height: 100%;
+} */
+.form-group input{
+    height: auto;
+    padding: 1px 0;
+    /* font-size: 7vh;
+    line-height: 100%; */
+}
+
+/* #equality .btn {
+    font-size: 7vh;
+    line-height: 100%;
+} */
+
+#results {
+    height: 30vh;
+    width: 100%;
+}
+#results h1 {
+    font-size: 8vh;
+    line-height: 100%;
+    margin: 0;
+}

@@ -1,0 +1,3 @@
+-This project was originally written on jsfiddle.net (https://jsfiddle.net/xiondark2008/C33pn).
+-The version on jsfiddle uses Knockout.js and Bootstrap CSS
+-The files in this folder are for personal reference only.

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StarMapDB</title>
+	
+	<link rel="stylesheet" type="text/css" href="bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="StarMapDB.css"/>
+	
+	<script type="text/javascript" src="jquery/3.1.2-pre/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="datatables/datatables.min.js"></script>
+	<script type="text/javascript" src="knockout/3.4.0/knockout-min.js"></script>
+</head>
+<body>
+<!-- Main Navbar -->
+<nav class="navbar navbar-default navbar-thin">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main_navbar" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>
+            </button> <a href="#" class="navbar-brand">StarMapDB</a>
+        </div>
+        <div class="navbar-collapse collapse" id="main_navbar" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav">
+                <li class="active"><a id="star_system_tab" href="#star_system_screen" data-toggle="tab">Star Systems</a></li>
+                <li class=""><a id="tunnel_tab" href="#tunnel_screen" data-toggle="tab">Tunnels</a></li>
+                <li class=""><a id="celestial_object_tab" href="#celestial_object_screen" data-toggle="tab">Celestial Objects</a></li>
+                <li class=""><a id="affiliation_tab" href="#affiliation_screen" data-toggle="tab">Affiliations</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Screens -->
+<div class="tab-content">
+	<div role="tabpanel" id="star_system_screen" class="tab-pane container-fluid active"
+		data-bind="template: { name: 'tabpanel_template', data: StarSystemVM, afterRender: $root.afterTabpanelRender }"></div>
+	<div role="tabpanel" id="tunnel_screen" class="tab-pane container-fluid"
+		data-bind="template: { name: 'tabpanel_template', data: TunnelVM, afterRender: $root.afterTabpanelRender }"></div>
+	<div role="tabpanel" id="celestial_object_screen" class="tab-pane container-fluid"
+		data-bind="template: { name: 'tabpanel_template', data: CelestialObjectVM, afterRender: $root.afterTabpanelRender }"></div>
+	<div role="tabpanel" id="affiliation_screen" class="tab-pane container-fluid"
+		data-bind="template: { name: 'tabpanel_template', data: AffiliationVM, afterRender: $root.afterTabpanelRender }"></div>
+</div>
+
+<!-- Details Modal -->
+<div id="detailsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body container-fluid">
+				<div class="row">
+					<button class="col-xs-6 btn btn-default btn-xs"
+						data-bind="click: selectPrevRecord"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+					<button class="col-xs-6 btn btn-default btn-xs"
+						data-bind="click: selectNextRecord"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+				</div>
+				<div class="row">
+					<div class="col-xs-12"
+						data-bind="template: { name: $root.selectedTemplate(), data: $root.selectedRecord, afterRender: $root.afterRender }">
+					</div>
+				</div>
+				<div class="row">
+					<button class="col-xs-6 btn btn-default btn-xs"
+						data-bind="click: selectPrevRecord"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+					<button class="col-xs-6 btn btn-default btn-xs"
+						data-bind="click: selectNextRecord"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+				</div>
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Screen Template -->
+<script type="text/html" id="tabpanel_template">
+	<div class="row">
+		<!-- Views -->
+		<div class="col-sm-2 col-lg-1">
+			<div class="collapsible-nav">
+				<div class="collapsible-head">
+					<h4 class="inline-block">Views</h4>
+				</div>
+				<ul class="collapsible-body nav nav-pills nav-stacked nav-sm" data-bind="foreach: dtViews">
+					<li role="presentation" data-toggle="pill"
+						data-bind="css: {active: $index() == 0}">
+						<a href="#" data-bind="text: label, click: logic"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="dataTableCol col-sm-9 col-lg-7">
+			<table class="mainDataTable table table-hover" width="100%"></table>
+		</div>
+		<div class="record_details visible-lg-inline-block col-lg-4"
+			data-bind="template: { name: $root.selectedTemplate(), data: $root.selectedRecord, afterRender: $root.afterDetailsRender }">
+		</div>
+		<div class="record_details_btn hidden-xs hidden-lg col-sm-1">
+			<button class="btn btn-primary btn-fill text-center"
+				data-bind="click: $root.showModal"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></button>
+		</div>
+	</div>
+</script>
+<!-- End Screen Template -->
+
+<!-- Star System Template -->
+<script type="text/html" id="star_system_details_template">
+	<span class="hidden"></span>
+	<div class="row">
+		<!-- Header & Name -->
+		<section class="col-xs-12">
+			<div class="bg" data-bind="style: $root.getBackgroundImage">
+				<div class="page-header">
+					<h1 class="stripe"><span data-bind="text: name"></span> <small data-bind="text: affiliation_name"></small></h1>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="row">
+		<!-- Description -->
+		<section class="col-md-6 col-lg-12">
+			<p data-bind="text: description"></p>
+		</section>
+		
+		<!-- Sensor reads -->
+		<section class="col-md-6 col-lg-12">
+			<h4>Sensor Data</h4>
+			<dl class="dl-horizontal">
+				<dt>Popuation</dt>
+				<dd>
+					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar"
+							data-bind="text: aggregated_population, style: { width: (aggregated_population / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Economy</dt>
+				<dd>
+					<div class="progress">
+						<div class="progress-bar progress-bar-warning" role="progressbar"
+							data-bind="text: aggregated_economy, style: { width: (aggregated_economy / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Danger</dt>
+				<dd>
+					<div class="progress">
+						<div class="progress-bar progress-bar-danger" role="progressbar"
+							data-bind="text: aggregated_danger, style: { width: (aggregated_danger / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+			</dl>
+		</section>
+	</div>
+	<div class="row">
+		<!-- Tunnels -->
+		<section class="col-md-6 col-lg-12">
+			<h4>Tunnels</h4>
+			<ul class="nav nav-tabs nav-justified" role="tablist">
+				<li role="presentation" class="active"><a href="#departure_tunnels" data-toggle="tab">Departure Tunnels</a></li>
+				<li role="presentation"><a href="#arrival_tunnels" data-toggle="tab">Arrival Tunnels</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="departure_tunnels">
+					<div class="row text-center">
+						<div class="col-xs-3 divider-right">
+							<div class="circle-label total">
+								<h2 data-bind="text: tunnel_departure_count"></h2>
+								<h5>Total</h5>
+							</div>
+						</div>
+						<div class="col-xs-3">
+							<div class="circle-label large">
+								<h2 data-bind="text: tunnel_departure_count_large"></h2>
+								<h5>Large</h5>
+							</div>
+						</div>
+						<div class="col-xs-3">
+							<div class="circle-label medium">
+								<h2 data-bind="text: tunnel_departure_count_medium"></h2>
+								<h5>Medium</h5>
+							</div>
+						</div>
+						<div class="col-xs-3">
+							<div class="circle-label small">
+								<h2 data-bind="text: tunnel_departure_count_small"></h2>
+								<h5>Small</h5>
+							</div>
+						</div>
+					</div>
+					<table class="dataTable dataTables-mini table table-striped table-hover table-condensed" style="width: 100%;">
+						<thead>
+							<tr>
+								<th>to System</th>
+								<th>size</th>
+								<th>affiliation</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach: $root.TunnelVM.db({entry_ssid: ssid}).get()">
+							<tr>
+								<td><a href="javascript:void(0)" data-bind="text: exit_ss_name, attr: {'data-ssid': exit_ssid}, click: $root.setSelectedRecordEvt"></a></td>
+								<td data-bind="text: size"></td>
+								<td><span data-bind="attr: {affiliation: exit_ss_affiliation_name}, text: exit_ss_affiliation_name"></span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="arrival_tunnels">
+					<div class="row text-center">
+						<div class="col-xs-3 divider-right">
+							<div class="circle-label total">
+								<h2 data-bind="text: tunnel_arrival_count"></h2>
+								<h5>Total</h5>
+							</div>
+						</div>
+						<div class="col-xs-3">
+							<div class="circle-label large">
+								<h2 data-bind="text: tunnel_arrival_count_large"></h2>
+								<h5>Large</h5>
+							</div>
+						</div>
+						<div class="col-xs-3">
+							<div class="circle-label medium">
+								<h2 data-bind="text: tunnel_arrival_count_medium"></h2>
+								<h5>Medium</h5>
+							</div>
+						</div>
+						<div class="col-xs-3">
+							<div class="circle-label small">
+								<h2 data-bind="text: tunnel_arrival_count_small"></h2>
+								<h5>Small</h5>
+							</div>
+						</div>
+					</div>
+					<table class="dataTable dataTables-mini table table-striped table-hover table-condensed" style="width: 100%;">
+						<thead>
+							<tr>
+								<th>from System</th>
+								<th>size</th>
+								<th>affiliation</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach: $root.TunnelVM.db({exit_ssid: ssid}).get()">
+							<tr>
+								<td><a href="javascript:void(0)" data-bind="text: entry_ss_name, attr: {'data-ssid': entry_ss_name}, click: $root.setSelectedRecordEvt"></a></td>
+								<td data-bind="text: size"></td>
+								<td><span data-bind="attr: {affiliation: entry_ss_affiliation_name}, text: entry_ss_affiliation_name"></span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Celestial objects -->
+		<section class="col-md-6 col-lg-12">
+			<h4>Celestial Objects</h4>
+			<table class="dataTable dataTables-mini table table-striped table-hover table-condensed">
+				<thead>
+					<tr>
+						<th>designation</th>
+						<th>type</th>
+						<th>subtype</th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: $root.CelestialObjectVM.db({ ssid: ssid, type: ['STAR', 'PLANET', 'ASTEROID_BELT', 'ASTEROID_FEILD', 'BLACKHOLE'] }).order('parent_id asec, distance asec').get()">
+					<tr>
+						<td><a href="javascript:void(0)" data-bind="text: designation_name, attr: {'data-coid': coid}, click: $root.setSelectedRecordEvt"></a></td>
+						<td data-bind="text: type"></td>
+						<td data-bind="text: subtype"></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</div>
+	<div class="row">
+		<!-- Stats -->
+		<section class="col-xs-12">
+			<h4>Info</h4>
+			<dl>
+				<dt>Diagram</dt>
+				<dd>
+					<div class="progress">
+						<div class="progress-bar progress-bar-clear" role="progressbar"
+							data-bind="style: {width: ( habitable_zone_inner / (aggregated_size > frost_line ? aggregated_size : frost_line + 1) )* 100+'%'}"></div>
+						<div class="progress-bar progress-bar-success" role="progressbar"
+							data-bind="style: {width: ( (habitable_zone_outer - habitable_zone_inner) / (aggregated_size > frost_line ? aggregated_size : frost_line + 1) )* 100+'%'}">Habital Zone</div>
+						<div class="progress-bar progress-bar-clear" role="progressbar"
+							data-bind="style: {width: ( (frost_line - habitable_zone_outer) / (aggregated_size > frost_line ? aggregated_size : frost_line + 1) )* 100+'%'}"></div>
+						<div class="progress-bar progress-bar-info" role="progressbar"
+							data-bind="style: {width: ( 1 - (frost_line / (aggregated_size > frost_line ? aggregated_size : frost_line + 1)) ) * 100+'%'}">Frost Line</div>
+					</div>
+				</dd>
+				<dt>Stats</dt>
+				<dd>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Aggregated Size</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: (aggregated_size + 'au')"></b></p>
+						</li>
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Habitable Zone(Inner)</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: (habitable_zone_inner + 'au')"></b></p>
+						</li>
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Habitable Zone(Outer)</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: (habitable_zone_outer + 'au')"></b></p>
+						</li>
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Frost Line</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: (frost_line + 'au')"></b></p>
+						</li>
+					</ul>
+				</dd>
+				<dt>Meta</dt>
+				<dd>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Link to Starmap</p>
+							<p class="list-group-item-text text-right"><b><a target="_blank"
+								data-bind="attr: {href: $root.BASE_URL+'?location='+code}">Go To Starmap</a></b></p>
+						</li>
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Last Modified</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: time_modified.toLocaleString()"></b></p>
+						</li>
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Info URL</p>
+							<p class="list-group-item-text text-right"><b><a target="_blank"
+								data-bind="attr: {href: (info_url ? info_url : '#')}, text: info_url"></a></b></p>
+						</li>
+					</ul>
+				</dd>
+			</dl>
+		</section>
+	</div>
+</script>
+<!-- End Star System Template -->
+
+<!-- Tunnel Template -->
+<script type="text/html" id="tunnel_details_template">
+	<span class="hidden"></span>
+	<div class="row">
+		<!-- Header & Name -->
+		<section class="col-xs-12">
+			<div class="bg" data-bind="style: $root.getBackgroundImage">
+				<div class="page-header">
+					<h2 class="stripe"><span data-bind="text: entry_ss_name + ' - ' + exit_ss_name"></span> <small data-bind="text: (size=='L' ? 'Large' : (size=='M' ? 'Medium' : (size=='S' ? 'Small' : 'null')))"></small></h2>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="row">
+		<!-- Entry Star System Details -->
+		<section class="ss_details col-md-6 col-lg-12" data-bind="with: $root.StarSystemVM.db({ ssid: entry_ssid }).first()">
+			<h4>Entry Star System</h4>
+			<h4 style="margin-left: 1em;"><a href="javascript:void(0)" data-bind="text: name, attr: {'data-ssid': ssid}, click: $root.setSelectedRecordEvt"></a> <small data-bind="text: affiliation_name"></small></h4>
+			<div class="row tunnels text-center">
+				<div class="col-xs-6">
+					<h5 class="tunnel-label">Departure</h5>
+					<div class="circle-label total">
+						<h2 data-bind="text: tunnel_departure_count"></h2>
+						<h5>Tunnels</h5>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<h5 class="tunnel-label">Arrival</h5>
+					<div class="circle-label total">
+						<h2 data-bind="text: tunnel_arrival_count"></h2>
+						<h5>Tunnels</h5>
+					</div>
+				</div>
+			</div>
+			<dl class="dl-horizontal font-normal">
+				<dt>Popuation</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-success" role="progressbar"
+							data-bind="style: { width: (aggregated_population / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Economy</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-warning" role="progressbar"
+							data-bind="style: { width: (aggregated_economy / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Danger</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-danger" role="progressbar"
+							data-bind="style: { width: (aggregated_danger / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+			</dl>
+		</section>
+		
+		<!-- Exit Star System Details -->
+		<section class="ss_details col-md-6 col-lg-12" data-bind="with: $root.StarSystemVM.db({ ssid: exit_ssid }).first()">
+			<h4>Exit Star System</h4>
+			<h4 style="margin-left: 1em;"><a href="javascript:void(0)" data-bind="text: name, attr: {'data-ssid': ssid}, click: $root.setSelectedRecordEvt"></a> <small data-bind="text: affiliation_name"></small></h4>
+			<div class="row tunnels text-center">
+				<div class="col-xs-6">
+					<h5 class="tunnel-label">Departure</h5>
+					<div class="circle-label total">
+						<h2 data-bind="text: tunnel_departure_count"></h2>
+						<h5>Tunnels</h5>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<h5 class="tunnel-label">Arrival</h5>
+					<div class="circle-label total">
+						<h2 data-bind="text: tunnel_arrival_count"></h2>
+						<h5>Tunnels</h5>
+					</div>
+				</div>
+			</div>
+			<dl class="dl-horizontal font-normal">
+				<dt>Popuation</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-success" role="progressbar"
+							data-bind="style: { width: (aggregated_population / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Economy</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-warning" role="progressbar"
+							data-bind="style: { width: (aggregated_economy / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Danger</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-danger" role="progressbar"
+							data-bind="style: { width: (aggregated_danger / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+			</dl>
+		</section>
+	</div>
+</script>
+<!-- End Tunnel Template -->
+
+<!-- Celestial Object Template -->
+<script type="text/html" id="celestial_object_details_template">
+	<span class="hidden"></span>
+	<div class="row">
+		<!-- Header & Name -->
+		<section class="col-xs-12">
+			<div class="bg" data-bind="style: $root.getBackgroundImage">
+				<div class="page-header">
+					<h2 class="stripe"><span data-bind="text: (name ? name : designation)"></span> <small data-bind="text: (name ? designation : '')"></small></h2>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="row">
+		<!-- Details -->
+		<section class="col-md-6 col-lg-12">
+			<dl class="dl-horizontal">
+				<dt>Type</dt>
+				<dd data-bind="text: type"></dd>
+				<dt>Subtype</dt>
+				<dd data-bind="text: subtype"></dd>
+				<dt>Habitable</dt>
+				<dd data-bind="text: habitable"></dd>
+				<dt>Affiliation</dt>
+				<dd><span data-bind="attr: {affiliation: affiliation_name}, text: affiliation_name"></dd>
+				<dt>Fair Chance Act</dt>
+				<dd data-bind="text: (parseInt(fairchanceact) ? 'Protected' : '-')"></dd>
+				<dt>Orbits</dt>
+				<dd><a href="javascript:void(0)" 
+					data-bind="text: parent_name, attr: {'data-coid': parent_id}, click: $root.setSelectedRecordEvt"></a></dd>
+			</dl>
+		</section>
+		
+		<!-- Description -->
+		<section class="col-md-6 col-lg-12">
+			<p data-bind="text: description"></p>
+		</section>
+	</div>
+	<div class="row">
+		<!-- Sensor data -->
+		<section class="col-md-6 col-lg-12">
+			<h4>Sensor Data</h4>
+			<dl class="dl-horizontal">
+				<dt>Popuation</dt>
+				<dd>
+					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar"
+							data-bind="text: sensor_population, style: { width: (sensor_population / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Economy</dt>
+				<dd>
+					<div class="progress">
+						<div class="progress-bar progress-bar-warning" role="progressbar"
+							data-bind="text: sensor_economy, style: { width: (sensor_economy / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Danger</dt>
+				<dd>
+					<div class="progress">
+						<div class="progress-bar progress-bar-danger" role="progressbar"
+							data-bind="text: sensor_danger, style: { width: (sensor_danger / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+			</dl>
+		</section>
+		
+		<!-- Star System Details -->
+		<section class="ss_details col-md-6 col-lg-12" data-bind="with: $root.StarSystemVM.db({ ssid: ssid }).first()">
+			<h4>Star System Details</h4>
+			<h4 style="margin-left: 1em;"><a href="javascript:void(0)" data-bind="text: name, attr: {'data-ssid': ssid}, click: $root.setSelectedRecordEvt"></a> <small data-bind="text: affiliation_name"></small></h4>
+			<div class="row tunnels text-center">
+				<div class="col-xs-6">
+					<h5 class="tunnel-label">Departure</h5>
+					<div class="circle-label total">
+						<h2 data-bind="text: tunnel_departure_count"></h2>
+						<h5>Tunnels</h5>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<h5 class="tunnel-label">Arrival</h5>
+					<div class="circle-label total">
+						<h2 data-bind="text: tunnel_arrival_count"></h2>
+						<h5>Tunnels</h5>
+					</div>
+				</div>
+			</div>
+			<dl class="dl-horizontal font-normal">
+				<dt>Popuation</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-success" role="progressbar"
+							data-bind="style: { width: (aggregated_population / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Economy</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-warning" role="progressbar"
+							data-bind="style: { width: (aggregated_economy / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+				<dt>Danger</dt>
+				<dd>
+					<div class="progress thin">
+						<div class="progress-bar progress-bar-danger" role="progressbar"
+							data-bind="style: { width: (aggregated_danger / 10 * 100)+'%' }"></div>
+					</div>
+				</dd>
+			</dl>
+		</section>
+	</div>
+	<div class="row">
+		<!-- Child Objects -->
+		<section class="col-md-6 col-lg-12">
+			<h4>Satellites</h4>
+			<table class="dataTables-mini table table-condensed table-striped">
+				<thead>
+					<th>name</th>
+					<th>type</th>
+					<th>subtype</th>
+				</thead>
+				<tbody data-bind="foreach: $root.CelestialObjectVM.db({ parent_id: coid }).get()">
+					<tr>
+						<td><a href="javascript:void(0)" 
+							data-bind="text: designation_name, attr: {'data-coid': coid}, click: $root.setSelectedRecordEvt"></a></td>
+						<td data-bind="text: type"></td>
+						<td data-bind="text: subtype"></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		
+		<!-- Stats -->
+		<section class="col-md-6 col-lg-12">
+			<h4>Stats</h4>
+			<dl>
+				<dt>Stats</dt>
+				<dd>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Size</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: $root.formatNumber(size) + 'km'"></b></p>
+						</li>
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Orbit Period</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: $root.formatNumber(orbit_period) + ' days'"></b></p>
+						</li>
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Distance</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: $root.formatNumber(distance) + 'au'"></b></p>
+						</li>
+						<li class="list-group-item">
+							<p class="list-group-item-heading">Axial Tilt</p>
+							<p class="list-group-item-text text-right"><b data-bind="text: $root.formatNumber(axial_tilt) + '&deg;'"></b></p>
+						</li>
+					</ul>
+				</dd>
+			</dl>
+		</section>
+	</div>
+</script>
+<!-- End Celestial Object Template -->
+
+<!-- Affiliation Template -->
+<script type="text/html" id="affiliation_details_template">
+	<span class="hidden"></span>
+	<div class="row">
+		<!-- Header & Name -->
+		<section class="col-xs-12">
+			<div class="bg" data-bind="style: $root.getBackgroundImage">
+				<div class="page-header">
+					<h1 class="stripe"><span data-bind="text: affiliation_name"></span></h1>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="row">
+		<!-- Star Systems -->
+		<section class="col-md-6 col-lg-12">
+			<h4>Star Systems</h4>
+			<dl class="dl-horizontal">
+				<dt>Count</dt>
+				<dd data-bind="text: star_system_count"></dd>
+			</dl>
+			<table class="dataTables-mini table table-condensed table-striped">
+				<thead>
+					<tr>
+						<th>name</th>
+						<th>type</th>
+						<th>tunnels</th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: $root.StarSystemVM.db({ affiliation_id: aid }).get()">
+					<tr>
+						<td><a href="javascript:void(0)" 
+							data-bind="text: name, attr: {'data-ssid': ssid}, click: $root.setSelectedRecordEvt"></a></td>
+						<td data-bind="text: type"></td>
+						<td class="text-right" data-bind="text: tunnel_departure_count"></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		
+		<!-- Celestial Objects -->
+		<section class="col-md-6 col-lg-12">
+			<h4>Celestial Objects</h4>
+			<dl class="dl-horizontal">
+				<dt>Count</dt>
+				<dd data-bind="text: celestial_object_count"></dd>
+			</dl>
+			<table class="dataTables-mini table table-condensed table-striped">
+				<thead>
+					<tr>
+						<th>name</th>
+						<th>type</th>
+						<th>subtype</th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: $root.CelestialObjectVM.db({ affiliation_id: aid }).get()">
+					<tr>
+						<td><a href="javascript:void(0)" 
+							data-bind="text: designation_name, attr: {'data-coid': coid}, click: $root.setSelectedRecordEvt"></a></td>
+						<td data-bind="text: type"></td>
+						<td data-bind="text: subtype"></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</div>
+</script>
+<!-- End Affiliation Template -->
+
+<script type="text/javascript" src="StarMapDB.js"></script>
+</body>
+</html>

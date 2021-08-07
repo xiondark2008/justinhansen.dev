@@ -1,0 +1,36 @@
+<div class="dice" data-bind="foreach: {data: dieTypes, as: 'type' }"><div class="dieType">
+    <button class="setHeight btn btn-primary btn-block btn-xs" data-bind="click: type.plus"><span class="glyphicon glyphicon-chevron-up"></span>
+
+    </button>
+    <input class="setHeight text-right" step="1" min="0" data-bind="value: type.quantity, attr: {id: 'd'+type.faces }" />
+    <label class="setHeight" data-bind="text: 'd'+type.faces, attr:{for: 'd'+type.faces }"></label>
+    <button class="setHeight btn btn-primary btn-block btn-xs" data-bind="click: type.minus, enable: type.quantity() > 0"><span class="glyphicon glyphicon-chevron-down"></span></button>
+</div></div>
+<hr/>
+<div class="form-group">
+<h4 class="setHeight">Chance of getting</h4>
+<div class="input-group"> <span class="input-group-btn">
+    <button class="setHeight btn btn-primary btn-xs" type="button" data-bind="click: minus, enable: chanceOf() > 0">
+            <span class="glyphicon glyphicon-minus"></span></button>
+    </span>
+    <input id="chanceOf" class="setHeight form-control text-center" type="number" step="1" min="0" data-bind="value: chanceOf" /> <span class="input-group-btn input-group-xs">
+        <button class="setHeight btn btn-primary btn-xs" type="button" data-bind="click: plus">
+            <span class="glyphicon glyphicon-plus"></span></button>
+    </span>
+</div>
+</div>
+<div id="equality" class="btn-group btn-group-justified btn-group-xs" data-toggle="buttons">
+<label class="setHeight btn btn-primary" for="lt" data-bind="css:{active: lessThan}">&#60;
+    <input id="lt" type="checkbox" data-bind="checked: lessThan" />
+</label>
+<label class="setHeight btn btn-primary" for="eq" data-bind="css:{active: equalTo}">&#61;
+    <input id="eq" type="checkbox" data-bind="checked: equalTo" />
+</label>
+<label class="setHeight btn btn-primary" for="gt" data-bind="css:{active: greaterThan}">&#62;
+    <input id="gt" type="checkbox" data-bind="checked: greaterThan" />
+</label>
+</div><div id="results">
+<h1 class="text-center" data-bind="text: chance()+'%'"></h1>
+
+<canvas id="myCanvas" data-bind="attr:{width: graphWidth, height: graphHeight}"></canvas>
+</div>

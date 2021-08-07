@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { connectToDatabase } from '../util/mongodb'
+import { connectToDatabase } from '@/utils/mongodb.js'
 
 export default function Home({ isConnected }) {
   return (

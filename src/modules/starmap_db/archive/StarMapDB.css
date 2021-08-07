@@ -1,0 +1,231 @@
+@font-face {
+    font-family: 'starmap-icons';
+    src: url('fonts/icons.eot');
+    src: url('fonts/icons (1).eot') format('embedded-opentype'),url('fonts/icons.ttf') format('truetype'),url('fonts/icons.woff?-6ac3q6') format('woff');
+    font-weight: normal;
+    font-style: normal
+}
+*[affiliation]::before {
+	margin-right: 0.25em;
+}
+*[affiliation="UEE"]::before {
+	font-family: 'starmap-icons';
+	content: '\e609';
+	color: #48bbd4;
+}
+*[affiliation="Banu"]::before {
+	font-family: 'starmap-icons';
+	content: '\e606';
+	color: #ffce17;
+}
+*[affiliation="Vanduul"]::before {
+	font-family: 'starmap-icons';
+	content: '\e60b';
+	color: #bd002d;
+}
+*[affiliation="Xi'An"]::before {
+	font-family: 'starmap-icons';
+	content: '\e60d';
+	color: #52c231;
+}
+*[affiliation="Developing"]::before {
+	font-family: 'starmap-icons';
+	content: '\e607';
+	color: #ca922d;
+}
+*[affiliation="Unclaimed"]::before {
+	font-family: 'starmap-icons';
+	content: '\e60a';
+	color: #f6851f;
+}
+
+/* Collapsible-Nav */
+.nav.nav-sm > li > a {
+	padding: 5px;
+}
+.collapsible-nav > .collapsible-head > .collapsible-control {
+	display: none;
+}
+@media (max-width: 767px){
+	.collapsible-nav > .collapsible-body {
+		display: none;
+	}
+	.collapsible-nav.expanded > .collapsible-body {
+		display: block;
+	}
+	.collapsible-nav:not(.expanded) > .collapsible-head > .collapsible-control.expand {
+		display: inline-block;
+	}
+	.collapsible-nav.expanded > .collapsible-head > .collapsible-control.collapse {
+		display: inline-block;
+	}
+}
+
+/* thin navbar */
+.navbar.navbar-thin {
+	min-height: 40px;
+	margin-bottom: 10px;
+}
+.navbar.navbar-thin .navbar-brand {
+	height: 40px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+@media (min-width: 768px){
+	.navbar.navbar-thin .navbar-nav > li > a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+
+
+/* Detatils section */
+.record_details,
+.record_details_btn {
+	height: calc( 100vh - 52px );
+}
+.record_details {
+	overflow-y: scroll;
+}
+.btn-fill {
+	height: calc( 100% - 10px );
+	width: 100%;
+	white-space: normal;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+section > h4 {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+.col-md-6 > h3 {
+  margin-top: 0;
+}
+
+.bg {
+  padding-top: 100px;
+  background-color: #aaa;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.bg .stripe {
+  padding-left: 0.75em;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.list-group-item {
+  padding: 3px 10px;
+}
+.list-group-item > *{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.progress {
+  margin-bottom: 0.5em;
+}
+.progress.thin {
+	height: 10px;
+	margin-top: 0.35em;
+	margin-bottom: 0.5em;
+}
+.progress-bar-clear {
+  color: #222;
+  background-color: #f5f5f5;
+}
+
+.divider-right {
+  border-right: 1px solid #ccc;
+}
+
+.circle-label {
+	display: inline-block;
+  height: 70px;
+  width: 70px;
+  margin: 5px auto;
+  padding-top: 10px;
+  background-color: pink;
+  border-radius: 100px;
+}
+.circle-label.total {
+  background-color: #8e7cc3;
+}
+.circle-label.large {
+  background-color: #ffd666;
+}
+.circle-label.medium {
+  background-color: #f6b26b;
+}
+.circle-label.small {
+  background-color: #e67c73;
+}
+.circle-label h2,
+.circle-label h5 {
+  margin: 0;
+}
+
+section.ss_details .tunnels .tunnel-label {
+	display: inline-block;
+	font-weight: 700;
+	vertical-align: top;
+}
+
+
+table td.border-left {
+	border-left: 1px solid;
+}
+table td.border-right {
+	border-right: 1px solid;
+}
+table th.border-left,
+table td.border-left,
+table th.border-right,
+table td.border-right {
+	border-color: #eee;
+}
+
+table.dataTable tbody > tr.selected > td {
+	border-top: 1px solid #40a6d9;
+	border-bottom: 1px solid #40a6d9;
+}
+table.dataTable tbody > tr.selected + tr > td {
+	border-top-width: 0;
+}
+span.ellipsis {
+    display: block;
+	white-space: nowrap;
+	width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+dl.font-normal dt {
+	font-weight: normal;
+}
+
+.modal-header, .modal-footer {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+
+/* Utils */
+.black-text {
+	color: #333;
+}
+.inline-block {
+	display: inline-block;
+}
+.bold {
+	font-weight: 700;
+}
+.hide-xs-block {
+	display: block;
+}
+@media (max-width: 767px){
+	.hide-xs-block {
+		display: none;
+	}
+}
