@@ -1,4 +1,4 @@
-import { Component, ReactDOM } from "react";
+import { Component } from "react";
 import DetailsHeader from "@/starmap_db/components/elements/DetailsHeader";
 import BootstrapNavTabs from "@/common/components/BootstrapNavTabs";
 import AjaxDatatable from "@/common/components/AjaxDatatable";
@@ -7,7 +7,6 @@ import NumberCallout from "@/common/components/elements/NumberCallout"
 
 import { ENTITY_PATHS, RSI_URL, UI_ENTITY_STUBS } from "@/starmap_db/utils/Utilities";
 import CelestialObject from "@/modules/starmap_db/types/entities/CelestialObject";
-import SetRecordLink from "../../elements/setRecordLink";
 
 export default class StarSystemDetails extends Component {
     constructor(props) { //console.debug("in StarSystemDetails.constructor", arguements)
