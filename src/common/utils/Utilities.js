@@ -1,6 +1,5 @@
 export function toHTMLName(val='') {
-    const lowerCase = (val+'').toLowerCase()
-    return lowerCase.replaceAll(' ', '_')
+    return (val+'').toLowerCase().replace(/\s/g, '_')
 }
 
 export function hasElapsedSince(interval, start, end=new Date(), isInclusive=true ){
