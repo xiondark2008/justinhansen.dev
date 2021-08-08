@@ -27,7 +27,7 @@ export default async function handler(req, res) { console.debug("in /api/resourc
             .setHeader('Content-Type', 'application/javascript')
             .send( fs.readFileSync( path ) )
     } catch(e){
-        console.error("ERROR - in /api/scripts/bootstrap.bundle.js.map.js",e)
+        console.error("ERROR - in /api/resources/[package]/[file].js",e)
         res.status( status ).send( message )
     }
 }
