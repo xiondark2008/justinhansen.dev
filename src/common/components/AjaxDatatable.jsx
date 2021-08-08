@@ -13,12 +13,13 @@ export default class AjaxDatatable extends Component {
 
         do{
             const id = base + count++,
-                isUniqueId = Array.from(AjaxDatatable.TABLE_STATES, ([key, val]) => val).every( it => it.id !== id )
+                isUniqueId = Array.from(AjaxDatatable.TABLE_STATES, ([key, val]) => val)
+                        .every( it => it.id !== id )
             
             if( isUniqueId ){
                 return id
             }
-        }while(count < AjaxDatatable.TABLE_STATES.size)
+        }while(count <= AjaxDatatable.TABLE_STATES.size)
 
         console.warn("WARN - was not able to generate AjaxDatatable id.",AjaxDatatable.TABLE_STATES)
     }
@@ -45,8 +46,25 @@ export default class AjaxDatatable extends Component {
     }
 
     //Lifecycle
-    componentDidMount(){
-        const opts = Object.assign( {}, this.props.opts ? this.props.opts : {} )
+    componentDidMount(){ console.debug("DEBUG - in AjaxDatatable.componentDidMount")
+        const self = this,
+            opts = Object.assign( {}, this.props.opts ? this.props.opts : {} ),
+            initializeDatatable = () => { console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable")
+                const jqueryExists = !!jQuery,
+                    datatableExists = !!$.fn.DataTable
+                
+                console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable > jquery("+jqueryExists+") and datatable("+datatableExists+")")
+                if( jqueryExists && datatableExists ){ 
+                    const $table = $('#'+self.tableId).DataTable(opts),
+                        afterInit = self.props.afterInit
+
+                    if(afterInit instanceof Function){
+                        afterInit.bind(self)($table, self.props, self.state)
+                    }
+                } else { console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable > try again later")
+                    setTimeout( initializeDatatable, 100)
+                }
+            }
 
         if( this.props.dataUrl ){
             opts.ajax = this.props.dataUrl
@@ -55,15 +73,7 @@ export default class AjaxDatatable extends Component {
             opts.columns = this.props.columns
         }
 
-        jQuery( ()=>{
-            const $table = $('#'+this.tableId).DataTable(opts),
-                afterInit = this.props.afterInit
-
-            if(afterInit instanceof Function){
-                afterInit($table, this.props, this.state)
-            }
-
-        })
+        initializeDatatable()
     }
     shouldComponentUpdate(nextProps, nextState){
         //console.log("is same columns: ", this.props.columns == nextProps.columns )
