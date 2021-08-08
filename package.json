@@ -10,7 +10,6 @@
   "dependencies": {
     "bootstrap": "^5.0.2",
     "got": "^11.8.2",
-    "jquery": "^3.6.0",
     "mongodb": "^3.5.9",
     "next": "latest",
     "node-fetch": "^2.6.1",

@@ -39,32 +39,37 @@ export default class AjaxDatatable extends Component {
 
         this.state = {}
 
+        this.didLibrariesLoad = this.didLibrariesLoad.bind(this)
         this.componentDidMount = this.componentDidMount.bind(this)
         this.componentDidUpdate = this.componentDidUpdate.bind(this)
         this.componentWillUnmount = this.componentWillUnmount.bind(this)
         this.render = this.render.bind(this)
     }
 
+    //Utility
+    didLibrariesLoad(){
+        const jqueryExists = !!jQuery,
+            datatableExists = !!$.fn.DataTable
+        
+        console.debug("DEBUG - in AjaxDatatable.didLibrariesLoad > jquery("+jqueryExists+") and datatable("+datatableExists+")")
+        return jqueryExists && datatableExists
+    }
+
     //Lifecycle
     componentDidMount(){ console.debug("DEBUG - in AjaxDatatable.componentDidMount")
-        const self = this,
-            opts = Object.assign( {}, this.props.opts ? this.props.opts : {} ),
-            initializeDatatable = () => { console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable")
-                const jqueryExists = !!jQuery,
-                    datatableExists = !!$.fn.DataTable
-                
-                console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable > jquery("+jqueryExists+") and datatable("+datatableExists+")")
-                if( jqueryExists && datatableExists ){ 
-                    const $table = $('#'+self.tableId).DataTable(opts),
-                        afterInit = self.props.afterInit
+        const opts = Object.assign( {}, this.props.opts ? this.props.opts : {} ),
+            initializeDatatable = (() => { console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable")
+                if( this.didLibrariesLoad() ){ 
+                    const $table = $('#'+this.tableId).DataTable(opts),
+                        afterInit = this.props.afterInit
 
                     if(afterInit instanceof Function){
-                        afterInit.bind(self)($table, self.props, self.state)
+                        afterInit.bind(this)($table, this.props, this.state)
                     }
                 } else { console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable > try again later")
                     setTimeout( initializeDatatable, 100)
                 }
-            }
+            }).bind(this)
 
         if( this.props.dataUrl ){
             opts.ajax = this.props.dataUrl
@@ -83,23 +88,25 @@ export default class AjaxDatatable extends Component {
         return true
     }
     componentDidUpdate(prevProps){
-        const $table = $('#'+this.tableId).DataTable()
+        if( this.didLibrariesLoad() ){
+            const $table = $('#'+this.tableId).DataTable()
 
-        for(let propsColumn of this.props.columns){
-            const name = propsColumn.name + ':name',
-                isVisible = propsColumn.visible
+            for(let propsColumn of this.props.columns){
+                const name = propsColumn.name + ':name',
+                    isVisible = propsColumn.visible
 
-            $table.column( name ).visible( isVisible, false )
+                $table.column( name ).visible( isVisible, false )
+            }
+
+            $table.draw()
         }
-
-        $table.draw()
     }
     componentWillUnmount(){ //console.debug("DEBUG - in AjaxDatatable.componentWillUnmount for "+this.tableId)
-        $('#'+this.tableId).DataTable().destroy()
+        if( this.didLibrariesLoad() ){
+            $('#'+this.tableId).DataTable().destroy()
+        }
         AjaxDatatable.TABLE_STATES.delete( this.stateKey )
     }
-
-    //Utility
 
     render(){ //console.debug("DEBUG - in AjaxDataTable.render for "+this.tableId, this.props.dataUrl)
         const tableId = this.tableId,
