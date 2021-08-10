@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { addClassName,
+import { addClassNames,
         cleanAttributesObject, 
         cleanAttributesObjectArray } from "@/common/utils/Utilities";
 
@@ -16,7 +16,7 @@ export default class BootstrapProgressBar extends Component {
                 const text = barAttr.text
                 delete barAttr.text
 
-                barAttr.className = addClassName('progress-bar', barAttr.className)
+                barAttr.className = addClassNames('progress-bar', barAttr.className)
                 if( !(barAttr.style instanceof Object) ){
                     barAttr.style = {}
                 }
@@ -27,7 +27,7 @@ export default class BootstrapProgressBar extends Component {
                 return <div key={ idx } {...barAttr}>{ text }</div>
             })
 
-        wrapperAttr.className = addClassName('progress mt-1', wrapperAttr.className)
+        wrapperAttr.className = addClassNames('progress mt-1', wrapperAttr.className)
         
         return(<>
         <div {...wrapperAttr}>

@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { cleanAttributesObject,
-         addClassName } from "@/common/utils/Utilities";
+         addClassNames } from "@/common/utils/Utilities";
 
 export default class DetailsHeader extends Component {
     constructor(props) { //console.debug("in DetailsHeader.constructor", arguements)
@@ -15,9 +15,9 @@ export default class DetailsHeader extends Component {
             h1Attr = cleanAttributesObject(this.props.h1Attr),
             smallAttr = cleanAttributesObject(this.props.smallAttr)
         
-        sectionAttr.className = addClassName('detials-header col-12', sectionAttr.className)
-        wrapperAttr.className = addClassName('bg-white bg-opacity-75 ps-2', wrapperAttr.className)
-        smallAttr.className = addClassName('text-muted', smallAttr.className)
+        sectionAttr.className = addClassNames('detials-header col-12', sectionAttr.className)
+        wrapperAttr.className = addClassNames('bg-white bg-opacity-75 ps-2', wrapperAttr.className)
+        smallAttr.className = addClassNames('text-muted', smallAttr.className)
         
         return(<>
         <section {...sectionAttr}>

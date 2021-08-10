@@ -1,6 +1,6 @@
 import React,
         { Component } from "react";
-import { addClassName, 
+import { addClassNames, 
         cleanAttributesObject,
         cleanAttributesObjectArray } from "@/common/utils/Utilities";
 
@@ -48,15 +48,15 @@ export default class BootstrapNavTabs extends Component {
                 const tabAttr = Object.assign({}, tabsAttr[ idx % tabsAttr.length ]),
                     navLinkAttr = Object.assign({}, navLinksAttr[ idx % navLinksAttr.length ])
 
-                tabAttr.className = addClassName('nav-item', tabAttr.className)
+                tabAttr.className = addClassNames('nav-item', tabAttr.className)
                 tabAttr.onClick = event => { 
                     event.preventDefault()
                     this.setSelectedTabIndex(idx)
                 }
                 
-                navLinkAttr.className = addClassName('nav-link', navLinkAttr.className)
+                navLinkAttr.className = addClassNames('nav-link', navLinkAttr.className)
                 if( idx === this.state.selectedTabIndex ){
-                    navLinkAttr.className = addClassName('active', navLinkAttr.className)
+                    navLinkAttr.className = addClassNames('active', navLinkAttr.className)
                 }
                 
                 return <li key={ idx } {...tabAttr}>
@@ -67,9 +67,9 @@ export default class BootstrapNavTabs extends Component {
             tabPanels = React.Children.map(this.props.children, (child, idx)=>{ //console.debug("DEBUG - in BootstrapNavTabs.render props.children.map. child:", child, ",idx:", idx)
                 const panelAttr = Object.assign({}, panelsAttr[ idx % panelsAttr.length ])
                 
-                panelAttr.className = addClassName('tab-pane', panelAttr.className)
+                panelAttr.className = addClassNames('tab-pane', panelAttr.className)
                 if( idx === this.state.selectedTabIndex ){
-                    panelAttr.className = addClassName('active', panelAttr.className)
+                    panelAttr.className = addClassNames('active', panelAttr.className)
                 }
 
                 return <div {...panelAttr}>
@@ -77,8 +77,8 @@ export default class BootstrapNavTabs extends Component {
                 </div>
             })
 
-        ulAttr.className = addClassName('nav', ulAttr.className)
-        panelWrapperAttr.className = addClassName('tab-content', panelWrapperAttr.className)
+        ulAttr.className = addClassNames('nav', ulAttr.className)
+        panelWrapperAttr.className = addClassNames('tab-content', panelWrapperAttr.className)
 
         return(<>
         <ul {...ulAttr}>

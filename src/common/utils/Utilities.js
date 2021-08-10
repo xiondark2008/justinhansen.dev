@@ -50,17 +50,35 @@ export function propertyToLabel(prop){
 
     return label
 }
-
-export function addClassName(val, list=''){
-    return list.split(' ').includes(val) ? list : val + ' ' + list
-}
-export function addStyle(keyValue, obj){
-    if( !(obj instanceof Object) ){
-        obj = {}
-    } else {
-        obj = Object.assign({}, obj)
+export function prependToStringList(newValStrList, strList='', deliminator=','){
+    const valList = Array.from( new Set( (newValStrList).trim().split(deliminator) ) ),
+        nameList = strList.split(deliminator)
+    for(let i=valList.length-1; i>-1; i--){
+        if( !nameList.includes(valList[i]) ){
+            strList = valList[i] + deliminator + strList
+        }
     }
-    return Object.assign(obj, keyValue)
+    return strList
+}
+export function addClassNames(toAddStr, classNames=''){
+    return prependToStringList(toAddStr, classNames, ' ')
+}
+export function mergeObjects(victim={}, survivor, overwrite=false){
+    if( !(survivor instanceof Object) ){
+        survivor = {}
+    } else {
+        survivor = Object.assign({}, survivor)
+    }
+
+    if( overwrite ){
+        return Object.assign(survivor, victim)
+    } else {
+        return Object.assign(victim, survivor)
+    }
+    
+}
+export function addStyle(toAddObj, styleObj){
+    return mergeObjects(toAddObj, styleObj, true)
 }
 
 export function cleanAttributesObject(attr, warn=(val)=>{
@@ -170,4 +188,31 @@ export function isEmpty(val){
     }
 
     return false
+}
+
+export function getUniqueId(instanceIdList, base=getRandomString(4), warning=(instanceIdList)=>{
+    console.warn("WARN - was not able to generate unique id for instance id list: ",instanceIdList)
+}){
+    let count = -1
+
+    do{
+        const id = base + (count < 0 ? '' : '_'+count),
+            isUniqueId = instanceIdList.every( it => it !== id )
+        
+        if( isUniqueId ){
+            return id
+        }
+    }while(count++ <= instanceIdList.length)
+
+    warning( instanceIdList )
+}
+export function getRandomString(length){
+    let str = ''
+    
+    for(let c=0; c<length; c++){
+        const rand = Math.floor( 52 * Math.random() )
+        str += String.fromCharCode( 65 + (rand < 26 ? rand : rand + 6) )
+    }
+
+    return str
 }

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { addClassName, cleanAttributesObject } from "@/common/utils/Utilities";
+import { addClassNames, cleanAttributesObject } from "@/common/utils/Utilities";
 
 //TODO: document props
 export default class NumberCallout extends Component {
@@ -14,7 +14,7 @@ export default class NumberCallout extends Component {
             valueAttr = cleanAttributesObject(this.props.valueAttr),
             labelAttr = cleanAttributesObject(this.props.labelAttr)
 
-            wrapperAttr.className = addClassName("text-center", wrapperAttr.className)
+            wrapperAttr.className = addClassNames("text-center", wrapperAttr.className)
         
         return(<>
         <div {...wrapperAttr}>

@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { toHTMLName,
          cleanAttributesObject,
-         addClassName,
+         addClassNames,
          addStyle } from "@/common/utils/Utilities";
 
 //TODO: document props
@@ -115,7 +115,7 @@ export default class AjaxDatatable extends Component {
             tbodyAttr = this.props.tbodyAttr,
             tfootAttr = this.props.tfootAttr
         
-        tableAttr.className = addClassName('table', tableAttr.className)
+        tableAttr.className = addClassNames('table', tableAttr.className)
         tableAttr.style = addStyle({width:100+'%'}, tableAttr.style)
         
         return(<>
