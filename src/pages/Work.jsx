@@ -1,5 +1,3 @@
-import BootstrapNavBar from '@/common/components/BootstrapNavBar'
-import LandingPage from '@/portfolio/components/LandingPage'
 import Head from 'next/head'
 import Link from 'next/link'
 import Navbar from '@/portfolio/components/Navbar'

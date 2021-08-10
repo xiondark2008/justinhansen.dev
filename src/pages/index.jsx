@@ -1,9 +1,8 @@
-import BootstrapNavBar from '@/common/components/BootstrapNavBar'
-import FeaturedWorkLayout from '@/portfolio/components/FeaturedWorkLayout'
-import LandingPage from '@/portfolio/components/LandingPage'
-import Navbar from '@/portfolio/components/Navbar'
 import Head from 'next/head'
 import Link from 'next/link'
+import Navbar from '@/portfolio/components/Navbar'
+import LandingPage from '@/portfolio/components/LandingPage'
+import FeaturedWorkLayout from '@/portfolio/components/FeaturedWorkLayout'
 
 export default function Home() {
     return (<>

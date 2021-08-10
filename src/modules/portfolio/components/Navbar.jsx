@@ -1,5 +1,5 @@
 import { Component } from "react";
-import BootstrapNavBar from "@/common/components/BootstrapNavBar";
+import BootstrapNavbar from "@/common/components/BootstrapNavbar";
 import Link from 'next/link'
 
 export default class Navbar extends Component {
@@ -37,7 +37,7 @@ export default class Navbar extends Component {
             </li>)
         })
         return(<>
-        <BootstrapNavBar
+        <BootstrapNavbar
             id="main_navbar"
             hasBrandElement={ true }
             navAttr={ {className: "navbar-expand-lg navbar-light"} }
@@ -48,7 +48,7 @@ export default class Navbar extends Component {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 { items }
             </ul>
-        </BootstrapNavBar>
+        </BootstrapNavbar>
         </>)
     }
 }

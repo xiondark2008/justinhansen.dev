@@ -5,7 +5,7 @@ import { cleanAttributesObject,
     mergeObjects} from "@/common/utils/Utilities";
 
 //TODO: document props
-export default class BootstrapNavBar extends Component {
+export default class BootstrapNavbar extends Component {
     static INSTANCE_ID_LIST = []
     constructor(props) { //console.debug("in NavBar.constructor", arguements)
         super(props)
@@ -19,10 +19,10 @@ export default class BootstrapNavBar extends Component {
         if( this.props.id ){
             this.collapseAttr.id = this.props.id
         } else if( !this.props.collapseAttr.id ){
-            this.collapseAttr.id = getUniqueId(BootstrapNavBar.INSTANCE_ID_LIST, 'navbar')
+            this.collapseAttr.id = getUniqueId(BootstrapNavbar.INSTANCE_ID_LIST, 'navbar')
         }
         this.id = this.collapseAttr.id
-        BootstrapNavBar.INSTANCE_ID_LIST.push( this.id )
+        BootstrapNavbar.INSTANCE_ID_LIST.push( this.id )
         delete this.collapseAttr.id
 
         this.navAttr.className = addClassNames('navbar', this.navAttr.className)

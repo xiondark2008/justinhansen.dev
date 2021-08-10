@@ -1,5 +1,5 @@
 import { Component } from "react";
-import NavBar from "@/starmap_db/components/NavBar.jsx";
+import Navbar from "@/starmap_db/components/Navbar.jsx";
 import ListView from "@/starmap_db/components/ListView.jsx";
 import DetailsView from "@/modules/starmap_db/components/DetailsView.jsx";
 import { ENTITY_PATHS, UI_ENTITY_STUBS } from "@/starmap_db/utils/Utilities";
@@ -55,7 +55,7 @@ export default class StarMapDB extends Component {
     render(){ //console.debug("in StarMapDB.render", arguements)
         return(<>
         <div className="vh-100">
-            <NavBar
+            <Navbar
                 currentEntityStub={ this.state.tableEntityStub }
                 setEntityStub={ this.setTableEntityStub }
             />

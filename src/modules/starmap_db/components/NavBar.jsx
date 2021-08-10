@@ -2,12 +2,13 @@ import { Component } from "react";
 import { UI_ENTITY_STUBS } from "@/starmap_db/utils/Utilities";
 import { toHTMLName } from '@/utils/Utilities.js'
 
-export default class NavBar extends Component {
+export default class Navbar extends Component {
     constructor(props) { //console.debug("in NavBar.constructor", arguements)
         super(props)
     }
 
     render(){ //console.debug("in NavBar.render", arguements)
+        //TODO: implement common BootstrapNavbar
         const containerId = "main_navbar",
             currentEntityStub = this.props.currentEntityStub,
             setEntityStub = this.props.setEntityStub,
