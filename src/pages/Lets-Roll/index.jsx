@@ -12,10 +12,6 @@ export default function Home() {
             <meta name="description" content={title} />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Link href="/">
-            <a>Home</a>
-        </Link>
-        <h1>{title}</h1>
         <RollProbabilityCalculator/>
 
     </div>

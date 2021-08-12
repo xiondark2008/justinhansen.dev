@@ -2,9 +2,9 @@ import { Component } from "react";
 import Roll from "@/roll_probability/types/Roll.js";
 import DieType from "@/roll_probability/types/DieType.js";
 import Target from "@/roll_probability/types/Target.js";
-import DieTypeInput from '@/modules/roll_probability_calculator/components/DieTypeInput.jsx'
-import TargetInput from '@/modules/roll_probability_calculator/components/TargetInput.jsx'
-import Results from '@/modules/roll_probability_calculator/components/Results.jsx'
+import DieTypeInput from '@/roll_probability/components/DieTypeInput.jsx'
+import TargetInput from '@/roll_probability/components/TargetInput.jsx'
+import Results from '@/roll_probability/components/Results.jsx'
 import { StandardDie } from '@/roll_probability/utils/Utilities.js'
 
 export default class RollProbabilityCalculator extends Component {

@@ -1,15 +1,605 @@
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('fonts/AzoSans-BoldItalic.eot');
+    src: local('Azo Sans Bold Italic'), local('AzoSans-BoldItalic'),
+        url('fonts/AzoSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-BoldItalic.woff2') format('woff2'),
+        url('fonts/AzoSans-BoldItalic.woff') format('woff'),
+        url('fonts/AzoSans-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Azo Sans Tn';
+    src: url('fonts/AzoSans-Thin.eot');
+    src: local('Azo Sans Thin'), local('AzoSans-Thin'),
+        url('fonts/AzoSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-Thin.woff2') format('woff2'),
+        url('fonts/AzoSans-Thin.woff') format('woff'),
+        url('fonts/AzoSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans Lt';
+    src: url('fonts/AzoSans-LightItalic.eot');
+    src: local('Azo Sans Light Italic'), local('AzoSans-LightItalic'),
+        url('fonts/AzoSans-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-LightItalic.woff2') format('woff2'),
+        url('fonts/AzoSans-LightItalic.woff') format('woff'),
+        url('fonts/AzoSans-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Azo Sans Tn';
+    src: url('fonts/AzoSans-ThinItalic.eot');
+    src: local('Azo Sans Thin Italic'), local('AzoSans-ThinItalic'),
+        url('fonts/AzoSans-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-ThinItalic.woff2') format('woff2'),
+        url('fonts/AzoSans-ThinItalic.woff') format('woff'),
+        url('fonts/AzoSans-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('fonts/AzoSans-Regular.eot');
+    src: local('Azo Sans Regular'), local('AzoSans-Regular'),
+        url('fonts/AzoSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-Regular.woff2') format('woff2'),
+        url('fonts/AzoSans-Regular.woff') format('woff'),
+        url('fonts/AzoSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans Md';
+    src: url('fonts/AzoSans-MediumItalic.eot');
+    src: local('Azo Sans Medium Italic'), local('AzoSans-MediumItalic'),
+        url('fonts/AzoSans-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-MediumItalic.woff2') format('woff2'),
+        url('fonts/AzoSans-MediumItalic.woff') format('woff'),
+        url('fonts/AzoSans-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Azo Sans Bk';
+    src: url('fonts/AzoSans-Black.eot');
+    src: local('Azo Sans Black'), local('AzoSans-Black'),
+        url('fonts/AzoSans-Black.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-Black.woff2') format('woff2'),
+        url('fonts/AzoSans-Black.woff') format('woff'),
+        url('fonts/AzoSans-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans Md';
+    src: url('fonts/AzoSans-Medium.eot');
+    src: local('Azo Sans Medium'), local('AzoSans-Medium'),
+        url('fonts/AzoSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-Medium.woff2') format('woff2'),
+        url('fonts/AzoSans-Medium.woff') format('woff'),
+        url('fonts/AzoSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans Bk';
+    src: url('fonts/AzoSans-BlackItalic.eot');
+    src: local('Azo Sans Black Italic'), local('AzoSans-BlackItalic'),
+        url('fonts/AzoSans-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-BlackItalic.woff2') format('woff2'),
+        url('fonts/AzoSans-BlackItalic.woff') format('woff'),
+        url('fonts/AzoSans-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Azo Sans Lt';
+    src: url('fonts/AzoSans-Light.eot');
+    src: local('Azo Sans Light'), local('AzoSans-Light'),
+        url('fonts/AzoSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-Light.woff2') format('woff2'),
+        url('fonts/AzoSans-Light.woff') format('woff'),
+        url('fonts/AzoSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('fonts/AzoSans-Italic.eot');
+    src: local('Azo Sans Italic'), local('AzoSans-Italic'),
+        url('fonts/AzoSans-Italic.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-Italic.woff2') format('woff2'),
+        url('fonts/AzoSans-Italic.woff') format('woff'),
+        url('fonts/AzoSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Azo Sans';
+    src: url('fonts/AzoSans-Bold.eot');
+    src: local('Azo Sans Bold'), local('AzoSans-Bold'),
+        url('fonts/AzoSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AzoSans-Bold.woff2') format('woff2'),
+        url('fonts/AzoSans-Bold.woff') format('woff'),
+        url('fonts/AzoSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
+$enable-rounded: false;
+$enable-shadows: true;
+// $enable-gradients: true;
+$enable-negative-margins: true;
+
+$font-family-sans-serif: 'Azo Sans';
+$font-family-monospace: Consolas, 'Courier New', monospace;
+
+$gray-900: #2A2A2C;
+$gray-950: #1F1F21;
+
+$custom-gray: (
+  "950": $gray-950
+);
+
+$pink:    #d12e75;
+$green:   #007933;
+$teal:    #20c997;
+
+$primary: $green;
+$success: $teal;
+
+$utilities: (
+    "width": (
+        property: width,
+        class: w,
+        values: (
+            5: 5%,
+            10: 10%,
+            15: 15%,
+            20: 20%,
+            25: 25%,
+            30: 30%,
+            35: 35%,
+            40: 40%,
+            45: 45%,
+            50: 50%,
+            55: 55%,
+            60: 60%,
+            65: 65%,
+            70: 70%,
+            75: 75%,
+            80: 80%,
+            85: 85%,
+            90: 90%,
+            95: 95%,
+            100: 100%,
+            auto: auto
+        )
+    ),
+    "max-width": (
+        property: max-width,
+        class: mw,
+        values: (
+            5: 5%,
+            10: 10%,
+            15: 15%,
+            20: 20%,
+            25: 25%,
+            30: 30%,
+            35: 35%,
+            40: 40%,
+            45: 45%,
+            50: 50%,
+            55: 55%,
+            60: 60%,
+            65: 65%,
+            70: 70%,
+            75: 75%,
+            80: 80%,
+            85: 85%,
+            90: 90%,
+            95: 95%,
+            100: 100%
+        )
+    ),
+    "min-width": (
+        property: min-width,
+        class: min-w,
+        values: (
+            5: 5%,
+            10: 10%,
+            15: 15%,
+            20: 20%,
+            25: 25%,
+            30: 30%,
+            35: 35%,
+            40: 40%,
+            45: 45%,
+            50: 50%,
+            55: 55%,
+            60: 60%,
+            65: 65%,
+            70: 70%,
+            75: 75%,
+            80: 80%,
+            85: 85%,
+            90: 90%,
+            95: 95%,
+            100: 100%
+        )
+    ),
+    "viewport-width": (
+        property: width,
+        class: vw,
+        values: (
+            5: 5vw,
+            10: 10vw,
+            15: 15vw,
+            20: 20vw,
+            25: 25vw,
+            30: 30vw,
+            35: 35vw,
+            40: 40vw,
+            45: 45vw,
+            50: 50vw,
+            55: 55vw,
+            60: 60vw,
+            65: 65vw,
+            70: 70vw,
+            75: 75vw,
+            80: 80vw,
+            85: 85vw,
+            90: 90vw,
+            95: 95vw,
+            100: 100vw
+        )
+    ),
+    "max-viewport-width": (
+        property: max-width,
+        class: max-vw,
+        values: (
+            5: 5vw,
+            10: 10vw,
+            15: 15vw,
+            20: 20vw,
+            25: 25vw,
+            30: 30vw,
+            35: 35vw,
+            40: 40vw,
+            45: 45vw,
+            50: 50vw,
+            55: 55vw,
+            60: 60vw,
+            65: 65vw,
+            70: 70vw,
+            75: 75vw,
+            80: 80vw,
+            85: 85vw,
+            90: 90vw,
+            95: 95vw,
+            100: 100vw
+        )
+    ),
+    "min-viewport-width": (
+        property: min-width,
+        class: min-vw,
+        values: (
+            5: 5vw,
+            10: 10vw,
+            15: 15vw,
+            20: 20vw,
+            25: 25vw,
+            30: 30vw,
+            35: 35vw,
+            40: 40vw,
+            45: 45vw,
+            50: 50vw,
+            55: 55vw,
+            60: 60vw,
+            65: 65vw,
+            70: 70vw,
+            75: 75vw,
+            80: 80vw,
+            85: 85vw,
+            90: 90vw,
+            95: 95vw,
+            100: 100vw
+        )
+    ),
+    "height": (
+        property: height,
+        class: h,
+        values: (
+            5: 5%,
+            10: 10%,
+            15: 15%,
+            20: 20%,
+            25: 25%,
+            30: 30%,
+            35: 35%,
+            40: 40%,
+            45: 45%,
+            50: 50%,
+            55: 55%,
+            60: 60%,
+            65: 65%,
+            70: 70%,
+            75: 75%,
+            80: 80%,
+            85: 85%,
+            90: 90%,
+            95: 95%,
+            100: 100%,
+            auto: auto
+        )
+    ),
+    "max-height": (
+        property: max-height,
+        class: mh,
+        values: (
+            5: 5%,
+            10: 10%,
+            15: 15%,
+            20: 20%,
+            25: 25%,
+            30: 30%,
+            35: 35%,
+            40: 40%,
+            45: 45%,
+            50: 50%,
+            55: 55%,
+            60: 60%,
+            65: 65%,
+            70: 70%,
+            75: 75%,
+            80: 80%,
+            85: 85%,
+            90: 90%,
+            95: 95%,
+            100: 100%
+        )
+    ),
+    "min-height": (
+        property: min-height,
+        class: min-h,
+        values: (
+            5: 5%,
+            10: 10%,
+            15: 15%,
+            20: 20%,
+            25: 25%,
+            30: 30%,
+            35: 35%,
+            40: 40%,
+            45: 45%,
+            50: 50%,
+            55: 55%,
+            60: 60%,
+            65: 65%,
+            70: 70%,
+            75: 75%,
+            80: 80%,
+            85: 85%,
+            90: 90%,
+            95: 95%,
+            100: 100%
+        )
+    ),
+    "viewport-height": (
+        property: height,
+        class: vh,
+        values: (
+            5: 5vh,
+            10: 10vh,
+            15: 15vh,
+            20: 20vh,
+            25: 25vh,
+            30: 30vh,
+            35: 35vh,
+            40: 40vh,
+            45: 45vh,
+            50: 50vh,
+            55: 55vh,
+            60: 60vh,
+            65: 65vh,
+            70: 70vh,
+            75: 75vh,
+            80: 80vh,
+            85: 85vh,
+            90: 90vh,
+            95: 95vh,
+            100: 100vh
+        )
+    ),"max-viewport-height": (
+        property: max-height,
+        class: max-vh,
+        values: (
+            5: 5vh,
+            10: 10vh,
+            15: 15vh,
+            20: 20vh,
+            25: 25vh,
+            30: 30vh,
+            35: 35vh,
+            40: 40vh,
+            45: 45vh,
+            50: 50vh,
+            55: 55vh,
+            60: 60vh,
+            65: 65vh,
+            70: 70vh,
+            75: 75vh,
+            80: 80vh,
+            85: 85vh,
+            90: 90vh,
+            95: 95vh,
+            100: 100vh
+        )
+    ),
+    "min-viewport-height": (
+        property: min-height,
+        class: min-vh,
+        values: (
+            5: 5vh,
+            10: 10vh,
+            15: 15vh,
+            20: 20vh,
+            25: 25vh,
+            30: 30vh,
+            35: 35vh,
+            40: 40vh,
+            45: 45vh,
+            50: 50vh,
+            55: 55vh,
+            60: 60vh,
+            65: 65vh,
+            70: 70vh,
+            75: 75vh,
+            80: 80vh,
+            85: 85vh,
+            90: 90vh,
+            95: 95vh,
+            100: 100vh
+        )
+    )
+);
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities"; //Optional
+
+// 4.
+$grays: map-merge($grays, $custom-gray);
+
+$expose-color-shades: (
+    "blue-100": $blue-100,
+    "blue-200": $blue-200,
+    "blue-300": $blue-300,
+    "blue-400": $blue-400,
+    "blue-500": $blue-500,
+    "blue-600": $blue-600,
+    "blue-700": $blue-700,
+    "blue-800": $blue-800,
+    "blue-900": $blue-900,
+    "indigo-100": $indigo-100,
+    "indigo-200": $indigo-200,
+    "indigo-300": $indigo-300,
+    "indigo-400": $indigo-400,
+    "indigo-500": $indigo-500,
+    "indigo-600": $indigo-600,
+    "indigo-700": $indigo-700,
+    "indigo-800": $indigo-800,
+    "indigo-900": $indigo-900,
+    "purple-100": $purple-100,
+    "purple-200": $purple-200,
+    "purple-300": $purple-300,
+    "purple-400": $purple-400,
+    "purple-500": $purple-500,
+    "purple-600": $purple-600,
+    "purple-700": $purple-700,
+    "purple-800": $purple-800,
+    "purple-900": $purple-900,
+    "pink-100": $pink-100,
+    "pink-200": $pink-200,
+    "pink-300": $pink-300,
+    "pink-400": $pink-400,
+    "pink-500": $pink-500,
+    "pink-600": $pink-600,
+    "pink-700": $pink-700,
+    "pink-800": $pink-800,
+    "pink-900": $pink-900,
+    "red-100": $red-100,
+    "red-200": $red-200,
+    "red-300": $red-300,
+    "red-400": $red-400,
+    "red-500": $red-500,
+    "red-600": $red-600,
+    "red-700": $red-700,
+    "red-800": $red-800,
+    "red-900": $red-900,
+    "orange-100": $orange-100,
+    "orange-200": $orange-200,
+    "orange-300": $orange-300,
+    "orange-400": $orange-400,
+    "orange-500": $orange-500,
+    "orange-600": $orange-600,
+    "orange-700": $orange-700,
+    "orange-800": $orange-800,
+    "orange-900": $orange-900,
+    "yellow-100": $yellow-100,
+    "yellow-200": $yellow-200,
+    "yellow-300": $yellow-300,
+    "yellow-400": $yellow-400,
+    "yellow-500": $yellow-500,
+    "yellow-600": $yellow-600,
+    "yellow-700": $yellow-700,
+    "yellow-800": $yellow-800,
+    "yellow-900": $yellow-900,
+    "green-100": $green-100,
+    "green-200": $green-200,
+    "green-300": $green-300,
+    "green-400": $green-400,
+    "green-500": $green-500,
+    "green-600": $green-600,
+    "green-700": $green-700,
+    "green-800": $green-800,
+    "green-900": $green-900,
+    "teal-100": $teal-100,
+    "teal-200": $teal-200,
+    "teal-300": $teal-300,
+    "teal-400": $teal-400,
+    "teal-500": $teal-500,
+    "teal-600": $teal-600,
+    "teal-700": $teal-700,
+    "teal-800": $teal-800,
+    "teal-900": $teal-900,
+    "cyan-100": $cyan-100,
+    "cyan-200": $cyan-200,
+    "cyan-300": $cyan-300,
+    "cyan-400": $cyan-400,
+    "cyan-500": $cyan-500,
+    "cyan-600": $cyan-600,
+    "cyan-700": $cyan-700,
+    "cyan-800": $cyan-800,
+    "cyan-900": $cyan-900,
+    "gray-100": $gray-100,
+    "gray-200": $gray-200,
+    "gray-300": $gray-300,
+    "gray-400": $gray-400,
+    "gray-500": $gray-500,
+    "gray-600": $gray-600,
+    "gray-700": $gray-700,
+    "gray-800": $gray-800,
+    "gray-900": $gray-900,
+    "gray-950": $gray-950
+);
+
+$colors: map-merge($colors, $expose-color-shades);
+
+// 6. 
 @import "bootstrap/scss/root";      //Optional
 @import "bootstrap/scss/reboot";    //Optional
-
 
 // 4. Include any optional Bootstrap components as you like
 @import "bootstrap/scss/accordion";
@@ -82,7 +672,10 @@
 @import "bootstrap/scss/mixins/transition";
 @import "bootstrap/scss/mixins/utilities";
 @import "bootstrap/scss/mixins/visually-hidden";
-@import "bootstrap/scss/utilities/api";
 @import "bootstrap/scss/vendor/rfs";
 
 // 5. Add additional custom code here
+pre {
+    tab-size: 4;
+}
+

@@ -50,18 +50,23 @@ export function propertyToLabel(prop){
 
     return label
 }
-export function prependToStringList(newValStrList, strList='', deliminator=','){
-    const valList = Array.from( new Set( (newValStrList).trim().split(deliminator) ) ),
-        nameList = strList.split(deliminator)
-    for(let i=valList.length-1; i>-1; i--){
-        if( !nameList.includes(valList[i]) ){
-            strList = valList[i] + deliminator + strList
+export function concatStringList(additionStrList, currentStrList='', deliminator=',', prepend=false){
+    const additionList = Array.from( new Set( (additionStrList).trim().split(deliminator) ) ),
+        currentList = currentStrList.split(deliminator),
+        start = prepend ? additionList.length-1 : 0,
+        continueCheck = prepend ? (i) => i>-1 : (i) => i<additionList.length,
+        step = prepend ? (i) => i-1 : (i) => i+1
+    
+
+    for( let i=start; continueCheck(i); i=step(i) ){
+        if( !currentList.includes(additionList[i]) ){
+            currentStrList = additionList[i] + deliminator + currentStrList
         }
     }
-    return strList
+    return currentStrList
 }
-export function addClassNames(toAddStr, classNames=''){
-    return prependToStringList(toAddStr, classNames, ' ')
+export function addClassNames(toAddStr, classNames='', prepend=true){
+    return concatStringList(toAddStr, classNames, ' ', prepend)
 }
 export function mergeObjects(victim={}, survivor, overwrite=false){
     if( !(survivor instanceof Object) ){
@@ -183,6 +188,8 @@ export const ListEditor = (()=>{
 export function isEmpty(val){
     if( typeof val === 'string' || val instanceof Array ){
         return val.length < 1
+    } else if( val instanceof Set || val instanceof Map ){
+        return val.size < 1
     } else if( val instanceof Object ){
         return Object.entries(val).length < 1
     }
@@ -215,4 +222,20 @@ export function getRandomString(length){
     }
 
     return str
+}
+
+export function tryFor(func, timeout=500, limit=100){
+    const recursive = (attempts=0) => {
+        try{
+            return func()
+        } catch( err ){
+            if(attempts < limit){
+                setTimeout( ()=>{ recursive(attempts+1) }, timeout)
+            } else {
+                throw err
+            }
+        }
+    }
+
+    return recursive()
 }

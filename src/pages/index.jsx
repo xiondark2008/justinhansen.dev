@@ -17,8 +17,8 @@ export default function Home() {
 
     {/* feature project roll Probability */}
     <FeaturedWorkLayout>
-        <section className="col-12 col-sm-6 col-md-5 col-lg-4">
-            <h6>//My Work</h6>
+        <section className="col-12 col-sm-6 col-md-5 col-lg-4 my-5">
+            <h6 className="text-primary">//My Work</h6>
             <h1>Roll Probability Calculator</h1>
             <p>stuff and things about the app</p>
             <Link href="/Lets-Roll">
@@ -36,8 +36,8 @@ export default function Home() {
         <section className="col col-sm-6">
             <div>browser screen shot</div>
         </section>
-        <section className="col-12 col-sm-6 col-md-5 col-lg-4">
-            <h6>//My Work</h6>
+        <section className="col-12 col-sm-6 col-md-5 col-lg-4 my-5">
+            <h6 className="text-primary">//My Work</h6>
             <h1>StarMap DB</h1>
             <p>stuff and things about the app</p>
             <Link href="/StarMapDB">

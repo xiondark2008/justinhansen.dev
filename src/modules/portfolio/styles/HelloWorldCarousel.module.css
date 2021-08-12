@@ -1,0 +1,10 @@
+.hello-world {
+    color: var(--bs-white);
+    text-align: left;
+    background-color: var(--bs-gray-900);
+    min-height: 200px;
+}
+
+.shadow {
+    box-shadow: 0 0 99px #0000007D
+}
