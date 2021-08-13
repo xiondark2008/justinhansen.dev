@@ -1,0 +1,20 @@
+@import "Base.module";
+
+#tech-skills {
+    height: 6rem;
+
+    li {
+        margin-right: 1.5rem;
+    }
+}
+
+.headshot {
+    img {
+        width: 100%;
+    }
+}
+.headshot.headshot-small {
+    width: calc( 50vw - 2rem - var(--bs-gutter-x) );
+    float: right;
+    margin: 0 1rem 1rem 1rem;
+}

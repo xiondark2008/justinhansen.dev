@@ -672,6 +672,22 @@ $colors: map-merge($colors, $expose-color-shades);
 @import "bootstrap/scss/vendor/rfs";
 
 // 5. Add additional custom code here
+.font-tn {
+    font-family: 'Azo Sans Tn';
+}
+.font-lt {
+    font-family: 'Azo Sans Lt';
+}
+.font-rg {
+    font-family: 'Azo Sans';
+}
+.font-md {
+    font-family: 'Azo Sans Md';
+}
+.font-bk {
+    font-family: 'Azo Sans Bk';
+}
+
 .navbar{
     // .nav-link {
     //     padding: 0 !important;
@@ -688,3 +704,7 @@ pre {
     tab-size: 4;
 }
 
+.code-comment {
+    color: $primary;
+    // font-family: 'Azo Sans Lt';
+}
