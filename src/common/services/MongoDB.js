@@ -23,27 +23,34 @@ if (!MONGODB_DB) {
 let cached = global.mongo
 
 if (!cached) {
-  cached = global.mongo = { conn: null, promise: null }
+  cached = global.mongo = new Map()
+  //{ conn: null, promise: null }
 }
 
-export async function connectToDatabase() {
-  if (cached.conn) {
-    return cached.conn
+export async function connectToDatabase(db = MONGODB_DB) {
+
+  if( !cached.has(db) ){
+    cached.set(db, { conn: null, promise: null })
+  }
+  const cachedDB = cached.get(db)
+
+  if (cachedDB.conn) {
+    return cachedDB.conn
   }
 
-  if (!cached.promise) {
+  if (!cachedDB.promise) {
     const opts = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }
 
-    cached.promise = MongoClient.connect(MONGODB_URI, opts).then((client) => {
+    cachedDB.promise = MongoClient.connect(MONGODB_URI, opts).then((client) => {
       return {
         client,
         db: client.db(MONGODB_DB),
       }
     })
   }
-  cached.conn = await cached.promise
-  return cached.conn
+  cachedDB.conn = await cachedDB.promise
+  return cachedDB.conn
 }

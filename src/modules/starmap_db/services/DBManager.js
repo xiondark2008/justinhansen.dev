@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/utils/mongodb.js";
+import { connectToDatabase } from "@/common/services/MongoDB.js";
 
 export default class DBManager {
     static async connect(){ //console.debug("in DBManager.connect")
