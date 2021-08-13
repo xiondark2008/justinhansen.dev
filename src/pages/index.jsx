@@ -4,6 +4,8 @@ import Navbar from '@/portfolio/components/Navbar'
 import LandingPage from '@/portfolio/components/LandingPage'
 import FeaturedWorkLayout from '@/portfolio/components/FeaturedWorkLayout'
 
+import style from "@/portfolio/styles/LandingPage.module.css"
+
 export default function Home() {
     return (<>
     <Head>
@@ -11,9 +13,10 @@ export default function Home() {
         <meta name="description" content="Justin Hansen's portfolio" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Navbar/>
-
-    <LandingPage/>
+    <div className={ style['landing-page'] }>
+        <Navbar/>
+        <LandingPage/>
+    </div>
 
     {/* feature project roll Probability */}
     <FeaturedWorkLayout>

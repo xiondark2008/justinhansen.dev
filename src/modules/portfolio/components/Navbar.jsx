@@ -2,6 +2,8 @@ import { Component } from "react";
 import BootstrapNavbar from "@/common/components/BootstrapNavbar";
 import Link from 'next/link'
 
+import style from '@/portfolio/styles/Navbar.module.css'
+
 export default class Navbar extends Component {
     constructor(props){
         super(props)
@@ -29,10 +31,11 @@ export default class Navbar extends Component {
 
     render(){
         const items = this.linkObjs.map( (link, idx) => {
+            const aClassName = "nav-link " + (link.isActive(this.props.currentPage) ? ' active' : '')
             return(
             <li key={ idx } className="nav-item">
                 <Link href={ link.href }>
-                    <a className={ "nav-link" + (link.isActive(this.props.currentPage) ? ' active' : '') }>{ link.label }</a>
+                    <a className={ aClassName }><b>{ link.label }</b></a>
                 </Link>
             </li>)
         })

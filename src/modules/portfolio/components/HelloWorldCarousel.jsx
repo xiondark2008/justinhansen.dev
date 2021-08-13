@@ -1,10 +1,16 @@
 import { Component } from "react";
 import Head from 'next/head'
-import { prettyPrint } from 'code-prettify-google/src/node_prettify'
+import Script from 'next/script'
+import { mergeObjects, tryFor } from "@/common/utils/Utilities";
+
 import style from '@/portfolio/styles/HelloWorldCarousel.module.css'
-import { tryFor } from "@/common/utils/Utilities";
 
 export default class HelloWorldCarousel extends Component{
+    static PRETTIFY_BASE_URL = '/prettify/'
+    static PRETTIFY_RUN_FILE = 'run_prettify.js'
+    static PRETTIFY_CSS_REGEX = /\/prettify\/.+\.css/
+    static PRETTIFY_JS_ID = 'prettify-js'
+
     constructor(props){
         super(props)
 
@@ -23,32 +29,67 @@ export default class HelloWorldCarousel extends Component{
             },
             {
                 name: 'SQL',
-                css: 'lang-sql',
+                prettifyLang: 'sql',
                 code: 'SELECT "Hello, World!" AS message;'
             }
         ]
+
+        this.runPrettify = this.runPrettify.bind(this)
+        this.getPrettifyUrl = this.getPrettifyUrl.bind(this)
+        this.getAdditionalPrettifyLanguages = this.getAdditionalPrettifyLanguages.bind(this)
+        this.componentDidMount = this.componentDidMount.bind(this)
     }
+    
     componentDidMount(){
-        prettyPrint()
+        if(window && window.PR==undefined){
+            $('<script></script>',{
+                id: HelloWorldCarousel.PRETTIFY_JS_ID,
+                type: "text/javascript",
+                src: this.getPrettifyUrl()
+            }).appendTo('head')
+        }
+        //this.runPrettify()
+    }
+
+    componentWillUnmount(){
+        //remove Prettify CSS
+        $('link').filter( (index, el)=>el.href.search(HelloWorldCarousel.PRETTIFY_CSS_REGEX)>-1 ).remove()
+        //remove Prettify JS
+        delete window.PR
+    }
+
+    runPrettify(){
+        tryFor(() => {
+            PR.prettyPrint()
+        },100)
+    }
+
+    getPrettifyUrl(){
+        const baseArgs = ['skin=portfolio'],//,'autorun=false'],
+            langArgs = this.getAdditionalPrettifyLanguages().map( prettifyLang => 'lang='+prettifyLang ),
+            urlArgs = baseArgs.concat( langArgs ).join('&')
+
+        return HelloWorldCarousel.PRETTIFY_BASE_URL + 
+            HelloWorldCarousel.PRETTIFY_RUN_FILE + 
+            '?' + urlArgs
+    }
+
+    getAdditionalPrettifyLanguages(){
+        return this.codeBlocks
+            .filter( ({prettifyLang}) => !!prettifyLang )
+            .map( ({prettifyLang}) => prettifyLang )
     }
 
     render(){
         const slides = this.codeBlocks.map( (language, idx) => {
-            return(
-            <div key={ idx } className={ 'carousel-item' + (idx==3 ? ' active' : '') }>
-                <pre className="m-3"><code className={ "prettyprint linenums" + (language.css ? ' '+language.css : '') }>{ language.code }</code></pre>
-            </div>)
-        })
+                return(
+                <div key={ idx } className={ 'carousel-item' + (idx==0 ? ' active' : '') }>
+                    <pre className="m-3"><code className={ "prettyprint linenums" + (language.prettifyLang ? ' language-'+language.prettifyLang : '') }>{ language.code }</code></pre>
+                </div>)
+            })
+        
         return(<>
-        <Head>
-            <link key="prettify"
-                rel="stylesheet" type="text/css"
-                href="/prettify/skins/portfolio.css"/>
-            {/* <script key="prettify2"
-                type="text/javascript"
-                src="/prettify/prettify.min.js"></script> */}
-        </Head>
-        <div className={ ([style['hello-world'], style.shadow, 'carousel', 'slide']).join(' ') }
+        <div className={ ([style['hello-world'], style['big-shadow'], 'carousel', 'slide']).join(' ') }
             data-bs-ride="carousel"
         >
             <div className="carousel-inner">

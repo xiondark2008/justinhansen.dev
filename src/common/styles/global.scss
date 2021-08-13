@@ -675,6 +675,18 @@ $colors: map-merge($colors, $expose-color-shades);
 @import "bootstrap/scss/vendor/rfs";
 
 // 5. Add additional custom code here
+.navbar{
+    // .nav-link {
+    //     padding: 0 !important;
+    //     margin: $navbar-nav-link-padding-x;
+    // }
+
+    .nav-link.active {
+        * {
+            border-bottom: 3px solid $green;
+        }
+    }
+}
 pre {
     tab-size: 4;
 }

@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "bootstrap": "^5.0.2",
-    "code-prettify-google": "^1.0.1",
     "got": "^11.8.2",
     "mongodb": "^3.5.9",
     "next": "latest",

@@ -68,17 +68,17 @@ export function concatStringList(additionStrList, currentStrList='', deliminator
 export function addClassNames(toAddStr, classNames='', prepend=true){
     return concatStringList(toAddStr, classNames, ' ', prepend)
 }
-export function mergeObjects(victim={}, survivor, overwrite=false){
-    if( !(survivor instanceof Object) ){
-        survivor = {}
+export function mergeObjects(a={}, b, overwrite=false){
+    if( b instanceof Object ){
+        b = Object.assign({}, b)
     } else {
-        survivor = Object.assign({}, survivor)
+        b = {}
     }
 
     if( overwrite ){
-        return Object.assign(survivor, victim)
+        return Object.assign(b, a)
     } else {
-        return Object.assign(victim, survivor)
+        return Object.assign(a, b)
     }
     
 }
