@@ -1,6 +1,6 @@
 import { Component } from "react";
-import Head from 'next/head'
-import Script from 'next/script'
+import Head from 'next/head';
+import Script from 'next/script';
 import { mergeObjects, tryFor } from "@/common/utils/Utilities";
 
 import style from '@/portfolio/styles/HelloWorldCarousel.module.css'
@@ -89,7 +89,7 @@ export default class HelloWorldCarousel extends Component{
             })
         
         return(<>
-        <div className={ ([style['hello-world'], style['big-shadow'], 'carousel', 'slide']).join(' ') }
+        <div className={ ([style['hello-world'], 'shadow-lg', 'carousel', 'slide']).join(' ') }
             data-bs-ride="carousel"
         >
             <div className="carousel-inner">

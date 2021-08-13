@@ -14,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <div className={ style['landing-page'] }>
-        <Navbar/>
+        <Navbar useLightTheme={ true }/>
         <LandingPage/>
     </div>
 

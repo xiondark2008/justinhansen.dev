@@ -42,20 +42,15 @@ export default class BootstrapNavbar extends Component {
     }
 
     render(){ //console.debug("in NavBar.render", arguements)
-        const content = Array.from( this.props.children ),
-            hasBrandElement = this.props.hasBrandElement || this.props.hasBrandElement == false ?
-                this.props.hasBrandElement : false,
-            brandElement = hasBrandElement ? content.splice(0,1)[0] : undefined //NOTE: the brand element is removed with splice
-        
         return(
         <nav {...this.navAttr}>
             <div {...this.containerAttr}>
-                { brandElement }
+                { this.props.brandElement && this.props.brandElement }
                 <button {...this.buttonAttr}>
                     <span {...this.buttonIconAttr}></span>
                 </button>
                 <div {...this.collapseAttr}>
-                    { content }
+                    { this.props.children }
                 </div>
             </div>
         </nav>
