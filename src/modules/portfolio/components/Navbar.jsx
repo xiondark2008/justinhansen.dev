@@ -1,5 +1,5 @@
 import { Component } from "react";
-import BootstrapNavbar from "@/common/components/BootstrapNavbar";
+import BootstrapNavbar from "@/components/BootstrapNavbar";
 import Link from 'next/link'
 
 import style from '@/portfolio/styles/Navbar.module.css'
