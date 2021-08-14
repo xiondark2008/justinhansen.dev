@@ -8,8 +8,8 @@ export default class FeaturedWorkLayout extends Component{
 
     render(){
         return(<>
-        <div className={ style['featured-work'] + ' container-fluid d-flex' }> {/*"featured-work container-fluid bg-dark text-white min-vh-100">*/}
-            <div className="row flex-fill justify-content-evenly align-items-center">
+        <div className={ style['featured-work'] + ' container-fluid d-flex py-5' }> {/*"featured-work container-fluid bg-dark text-white min-vh-100">*/}
+            <div className="row flex-fill justify-content-evenly">
                 { this.props.children }
             </div>
         </div>

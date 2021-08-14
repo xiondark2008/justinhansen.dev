@@ -1,0 +1,81 @@
+@use 'sass:math';
+
+@function ratio($orignial, $base: 1366px){
+    @return math.div($orignial, $base);
+}
+
+$base-dimension: 80vmin;
+
+$content-width: $base-dimension; //* ratio(1366px); //1366px;
+$content-height: $base-dimension * ratio(800px); //800px;
+
+$border-base-size: $base-dimension * ratio(24px); //24px;
+$border-bottom-size: $base-dimension * ratio(80px); //80px;
+$border-radius: $base-dimension * ratio(6px); //6px;
+
+$body-width: $base-dimension * ratio(1600px); //1600px;
+$body-height: $base-dimension * ratio(60px); //60px;
+$body-margin-top: $base-dimension * ratio(80px); //80px;
+$body-margin-left: $base-dimension * ratio(-110px); //-110px;
+$body-radius: $base-dimension * ratio(6px); //6px;
+
+$latch-width: $base-dimension * ratio(250px); //250px;
+$latch-hieght: $base-dimension * ratio(30px); //30px;
+$latch-bottom: $base-dimension * ratio(-110px); //-110px;
+$latch-radius: $base-dimension * ratio(5px); //5px;
+
+.laptop {
+    /* The laptop with borders */
+    -webkit-transform: scale( ratio($content-width, $body-width) ); /* Scaled down for a better Try-it experience (change to 1 for full scale) */
+    transform: scale( ratio($content-width, $body-width) ); /* Scaled down for a better Try-it experience (change to 1 for full scale) */
+    position: relative;
+    margin: auto;
+    width: $content-width; //1366px;
+    height: $content-height; //800px;
+    border-radius: $border-radius; //6px;
+    border-style: solid;
+    border-color: black;
+    border-width: $border-base-size; //24px;
+    border-bottom-width: $border-bottom-size; //80px;
+    //background-color: black;
+    box-sizing: content-box;
+
+    /* The body of the laptop */
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: $body-width; //1600px;
+        height: $body-height; //60px;
+        margin: 0px;
+        margin-top: $body-margin-top; //80px;
+        margin-left: $body-margin-left; //-110px;
+        background: black;
+        border-radius: $body-radius; //6px;
+    }
+    /* The lid latch */
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: $latch-width; //250px;
+        height:$latch-hieght; //30px;
+        bottom: $latch-bottom; //-110px;
+        left: 50%;
+        -webkit-transform: translate(-50%);
+        transform: translate(-50%);
+        background: #f1f1f1;
+        border-bottom-left-radius: $latch-radius; //5px;
+        border-bottom-right-radius: $latch-radius; //5px;
+        z-index: 1;
+    }
+
+    /* The screen (or content) of the device */
+    & > * {
+        width: $content-width; //1366px;
+        height: $content-height; //800px;
+        //background-color: var(--bs-light);
+        overflow: hidden;
+        border: none;
+    }
+}
