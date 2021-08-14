@@ -22,11 +22,11 @@ export default function Home() {
     <FeaturedWorkLayout>
         <section className="col-12 col-sm-6 col-md-5 col-lg-4 mb-3">
             <h6 className="code-comment">//My Work</h6>
-            <h1>Roll Probability Calculator</h1>
-            <p>stuff and things about the app</p>
+            <h1 className="font-bk">Roll Probability Calculator</h1>
+            <p>Used to calculate probability when rolling multiple dice, this app focuses on responsive design and fast calculations.</p>
             <Link href="/Lets-Roll">
                 <a className="btn btn-primary btn-lg"
-                    target="_blank">Roll Probability Calculator</a>
+                    target="_blank">LET'S ROLL</a>
             </Link>
         </section>
         <section className="col-12 col-sm-6 col-md-5 col-lg-4">
@@ -43,11 +43,11 @@ export default function Home() {
     <FeaturedWorkLayout>
         <section className="col-12 col-lg-4 order-sm-2">
             <h6 className="code-comment">//My Work</h6>
-            <h1>StarMap DB</h1>
+            <h1 className="font-bk">StarMap DB</h1>
             <p>stuff and things about the app</p>
             <Link href="/StarMapDB">
                 <a className="btn btn-primary btn-lg"
-                    target="_blank">StarMap DB</a>
+                    target="_blank">EXPLORE THE 'VERSE</a>
             </Link>
         </section>
         <section className="col-12 col-lg-6">

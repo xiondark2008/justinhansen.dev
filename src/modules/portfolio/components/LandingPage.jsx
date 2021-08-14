@@ -11,10 +11,10 @@ export default class LandingPage extends Component {
         return(<>
         <div className="container-fluid">
             <div className="row justify-content-center align-items-center min-vh-100">
-                <section className="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 text-center">
+                <section className="col-12 col-sm-9 col-md-8 col-lg-7 col-xl-6 col-xxl-5 text-center">
                     <HelloWorldCarousel/>
                     <Link href="/About">
-                        <a className="btn btn-primary btn-lg shadow-lg my-5">About Me</a>
+                        <a className="btn btn-primary btn-lg shadow-lg font-bk fs-6 my-5">ABOUT ME</a>
                     </Link>
                 </section>
             </div>
