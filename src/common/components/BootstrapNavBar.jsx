@@ -6,7 +6,7 @@ console.debug("DEBUG - in BootstrapNavbar")
 export default class BootstrapNavbar extends Component {
     
     static INSTANCE_ID_LIST = []
-    constructor(props) { console.debug("in BootstrapNavbar.constructor", arguements)
+    constructor(props) { console.debug("in BootstrapNavbar.constructor", arguments)
         super(props)
 
         this.navAttr = cleanAttributesObject(this.props.navAttr)
@@ -40,7 +40,7 @@ export default class BootstrapNavbar extends Component {
         this.collapseAttr.className = addClassNames('collapse navbar-collapse', this.collapseAttr.className)
     }
 
-    render(){ console.debug("in BootstapNavbar.render", arguements)
+    render(){ console.debug("in BootstapNavbar.render", arguments)
         return(
         <nav {...this.navAttr}>
             <div {...this.containerAttr}>
