@@ -3,7 +3,7 @@ import App from "@/starmap_db/components/StarMapDB.jsx";
 
 //import "@/starmap_db/styles/StarMapDB.module.scss"
 
-export default function Home() { console.debug("DEBUG - in /StarMapDB/index.js. args: ", arguments)
+export default function Home() { //console.debug("DEBUG - in /StarMapDB/index.js. args: ", arguments)
     const title = "StarMapDB"
     return (<>
     <Head>
