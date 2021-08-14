@@ -83,21 +83,19 @@ export default class RollProbabilityCalculator extends Component {
             />
         )
 
-        return(
-        <>
-            <div>
-                { dieTypeList }
-            </div>
-            <TargetInput
-                target={ this.state.target }
-                min={ this.state.roll.min }
-                update={ this.updateTarget }
-            />
-            <Results
-                roll={ this.state.roll }
-                target={ this.state.target }
-            />
-        </>
-        );
+        return(<>
+        <div className="d-flex justify-content-evenly flex-wrap">
+            { dieTypeList }
+        </div>
+        <TargetInput
+            target={ this.state.target }
+            min={ this.state.roll.min }
+            update={ this.updateTarget }
+        />
+        <Results
+            roll={ this.state.roll }
+            target={ this.state.target }
+        />
+        </>);
     }
 }

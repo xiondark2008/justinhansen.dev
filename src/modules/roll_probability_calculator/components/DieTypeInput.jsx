@@ -1,5 +1,8 @@
 import React from "react";
 
+import style from '@/roll_probability/styles/DieTypeInput.module.scss';
+
+//TODO: document props
 export default class DieTypeInput extends React.Component {
     constructor(props) { //console.debug("in DieTypeInput.constructor",arguments);
         super(props)
@@ -33,17 +36,20 @@ export default class DieTypeInput extends React.Component {
         const inputId = "DieType"+this.props.dieType.die.toString()
 
         return(
-        <div>
-            <button onClick={this.increaseNum}>+</button>
-            <input
+        <div className={ style['die-type-input'] }>
+            <label 
+                className="d-block text-center"
+                htmlFor={inputId}
+            >{this.props.dieType.die.toString()}</label>
+            <input className="d-block fs-1"
                 ref={this.inputRef}
                 id={inputId}
                 value={this.props.dieType.quantity}
                 onChange={this.onChange}
                 />
-            <label htmlFor={inputId}>{this.props.dieType.die.toString()}</label>
             <button onClick={this.decreaseNum}
                 disabled={ this.props.dieType.quantity <= 0 }>-</button>
+            <button onClick={this.increaseNum}>+</button>
         </div>
         );
     }
