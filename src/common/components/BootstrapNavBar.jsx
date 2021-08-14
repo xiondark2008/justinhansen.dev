@@ -1,13 +1,13 @@
 //console.debug("DEBUG - in BootstrapNavbar")
 //stdout("test")
 import { Component } from "react";
-// { cleanAttributesObject, addClassNames, getUniqueId, mergeObjects} from "@/common/utils/Utilities";
+import { cleanAttributesObject, addClassNames, getUniqueId, mergeObjects} from "@/common/utils/Utilities";
 //console.debug("DEBUG - in BootstrapNavbar")
 //TODO: document props
 export default class BootstrapNavbar extends Component {
     
     static INSTANCE_ID_LIST = []
-    constructor(props) { console.debug("in BootstrapNavbar.constructor", arguments)
+    constructor(props) { //console.debug("in BootstrapNavbar.constructor", arguments)
         super(props)
 
         this.navAttr = cleanAttributesObject(this.props.navAttr)
@@ -41,7 +41,7 @@ export default class BootstrapNavbar extends Component {
         this.collapseAttr.className = addClassNames('collapse navbar-collapse', this.collapseAttr.className)
     }
 
-    render(){ console.debug("in BootstapNavbar.render", arguments)
+    render(){ //console.debug("in BootstapNavbar.render", arguments)
         return(
         <nav {...this.navAttr}>
             <div {...this.containerAttr}>

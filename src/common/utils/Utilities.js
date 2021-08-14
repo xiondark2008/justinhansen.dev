@@ -1,33 +1,33 @@
-console.debug("DEBUG - in Utilities before toHTMLName")
+//console.debug("DEBUG - in Utilities before toHTMLName")
 export function toHTMLName(val='') {
     return (val+'').toLowerCase().replace(/\s/g, '_')
 }
-console.debug("DEBUG - in Utilities before hasElapsedSince")
+//console.debug("DEBUG - in Utilities before hasElapsedSince")
 export function hasElapsedSince(interval, start, end=new Date(), isInclusive=true ){
     const diff = end - start
     return isInclusive ? diff>=interval : diff>interval
 }
-console.debug("DEBUG - in Utilities before originalOrParseInt")
+//console.debug("DEBUG - in Utilities before originalOrParseInt")
 export function originalOrParseInt(val){
     return !isNaN(val) && val !== null ? parseInt(val) : val 
 }
-console.debug("DEBUG - in Utilities before originalOrParseFloat")
+//console.debug("DEBUG - in Utilities before originalOrParseFloat")
 export function originalOrParseFloat(val){
     return !isNaN(val) && val !== null ? parseFloat(val) : val
 }
-console.debug("DEBUG - in Utilities before toUTF16Codes")
+//console.debug("DEBUG - in Utilities before toUTF16Codes")
 export function toUTF16Codes(val){
     return Array.prototype.map.call( val, (c) => {
         return c.charCodeAt().toString(16)
     } )
 }
-console.debug("DEBUG - in Utilities before toUnicodeCodes")
+//console.debug("DEBUG - in Utilities before toUnicodeCodes")
 export function toUnicodeCodes(val){
     return Array.prototype.map.call( val, (c) => {
         return c.charCodeAt().toString()
     } )
 }
-console.debug("DEBUG - in Utilities before propertyToLabel")
+//console.debug("DEBUG - in Utilities before propertyToLabel")
 export function propertyToLabel(prop){
     let label = '',
         isFirstLetter = true
@@ -51,7 +51,7 @@ export function propertyToLabel(prop){
 
     return label
 }
-console.debug("DEBUG - in Utilities before concatStringList")
+//console.debug("DEBUG - in Utilities before concatStringList")
 export function concatStringList(additionStrList, currentStrList='', deliminator=',', prepend=false){
     const additionList = Array.from( new Set( (additionStrList).trim().split(deliminator) ) ),
         currentList = currentStrList.split(deliminator),
@@ -67,11 +67,11 @@ export function concatStringList(additionStrList, currentStrList='', deliminator
     }
     return currentStrList
 }
-console.debug("DEBUG - in Utilities before addClassNames")
+//console.debug("DEBUG - in Utilities before addClassNames")
 export function addClassNames(toAddStr, classNames='', prepend=true){
     return concatStringList(toAddStr, classNames, ' ', prepend)
 }
-console.debug("DEBUG - in Utilities before mergeObjects")
+//console.debug("DEBUG - in Utilities before mergeObjects")
 export function mergeObjects(a={}, b, overwrite=false){
     if( b instanceof Object ){
         b = Object.assign({}, b)
@@ -86,11 +86,11 @@ export function mergeObjects(a={}, b, overwrite=false){
     }
     
 }
-console.debug("DEBUG - in Utilities before addStyle")
+//console.debug("DEBUG - in Utilities before addStyle")
 export function addStyle(toAddObj, styleObj){
     return mergeObjects(toAddObj, styleObj, true)
 }
-console.debug("DEBUG - in Utilities before cleanAttributesObject")
+//console.debug("DEBUG - in Utilities before cleanAttributesObject")
 export function cleanAttributesObject(attr, warn=(val)=>{
     console.warn("WARN - Attributes need to be an Object. Ignoring value and using "
                 +"an empty object instead. Found type: "+(typeof val), val )
@@ -104,7 +104,7 @@ export function cleanAttributesObject(attr, warn=(val)=>{
 
     return Object.assign({}, attr)
 }
-console.debug("DEBUG - in Utilities before cleanAttributesObjectArray")
+//console.debug("DEBUG - in Utilities before cleanAttributesObjectArray")
 export function cleanAttributesObjectArray(attrs, warn=(val)=>{
     console.warn("WARN - Attributes need to be an Object or Array of Objects. Ignoring value and using "
                 +"an array with empty object instead. Found type: "+(typeof val), val )
@@ -122,7 +122,7 @@ export function cleanAttributesObjectArray(attrs, warn=(val)=>{
 
     return Object.assign([], attrs)
 }
-console.debug("DEBUG - in Utilities before ListEditor")
+//console.debug("DEBUG - in Utilities before ListEditor")
 export const ListEditor = (()=>{
     const PRIVATE = Symbol("Private")
     
@@ -189,7 +189,7 @@ export const ListEditor = (()=>{
     
     return ListEditor
 })()
-console.debug("DEBUG - in Utilities before isEmpty")
+//console.debug("DEBUG - in Utilities before isEmpty")
 export function isEmpty(val){
     if( typeof val === 'string' || val instanceof Array ){
         return val.length < 1
@@ -201,7 +201,7 @@ export function isEmpty(val){
 
     return false
 }
-console.debug("DEBUG - in Utilities before getUniqueId")
+//console.debug("DEBUG - in Utilities before getUniqueId")
 export function getUniqueId(instanceIdList, base=getRandomString(4), warning=(instanceIdList)=>{
     console.warn("WARN - was not able to generate unique id for instance id list: ",instanceIdList)
 }){
@@ -218,7 +218,7 @@ export function getUniqueId(instanceIdList, base=getRandomString(4), warning=(in
 
     warning( instanceIdList )
 }
-console.debug("DEBUG - in Utilities before getRandomString")
+//console.debug("DEBUG - in Utilities before getRandomString")
 export function getRandomString(length){
     let str = ''
     
@@ -229,7 +229,7 @@ export function getRandomString(length){
 
     return str
 }
-console.debug("DEBUG - in Utilities before tryFor")
+//console.debug("DEBUG - in Utilities before tryFor")
 export function tryFor(func, timeout=500, limit=100){
     const recursive = (attempts=0) => {
         try{
@@ -245,4 +245,4 @@ export function tryFor(func, timeout=500, limit=100){
 
     return recursive()
 }
-console.debug("DEBUG - in Utilities end ")
+//console.debug("DEBUG - in Utilities end ")
