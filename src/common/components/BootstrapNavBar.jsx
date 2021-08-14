@@ -1,8 +1,5 @@
 import { Component } from "react";
-import { cleanAttributesObject,
-    addClassNames,
-    getUniqueId,
-    mergeObjects} from "@/common/utils/Utilities";
+import { cleanAttributesObject, addClassNames, getUniqueId, mergeObjects} from "@/common/utils/Utilities";
 
 //TODO: document props
 export default class BootstrapNavbar extends Component {
