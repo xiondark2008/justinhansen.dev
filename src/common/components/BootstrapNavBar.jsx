@@ -1,7 +1,8 @@
-console.debug("DEBUG - in BootstrapNavbar")
+//console.debug("DEBUG - in BootstrapNavbar")
+//stdout("test")
 import { Component } from "react";
-import { cleanAttributesObject, addClassNames, getUniqueId, mergeObjects} from "@/common/utils/Utilities";
-console.debug("DEBUG - in BootstrapNavbar")
+// { cleanAttributesObject, addClassNames, getUniqueId, mergeObjects} from "@/common/utils/Utilities";
+//console.debug("DEBUG - in BootstrapNavbar")
 //TODO: document props
 export default class BootstrapNavbar extends Component {
     
