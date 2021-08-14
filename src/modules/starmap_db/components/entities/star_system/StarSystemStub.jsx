@@ -69,7 +69,7 @@ export default class StarSystemStub extends Component {
                 </div>
             </div>
             <dl className="row font-normal">
-                <dt className="col-12 col-sm-4 text-sm-end">Popuation</dt>
+                <dt className="col-12 col-sm-4 text-sm-end">Population</dt>
                 <dd className="col-12 col-sm-8">
                     <BootstrapProgressBar
                         barsAttr={ {

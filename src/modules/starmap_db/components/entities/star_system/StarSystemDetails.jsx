@@ -115,7 +115,7 @@ export default class StarSystemDetails extends Component {
             <section className="col-md-6 col-lg-12 mb-3">
                 <h4 className="border-bottom">Sensor Data</h4>
                 <dl className="row align-items-center">
-                    <dt className="col-12 col-sm-4 text-sm-end">Popuation</dt>
+                    <dt className="col-12 col-sm-4 text-sm-end">Population</dt>
                     <dd className="col-12 col-sm-8">
                         <BootstrapProgressBar
                             barsAttr={ {
