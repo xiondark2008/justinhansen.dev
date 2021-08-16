@@ -1,0 +1,28 @@
+@import 'Base.module.scss';
+
+#target-input{
+    padding: 0;
+
+    .card {
+        $fontSize: 1.5rem;
+        padding-bottom: $fontSize;
+
+        h2 {
+            text-align: center;
+            font-size: $fontSize;
+            font-family: 'Azo Sans Md';
+            margin-top: 0.5rem;
+        }
+    }
+
+    input {
+        max-width: 50%;
+    }
+
+    #comparison {
+        $padding-x: 1rem;
+        padding-left: $padding-x;
+        padding-right: $padding-x;
+    }
+    
+}

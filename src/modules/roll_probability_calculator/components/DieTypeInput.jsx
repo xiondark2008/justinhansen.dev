@@ -33,23 +33,30 @@ export default class DieTypeInput extends React.Component {
     }
 
     render() { //console.debug("in DieTypeInput.render()",arguments);
-        const inputId = "DieType"+this.props.dieType.die.toString()
+        const inputId = "DieType"+this.props.dieType.die.toString(),
+            disableDecrease = this.props.dieType.quantity <= 0;
 
         return(
-        <div className={ style['die-type-input'] }>
-            <label 
-                className="d-block text-center"
+        <div className={ (['',style['die-type-input'],style.card]).join(' ') }>
+            <label className=""
                 htmlFor={inputId}
             >{this.props.dieType.die.toString()}</label>
-            <input className="d-block fs-1"
-                ref={this.inputRef}
+            <input className={ style.input }
                 id={inputId}
                 value={this.props.dieType.quantity}
+                type='text'
+                ref={this.inputRef}
                 onChange={this.onChange}
                 />
-            <button onClick={this.decreaseNum}
-                disabled={ this.props.dieType.quantity <= 0 }>-</button>
-            <button onClick={this.increaseNum}>+</button>
+            <div className="d-flex justify-content-evenly">
+                <button className={ "flex-grow-1 btn btn-primary"+( disableDecrease ? ' btn-disabled' : '') }
+                    onClick={this.decreaseNum}
+                    disabled={ disableDecrease }
+                >-</button>
+                <button className="flex-grow-1 btn btn-primary"
+                    onClick={this.increaseNum}
+                >+</button>
+            </div>
         </div>
         );
     }

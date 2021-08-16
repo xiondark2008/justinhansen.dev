@@ -1,5 +1,7 @@
 import React from "react";
-import Checkbox from '@/roll_probability/components/elements/Checkbox.jsx'
+import Checkbox from '@/roll_probability/components/elements/Checkbox.jsx';
+
+import style from '@/roll_probability/styles/TargetInput.module.scss';
 
 export default class TargetInput extends React.Component {
     static IDs = {
@@ -48,34 +50,51 @@ export default class TargetInput extends React.Component {
     }
 
     render() { //console.debug("in TargetInput.render()", arguments);
+        const disableDecrease = this.props.target.value <= 0
+
         return(
-        <div>
-            <h4>Chance of rolling</h4>
-            <div>
-                <button onClick={ this.decreaseNum }
-                    disabled={ this.props.target.value <= 0 }>-</button>
-                <input
-                    ref = { this.inputRef }
-                    id={ TargetInput.IDs.input }
-                    value={ this.props.target.value }
-                    onChange={ this.onChange }
-                />
-                <label htmlFor={ TargetInput.IDs.input }>Target</label>
-                <button onClick={ this.increaseNum }>+</button>
+        <div id={ style['target-input'] }
+            className='col-12 col-md-4 d-flex flex-md-column'
+        >
+            <div id='target'
+                className={ 'max-vw-50 '+style.card }
+            >
+                <h2><label htmlFor={ TargetInput.IDs.input }>
+                    Target
+                </label></h2>
+                <div className="d-flex">
+                    <button className={ 'flex-fill btn btn-primary btn-lg'+( disableDecrease ? ' btn-disabled' : '') }
+                        onClick={ this.decreaseNum }
+                        disabled={ disableDecrease }
+                    >-</button>
+                    <input className={ 'flex-fill '+style.input }
+                        id={ TargetInput.IDs.input }
+                        type='text'
+                        ref = { this.inputRef }
+                        value={ this.props.target.value }
+                        onChange={ this.onChange }
+                    />
+                    <button className='flex-fill btn btn-primary btn-lg'
+                        onClick={ this.increaseNum }
+                    >+</button>
+                </div>
             </div>
-            <div>
+            <div id={ style.comparison }
+                className={ 'flex-fill '+style.card }
+            >
+                <h2>Comparison</h2>
                 <Checkbox
                     id={ TargetInput.IDs.lt }
                     value={ this.props.target.lesser }
-                    onChange={ this.onChange }>&lt;</Checkbox>
+                    onChange={ this.onChange }>LESS THAN</Checkbox>
                 <Checkbox
                     id={ TargetInput.IDs.eq }
                     value={ this.props.target.equal }
-                    onChange={ this.onChange }>=</Checkbox>
+                    onChange={ this.onChange }>EQUAL TO</Checkbox>
                 <Checkbox
                     id={ TargetInput.IDs.gt }
                     value={ this.props.target.greater }
-                    onChange={ this.onChange }>&gt;</Checkbox>
+                    onChange={ this.onChange }>GREATER THAN</Checkbox>
             </div>
         </div>
         );

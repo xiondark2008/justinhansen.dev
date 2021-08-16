@@ -7,14 +7,17 @@ export default class Checkbox extends React.Component {
 
     render() { //console.debug("in Checkbox.render()",arguments);
         return(
-        <label htmlFor={ this.props.id }>
-            <input
-                type="checkbox"
+        <div className='form-check form-switch'>
+            <input className='form-check-input rounded-pill'
                 id={ this.props.id }
+                type="checkbox"
                 checked={ this.props.value }
                 onChange={ this.props.onChange }
-            />{ this.props.children }
-        </label>
+            />
+            <label className='form-check-label'
+                htmlFor={ this.props.id }
+            >{ this.props.children }</label>
+        </div>
         );
     }
 }
