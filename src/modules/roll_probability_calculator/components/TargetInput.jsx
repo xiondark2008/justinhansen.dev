@@ -54,10 +54,10 @@ export default class TargetInput extends React.Component {
 
         return(
         <div id={ style['target-input'] }
-            className='col-12 col-md-4 d-flex flex-md-column'
+            className='col-12 col-md-4 d-flex flex-column flex-sm-row flex-md-column'
         >
-            <div id='target'
-                className={ 'max-vw-50 '+style.card }
+            <div id={ style.target }
+                className={ style.card }
             >
                 <h2><label htmlFor={ TargetInput.IDs.input }>
                     Target
