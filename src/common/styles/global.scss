@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @font-face {
     font-family: 'Azo Sans';
     src: url('fonts/AzoSans-Regular.eot');
@@ -738,4 +740,12 @@ pre {
 .code-comment {
     color: $primary;
     // font-family: 'Azo Sans Lt';
+}
+
+:root {
+    --bs-breakpoint-sm: map.get($grid-breakpoints, 'sm');
+    --bs-breakpoint-md: map.get($grid-breakpoints, 'md');
+    --bs-breakpoint-lg: map.get($grid-breakpoints, 'lg');
+    --bs-breakpoint-xl: map.get($grid-breakpoints, 'xl');
+    --bs-breakpoint-xxl: map.get($grid-breakpoints, 'xxl');
 }
