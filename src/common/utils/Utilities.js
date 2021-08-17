@@ -69,6 +69,10 @@ export function concatStringList(additionStrList, currentStrList='', deliminator
 }
 //console.debug("DEBUG - in Utilities before addClassNames")
 export function addClassNames(toAddStr, classNames='', prepend=true){
+    if( toAddStr instanceof Array ){
+        toAddStr = toAddStr.join(' ')
+    }
+    
     return concatStringList(toAddStr, classNames, ' ', prepend)
 }
 //console.debug("DEBUG - in Utilities before mergeObjects")
