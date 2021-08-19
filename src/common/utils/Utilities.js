@@ -249,4 +249,24 @@ export function tryFor(func, timeout=500, limit=100){
 
     return recursive()
 }
-//console.debug("DEBUG - in Utilities end ")
+
+export function cssTransformScaleToCenter(targetSize, spaceAvailable, originalSize){
+    return (((spaceAvailable - targetSize) / (2 * (originalSize - targetSize))) * 100)+'%'
+}
+
+export function urlQueryFromString(str){
+    const parts = str.split('?'),
+        query = {}
+
+    if( parts[1] ){
+        const keyValPairs = parts[1].split('&')
+
+        for(let i=0; i<keyValPairs.length; i++){
+            const keyVal = keyValPairs[i].split('=')
+
+            query[ keyVal[0] ] = keyVal[1] !== undefined ? keyVal[1] : null
+        }
+    }
+
+    return query
+}

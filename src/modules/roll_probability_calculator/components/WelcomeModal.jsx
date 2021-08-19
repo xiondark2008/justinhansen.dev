@@ -3,22 +3,46 @@ import { Component } from "react";
 import style from '@/roll_probability/styles/WelcomeModal.module.scss';
 
 export default class WelcomeModal extends Component {
-    constructor(props){
+    constructor(props){ //console.log("DEBUG - in WelcomeModal.constructor()");
         super(props)
 
-        this.modalId = 'welcomeModal'
+        this.modalId = 'welcomeModal';
+        console.log('DEBUG - in WelcomeModal.constructor() > modalId: ',this.modalId)
+
+        this.state = {
+            modal: null
+        }
 
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.componentDidUpdate = this.componentDidUpdate.bind(this)
+        this.componentWillUnmount = this.componentWillUnmount.bind(this)
         this.render = this.render.bind(this)
     }
 
-    componentDidMount() {
-        var myModal = new bootstrap.Modal( document.getElementById( this.modalId, {} ) )
-        myModal.show()
+    componentDidMount() { console.log("DEBUG - in WelcomeModal.componentDidMount()", this.props);
+        this.setState({
+            modal: bootstrap.Modal.getOrCreateInstance( document.getElementById( this.modalId, {} ) )
+        })
     }
 
-    render(){
-        return(<>
+    componentDidUpdate(prevProps, prevState){ console.log("DEBUG - in WelcomeModal.componentDidUpdate()", prevProps, prevState);
+        if( this.state.modal ){
+            if( this.props.show ){
+                this.state.modal.show()
+            } else {
+                this.state.modal.hide()
+            }
+        }
+    }
+
+    componentWillUnmount(){ console.log('DEBUG - in WelcomeModal.componentWillUnmount()')
+        if( this.state.modal ){
+            this.state.modal.dispose()
+        }
+    }
+
+    render(){ //console.log("DEBUG - in WelcomeModal.render()");
+        return(
         <div className={ "modal fade "+style.modal }
             id={ this.modalId }
             tabIndex="-1"
@@ -41,11 +65,11 @@ export default class WelcomeModal extends Component {
                         when rolling a combination of multisided dice.</p>
                         <p>If you know what it means to "roll a d8," then you can skip this part. 
                         If not, let's <a className=''
-                                         data-bs-toggle="collapse" 
-                                         href="#additionInfo" 
-                                         role="button" 
-                                         aria-expanded="false" 
-                                         aria-controls="additionInfo"
+                                        data-bs-toggle="collapse" 
+                                        href="#additionInfo" 
+                                        role="button" 
+                                        aria-expanded="false" 
+                                        aria-controls="additionInfo"
                         >learn some lingo.</a></p>
                         <p className='collapse' 
                             id="additionInfo"
@@ -69,6 +93,6 @@ export default class WelcomeModal extends Component {
                 </div>
             </div>
         </div>
-        </>)
+        )
     }
 }
