@@ -24,7 +24,7 @@ export default withRouter( class RollProbabilityCalculator extends Component {
     ];
     constructor( props ){ //console.debug("DEBUG - in RollProbabilityCalculator.constructor()");
         super(props)
-        console.log("DEBUG - in RollProbabilityCalculator.constructor() > router: ",this.props.rounter)
+        //console.log("DEBUG - in RollProbabilityCalculator.constructor() > router: ",this.props.rounter)
         this.state = {
             dieTypes: RollProbabilityCalculator.INITIAL_DIETYPES,
             roll: new Roll( this.getDiceList.call(this, RollProbabilityCalculator.INITIAL_DIETYPES) ),
@@ -40,10 +40,10 @@ export default withRouter( class RollProbabilityCalculator extends Component {
         this.componentDidMount = this.componentDidMount.bind(this)
     }
 
-    componentDidMount(){ console.debug("DEBUG - in RollProbabilityCalculator.componentDidMount()");
+    componentDidMount(){ //console.debug("DEBUG - in RollProbabilityCalculator.componentDidMount()");
         //console.log("router: ", this.props.router)
         const urlQuery = urlQueryFromString( this.props.router.asPath )
-        console.log("url query: ",urlQuery)
+        //console.log("url query: ",urlQuery)
         if( !isEmpty(urlQuery) ){
             this.setState({
                 showWelcomeMessage: urlQuery.instructions === 'false' ? false : true,
@@ -52,7 +52,7 @@ export default withRouter( class RollProbabilityCalculator extends Component {
         }
     }
 
-    componentWillUnmount(){ console.debug('DEBUG - in RollProbabilityCalculator.componentWillUnmount()')
+    componentWillUnmount(){ //console.debug('DEBUG - in RollProbabilityCalculator.componentWillUnmount()')
 
     }
 

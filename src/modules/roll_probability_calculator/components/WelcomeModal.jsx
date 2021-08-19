@@ -7,7 +7,7 @@ export default class WelcomeModal extends Component {
         super(props)
 
         this.modalId = 'welcomeModal';
-        console.log('DEBUG - in WelcomeModal.constructor() > modalId: ',this.modalId)
+        //console.log('DEBUG - in WelcomeModal.constructor() > modalId: ',this.modalId)
 
         this.state = {
             modal: null
@@ -19,13 +19,13 @@ export default class WelcomeModal extends Component {
         this.render = this.render.bind(this)
     }
 
-    componentDidMount() { console.log("DEBUG - in WelcomeModal.componentDidMount()", this.props);
+    componentDidMount() { //console.log("DEBUG - in WelcomeModal.componentDidMount()", this.props);
         this.setState({
             modal: bootstrap.Modal.getOrCreateInstance( document.getElementById( this.modalId, {} ) )
         })
     }
 
-    componentDidUpdate(prevProps, prevState){ console.log("DEBUG - in WelcomeModal.componentDidUpdate()", prevProps, prevState);
+    componentDidUpdate(prevProps, prevState){ //console.log("DEBUG - in WelcomeModal.componentDidUpdate()", prevProps, prevState);
         if( this.state.modal ){
             if( this.props.show ){
                 this.state.modal.show()
@@ -35,7 +35,7 @@ export default class WelcomeModal extends Component {
         }
     }
 
-    componentWillUnmount(){ console.log('DEBUG - in WelcomeModal.componentWillUnmount()')
+    componentWillUnmount(){ //console.log('DEBUG - in WelcomeModal.componentWillUnmount()')
         if( this.state.modal ){
             this.state.modal.dispose()
         }
