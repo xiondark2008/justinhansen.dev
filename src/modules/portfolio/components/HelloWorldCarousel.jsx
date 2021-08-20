@@ -1,9 +1,7 @@
 import { Component } from "react";
-import Head from 'next/head';
-import Script from 'next/script';
-import { mergeObjects, tryFor } from "@/common/utils/Utilities";
+import { tryFor } from "@/common/utils/Utilities";
 
-import style from '@/portfolio/styles/HelloWorldCarousel.module.css'
+import style from '@/portfolio/styles/HelloWorldCarousel.module.scss'
 
 export default class HelloWorldCarousel extends Component{
     static PRETTIFY_BASE_URL = '/prettify/'
