@@ -76,17 +76,38 @@ export function addClassNames(toAddStr, classNames='', prepend=true){
     return concatStringList(toAddStr, classNames, ' ', prepend)
 }
 //console.debug("DEBUG - in Utilities before mergeObjects")
-export function mergeObjects(a={}, b, overwrite=false){
-    if( b instanceof Object ){
-        b = Object.assign({}, b)
-    } else {
-        b = {}
-    }
+export function mergeObjects(a, b, overwrite=false, deepMerge=false, maxDepth=10, surpressWarning=false){
+    console.log('DEBUG - in Utilities.mergeObjects',arguments)
+    const aCopy = Object.assign({}, a),
+        bCopy = Object.assign({}, b),
+        isPrimative = val=>!(val instanceof Object),
+        aAllPrimativeVals = Object.values(aCopy).every( isPrimative ),
+        bAllPrimativeVals = Object.values(bCopy).every( isPrimative )
 
-    if( overwrite ){
-        return Object.assign(b, a)
+    if( !deepMerge || (aAllPrimativeVals && bAllPrimativeVals) ){
+        if( overwrite ){
+            return Object.assign(aCopy, bCopy)
+        } else {
+            return Object.assign(bCopy, aCopy)
+        }
     } else {
-        return Object.assign(a, b)
+        const bEntries = Object.entries(bCopy)
+        
+        for(let i=0; i<bEntries.length; i++){
+            const name = bEntries[i][0],
+                val = bEntries[i][1]
+            
+            if( maxDepth > 0 && aCopy[name] instanceof Object && val instanceof Object){
+                aCopy[name] = mergeObjects(aCopy[name], val, overwrite, deepMerge)
+            } else if( overwrite || !aCopy.hasOwnProperty(name) ){
+                if( maxDepth <= 0 && !surpressWarning ){
+                    console.warn("WARN - Max object comparison depth reached. Assuming equal.")
+                }
+                aCopy[name] = val
+            }
+        }
+
+        return aCopy
     }
     
 }
@@ -201,6 +222,8 @@ export function isEmpty(val){
         return val.size < 1
     } else if( val instanceof Object ){
         return Object.entries(val).length < 1
+    } else if( val === undefined ){
+        return true
     }
 
     return false
@@ -251,7 +274,7 @@ export function tryFor(func, timeout=500, limit=100){
 }
 
 export function cssTransformScaleToCenter(targetSize, spaceAvailable, originalSize){
-    return (((spaceAvailable - targetSize) / (2 * (originalSize - targetSize))) * 100)+'%'
+    return Math.min(50,((spaceAvailable - targetSize) / (2 * (originalSize - targetSize))) * 100)+'%'
 }
 
 export function urlQueryFromString(str){
@@ -269,4 +292,41 @@ export function urlQueryFromString(str){
     }
 
     return query
+}
+
+export function areObjectsEqual(a, b, maxDepth=10, surpressWarning=false){ //console.log("DEBUG - in Utilities.areObjectsEqual",a,b,maxDepth)
+    const sorter = (a,b)=>a[0] < b[0] ? -1 : 1,
+        aEntries = Object.entries(a).sort( sorter ),
+        bEntries = Object.entries(b).sort( sorter )
+    
+    if(aEntries.length != bEntries.length){
+        return false
+    }
+
+    for(let i=0; i<aEntries.length; i++){
+        const aName = aEntries[i][0],
+            bName = bEntries[i][0],
+            aVal = aEntries[i][1],
+            bVal = bEntries[i][1]
+        
+        if( aName !== bName ){
+            return false
+        } else if( aVal === bVal ){
+            continue
+        } else if( 
+            typeof aVal !== typeof bVal
+            || !(aVal instanceof Object)
+        ){
+            return false
+        } else if( maxDepth <= 0){
+            if( !surpressWarning ){
+                console.warn("WARN - Max object comparison depth reached. Assuming equal.")
+            }
+            continue
+        } else if( !areObjectsEqual(aVal,bVal,maxDepth-1) ){
+            return false
+        }
+    }
+
+    return true
 }

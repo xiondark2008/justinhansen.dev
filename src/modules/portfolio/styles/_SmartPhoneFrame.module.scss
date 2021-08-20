@@ -1,13 +1,16 @@
+/**
+ * https://www.w3schools.com/howto/howto_css_devices.asp
+ */
 @use 'sass:math';
 
 @function ratio($orignial){
-    @return math.div($orignial, 640px);
+    @return math.div($orignial, 360px);
 }
 
-$base-dimension: 70vh;
+$base-dimension: 360px;
 
-$content-width: $base-dimension * ratio(360px);
-$content-height: $base-dimension; //* ratio(640px); 
+$content-width: $base-dimension;// * ratio(360px); //360px
+$content-height: $base-dimension * ratio(640px); //640px
 
 $border-x-size: $base-dimension * ratio(16px); //16px;
 $border-y-size: $base-dimension * ratio(60px); //60px;
@@ -61,8 +64,8 @@ $button-position: $base-dimension * ratio(-65px); //-65px;
 
     /* The screen (or content) of the device */
     & > * {
-        width: $content-width;
-        height: $content-height;
+        width: 100%;
+        height: 100%;
         //background: var(--bs-light);
     }
 }
