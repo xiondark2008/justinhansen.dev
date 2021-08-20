@@ -1,8 +1,8 @@
 import { Component } from "react";
 import BootstrapNavbar from "@/components/BootstrapNavbar";
-import Link from 'next/link'
+import Link from 'next/link';
 
-import style from '@/portfolio/styles/Navbar.module.css'
+import style from '@/portfolio/styles/Navbar.module.scss';
 
 //TODO: document props
 export default class Navbar extends Component {
@@ -33,6 +33,7 @@ export default class Navbar extends Component {
     render(){
         const items = this.linkObjs.map( (link, idx) => {
             const aClassName = "nav-link " + (link.isActive(this.props.currentPage) ? ' active' : '')
+            
             return(
             <li key={ idx } className="nav-item">
                 <Link href={ link.href }>
@@ -40,13 +41,14 @@ export default class Navbar extends Component {
                 </Link>
             </li>)
         })
+        
         return(<>
         <BootstrapNavbar
             id="main_navbar"
             brandElement={  <Link href="/">
                                 <a className={ style.brand }><b>JUSTIN<br/>HANSEN</b></a>
                             </Link> }
-            navAttr={ {className: "navbar-expand-lg"+(this.props.useLightTheme ? ' navbar-light' : ' navbar-dark')} }
+            navAttr={ {className: "navbar-expand-lg navbar-"+this.props.theme} }
         >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 { items }
