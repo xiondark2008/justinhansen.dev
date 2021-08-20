@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Navbar from '@/portfolio/components/Navbar'
+import LandingSpace from '@/portfolio/components/layouts/LandingSpace'
 
 export default function Home() {
     return (<>
@@ -9,7 +9,10 @@ export default function Home() {
         <meta name="description" content="Justin Hansen's portfolio" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Navbar currentPage={ 'Contact' }/>
-    <p>Contact Info</p>
+    <LandingSpace theme='dark'
+        navbarProps={ {currentPage: 'Contact'} }
+    >
+        <p>Contact Info</p>
+    </LandingSpace>
     </>)
 }

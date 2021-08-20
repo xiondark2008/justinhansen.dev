@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import Navbar from '@/portfolio/components/Navbar';
+import LandingSpace from '@/portfolio/components/layouts/LandingSpace';
 
 import style from '@/portfolio/styles/About.module.scss';
 
@@ -25,8 +24,9 @@ export default function About() {
         <meta name="description" content="Justin Hansen's portfolio" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className={ style.body }>
-        <Navbar currentPage={ 'About' }/>
+    <LandingSpace theme='dark'
+        navbarProps={ {currentPage: 'About'} }
+    >
         <div className={ "container-fluid py-3 pt-"+breakpoint+"-5" }>
             <div className="row justify-content-evenly">
                 <section className={ "col-12 col-"+breakpoint+"-6" }>
@@ -65,6 +65,6 @@ export default function About() {
                 { headshot( headshotBigClassName ) }
             </div>
         </div>
-    </div>
+    </LandingSpace>
     </>)
 }

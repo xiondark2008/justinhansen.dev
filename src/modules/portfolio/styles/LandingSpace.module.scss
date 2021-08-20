@@ -1,0 +1,18 @@
+@import "SmartPhoneFrame.module";
+@import "LaptopFrame.module";
+
+.landing-space {
+    min-height: 85vh;
+    background-repeat: round;
+    background-image: url(/images/gray-grid.png);
+
+    &.landing-light {
+        color: var(--bs-dark);
+        background-color: var(--bs-light);
+    }
+
+    &.landing-dark {
+        color: var(--bs-light);
+        background-color: var(--bs-gray-950);
+    }
+}

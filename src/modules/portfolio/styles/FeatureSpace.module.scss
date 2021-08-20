@@ -1,0 +1,11 @@
+.feature-space {
+    &.feature-light {
+        color: var(--bs-dark);
+        background-image: linear-gradient( var(--bs-gray-100), var(--bs-gray-200) );
+    }
+
+    &.feature-dark {
+        color: var(--bs-light);
+        background-image: linear-gradient( var(--bs-gray-900), var(--bs-gray-950) );
+    }
+}
