@@ -29,10 +29,7 @@ export default function Work() {
                     { gotoLink }
                 </section>
                 <div className={ 'col-12 col-md-6 max-vh-85' }>
-                    <InteractiveRPC
-                        margin='10'
-                        args={ {useMin: true} }
-                    />
+                    
                 </div>
             </div>
         </div>
