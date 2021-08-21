@@ -3,8 +3,6 @@ import { cleanAttributesObject, addClassNames, getUniqueId, mergeObjects} from "
 
 //TODO: document props
 export default class BootstrapNavbar extends Component {
-    
-    static INSTANCE_ID_LIST = []
     constructor(props) { //console.debug("in BootstrapNavbar.constructor", arguments)
         super(props)
 
@@ -19,23 +17,20 @@ export default class BootstrapNavbar extends Component {
         } else if( !this.props.collapseAttr.id ){
             this.collapseAttr.id = getUniqueId(BootstrapNavbar.INSTANCE_ID_LIST, 'navbar')
         }
-        this.id = this.collapseAttr.id
-        BootstrapNavbar.INSTANCE_ID_LIST.push( this.id )
-        delete this.collapseAttr.id
 
         this.navAttr.className = addClassNames('navbar', this.navAttr.className)
         this.containerAttr.className = addClassNames('container-fluid', this.containerAttr.className)
-        this.buttonAttr = mergeObjects({
+        this.buttonAttr = mergeObjects(this.buttonAttr, {
                 type: "button",
                 'data-bs-toggle': "collapse",
-                'data-bs-target': "#"+this.id ,
-                'aria-controls': this.id,
+                'data-bs-target': "#"+this.collapseAttr.id ,
+                'aria-controls': this.collapseAttr.id,
                 'aria-expanded': "false",
                 'aria-label': "Toggle navigation"
-            }, this.buttonAttr)
+            })
         this.buttonAttr.className = addClassNames('navbar-toggler', this.buttonAttr.className)
         this.buttonIconAttr.className = addClassNames('navbar-toggler-icon', this.buttonIconAttr.className)
-        this.collapseAttr = mergeObjects({ 'aria-expanded':"false" }, this.collapseAttr)
+        this.collapseAttr = mergeObjects(this.collapseAttr, { 'aria-expanded':"false" })
         this.collapseAttr.className = addClassNames('collapse navbar-collapse', this.collapseAttr.className)
     }
 

@@ -5,7 +5,7 @@ import { addClassNames,
          cssTransformScaleToCenter, 
          mergeObjects } from "@/common/utils/Utilities";
 
-import style from '@/portfolio/styles/_SmartPhoneFrame.module.scss';
+import style from '@/common/styles/_SmartPhoneFrame.module.scss';
 
 //TODO: fix transformation origin
 export default class SmartPhoneFrame extends Component {
