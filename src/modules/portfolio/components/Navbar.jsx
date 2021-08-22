@@ -38,9 +38,8 @@ export default class Navbar extends Component {
     }
 
     render(){
-        const breakpoint = 'md',
-            buildLinkItem = (link, idx) => {
-                const liClassName = 'nav-item px-3 px-'+breakpoint+'-0',
+        const buildLinkItem = (link, idx) => {
+                const liClassName = 'nav-item',
                     aClassName = "nav-link " + (link.isActive(this.props.currentPage) ? ' active' : '')
                 
                 if( !link.children || isEmpty(link.children) ){
@@ -71,7 +70,7 @@ export default class Navbar extends Component {
                             data-bs-toggle="dropdown" 
                             aria-expanded="false"
                         ><b>{ link.label }</b></a>
-                        <ul className="dropdown-menu bg-transparent text-end"
+                        <ul className="dropdown-menu"
                             aria-labelledby={ id }
                         >
                             { link.children.map( buildDropdownItem ) }
@@ -86,10 +85,10 @@ export default class Navbar extends Component {
             brandElement={  <Link href="/">
                                 <a className={ style.brand }><b>JUSTIN<br/>HANSEN</b></a>
                             </Link> }
-            navAttr={ {className: 'navbar-expand-'+breakpoint+' navbar-'+this.props.theme} }
-            collapseAttr={ {className:'text-end'} }
+            navAttr={ {className: 'navbar-expand-md navbar-'+this.props.theme} }
+            collapseAttr={ {className:''} }
         >
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav">
                 { this.linkObjs.map( buildLinkItem ) }
             </ul>
         </BootstrapNavbar>

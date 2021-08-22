@@ -721,15 +721,91 @@ $colors: map-merge($colors, $expose-color-shades);
     font-size: 1rem;
 }
 
-.navbar{
-    // .nav-link {
-    //     padding: 0 !important;
-    //     margin: $navbar-nav-link-padding-x;
-    // }
+.navbar {
+    $base: 'navbar';
+    $navbar-height: 3.5rem;
+    $navbar-px: 0.75 * $spacer;
+    @mixin whenExpanded($breakpoints) {
+        @each $breakpoint in $breakpoints {
+            // @debug 'in whenExpanded. class: #{ & }.navbar-expand-#{ $breakpoint }';
+            &.navbar-expand-#{ $breakpoint } {
+                @include media-breakpoint-up( $breakpoint ) {
+                    @content;
+                }
+            }
+        }
+    }
+    @mixin whenCollapsed($breakpoints) {
+        @each $breakpoint in $breakpoints {
+            // @debug 'in whenCollapsed. class: #{ & }.navbar-expand-#{ $breakpoint }';
+            &.navbar-expand-#{ $breakpoint } {
+                @include media-breakpoint-down( $breakpoint ) {
+                    @content;
+                }
+            }
+        }
+    }
+    @mixin withTheme($name){
+        // @debug 'in withTheme. class: #{ & }.navbar-#{ $name }';
+        &.navbar-#{ $name } {
+            @content
+        }
+    }
 
     .nav-link.active {
         * {
             border-bottom: 3px solid $green;
+        }
+    }
+    @include whenExpanded( map-keys($grid-breakpoints) ){
+        .navbar-collapse > ul {
+            margin-left: auto;
+        }
+    }
+    @include whenCollapsed( map-keys($grid-breakpoints) ){
+        .navbar-collapse {
+            font-size: 1.25rem;
+            text-align: center;
+            position: absolute;
+            z-index: 1;
+            top: $navbar-height;
+            left: 0;
+            right: 0;
+            width: calc(100% - #{ $navbar-px * 2 });
+            height: calc(100vh - #{ $navbar-height + $navbar-px });
+            margin: 0 auto;
+            border-style: solid;
+            border-width: 1px;
+
+            & > ul {
+                height: calc(100% - #{ $navbar-px * 2 });
+                width: calc(100% - #{ $navbar-px * 2 });
+                margin: 0.75rem auto;
+                box-shadow: 0 0 1rem 1px $dark;
+
+                li.dropdown {
+                    .dropdown-menu {
+                        background-color: inherit;
+                        text-align: center;
+                        box-shadow: none;
+                        margin: -#{ $spacer * 0.25 } 0 0;
+                        padding: 0;
+                        border: 0;
+                        border-bottom: 1px solid $dark;
+                    }
+                }
+            }
+        }
+        @each $name, $color in $theme-colors{
+            @include withTheme( $name ){
+                .navbar-collapse {
+                    border-color: color-contrast($color, $light, $dark);
+
+                    & > ul {
+                        background-color: $color;
+                    }
+                }
+            }
         }
     }
 }

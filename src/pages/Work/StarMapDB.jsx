@@ -9,7 +9,9 @@ import style from '@/portfolio/styles/Work.module.scss';
 export default function Work() {
     const breakpoint = 'md',
         gotoLink = (<Link href='/Lets-Roll'>
-                        <a className='btn btn-primary btn-lg shadow-lg font-bk fs-6 my-md-4'>GO TO APP</a>
+                        <a className='btn btn-primary btn-lg shadow-lg font-bk fs-6 my-md-4'
+                            target='_blank'
+                        >GO TO APP</a>
                     </Link>)
 
     return (<>
