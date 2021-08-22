@@ -62,7 +62,10 @@ export default function Home() {
                     href='https://robertsspaceindustries.com/starmap'
                     target='_blank'
                 >Roberts Space Industry's StarMap</a>, displayed in a manor that is 
-                easier to query and compare records.</p>
+                easier to query and compare records. <Link href='/Work/StarMapDB'>
+                        <a>Learn more.</a>
+                    </Link>
+                </p>
                 <Link href="/StarMapDB">
                     <a className="btn btn-primary btn-lg"
                         target="_blank">EXPLORE THE 'VERSE</a>
