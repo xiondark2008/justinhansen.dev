@@ -764,6 +764,10 @@ $colors: map-merge($colors, $expose-color-shades);
             li.dropdown {
                 .dropdown-menu {
                     padding: 0;
+
+                    & > li > .nav-link.active{
+                        background-color: inherit;
+                    }
                 }
             }
         }
@@ -777,10 +781,6 @@ $colors: map-merge($colors, $expose-color-shades);
                     .dropdown-menu {
                         font-size: 0.8rem;
                         border-top: 4px solid $primary;
-
-                        & > li > .nav-link.active{
-                            background-color: inherit;
-                        }
                     }
                 }
             }
