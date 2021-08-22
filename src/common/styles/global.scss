@@ -757,9 +757,33 @@ $colors: map-merge($colors, $expose-color-shades);
             border-bottom: 3px solid $green;
         }
     }
+
+    .navbar-collapse{
+        & > ul {
+
+            li.dropdown {
+                .dropdown-menu {
+                    padding: 0;
+                }
+            }
+        }
+    }
     @include whenExpanded( map-keys($grid-breakpoints) ){
-        .navbar-collapse > ul {
-            margin-left: auto;
+        .navbar-collapse{
+            & > ul {
+                margin-left: auto;
+
+                li.dropdown {
+                    .dropdown-menu {
+                        font-size: 0.8rem;
+                        border-top: 4px solid $primary;
+
+                        & > li > .nav-link.active{
+                            background-color: inherit;
+                        }
+                    }
+                }
+            }
         }
     }
     @include whenCollapsed( map-keys($grid-breakpoints) ){
@@ -789,8 +813,7 @@ $colors: map-merge($colors, $expose-color-shades);
                         text-align: center;
                         box-shadow: none;
                         margin: -#{ $spacer * 0.25 } 0 0;
-                        padding: 0;
-                        border: 0;
+                        border: none;
                         border-bottom: 1px solid $dark;
                     }
                 }
