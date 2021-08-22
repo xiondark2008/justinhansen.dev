@@ -58,7 +58,11 @@ export default function Home() {
             <section className="col-12 col-sm-8 order-sm-2 col-lg-4">
                 <h6 className="code-comment">// My Work</h6>
                 <h1 className="font-bk">StarMap DB</h1>
-                <p>stuff and things about the app</p>
+                <p>Data parsed from <a
+                    href='https://robertsspaceindustries.com/starmap'
+                    target='_blank'
+                >Roberts Space Industry's StarMap</a>, displayed in a manor that is 
+                easier to query and compare records.</p>
                 <Link href="/StarMapDB">
                     <a className="btn btn-primary btn-lg"
                         target="_blank">EXPLORE THE 'VERSE</a>
