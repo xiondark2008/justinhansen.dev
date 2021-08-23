@@ -3,16 +3,16 @@
 }
 @media screen {
     .str {
-        color: #080;
+        color: var(--bs-teal-400);
     }
     .kwd {
-        color: #0d6efd;
+        color: var(--bs-pink-350);
     }
     .com {
         color: #800;
     }
     .typ {
-        color: #fd7e14;
+        color: var(--bs-green-450);
     }
     .lit {
         color: #20c997;
@@ -20,7 +20,7 @@
     .clo,
     .opn,
     .pun {
-        color: #ffc107;
+        color: var(--bs-yellow-400);
     }
     .tag {
         color: #0d6efd;
