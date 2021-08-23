@@ -1,4 +1,42 @@
 @use "sass:map";
+@use 'sass:math';
+
+@function getAllColors($colors, $step-count: 10, $grays: $grays){
+    $step-half: math.div($step-count, 2);
+    $step-key-interval: math.div(1000, $step-count);
+    $step-val-interval: math.div(100%, $step-half);
+    $all-colors: ();
+    @each $name, $color in $colors {
+        @if $name == 'gray' {
+            @each $num, $color in $grays {
+                $key: #{ $name + '-' + $num };
+                $val: $color;
+                
+                $all-colors: map.set($all-colors, $key, $val);
+            }
+        }
+        @else if $name != 'white' and $name != 'gray-dark' {
+            @for $i from 1 to $step-count {
+                $num: $i * $step-key-interval;
+                $key: #{ $name + '-' + $num };
+                $val: null;
+
+                @if $i < $step-half {
+                    $val: tint-color($color, $step-val-interval * ($step-half - $i) );
+                }
+                @else if $i == $step-half {
+                    $val: $color
+                }
+                @else if $step-half < $i {
+                    $val: shade-color($color, $step-val-interval * ($i % $step-half) );
+                }
+                
+                $all-colors: map.set($all-colors, $key, $val);
+            }
+        }
+    }
+    @return $all-colors;
+}
 
 @font-face {
     font-family: 'Azo Sans';
@@ -138,9 +176,6 @@
 }
 
 
-
-
-
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "bootstrap/scss/functions";
 
@@ -163,349 +198,89 @@ $custom-gray: (
 $pink:    #d12e75;
 $green:   #007933;
 $teal:    #20c997;
+$yellow:  #EDC620;
+$blue:    #24B1BC;
 
-$primary: $green;
+$primary: #007933;
 $success: $teal;
 
 $modal-backdrop-opacity: .6;
 
+
+@function getDimensionValues($unit) {
+    $values: (
+        initial: initial,
+        inherit: inherit,
+        auto: auto
+    );
+    
+    @for $i from 1 through 20 {
+        $val: 5 * $i;
+        $values: map.set($values, #{ $val }, #{ $val + $unit });
+    }
+
+    @return $values;
+}
 $utilities: (
     "width": (
         property: width,
         class: w,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5%,
-            10: 10%,
-            15: 15%,
-            20: 20%,
-            25: 25%,
-            30: 30%,
-            35: 35%,
-            40: 40%,
-            45: 45%,
-            50: 50%,
-            55: 55%,
-            60: 60%,
-            65: 65%,
-            70: 70%,
-            75: 75%,
-            80: 80%,
-            85: 85%,
-            90: 90%,
-            95: 95%,
-            100: 100%,
-            auto: auto
-        )
+        values: getDimensionValues('%')
     ),
     "max-width": (
         property: max-width,
         class: mw,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5%,
-            10: 10%,
-            15: 15%,
-            20: 20%,
-            25: 25%,
-            30: 30%,
-            35: 35%,
-            40: 40%,
-            45: 45%,
-            50: 50%,
-            55: 55%,
-            60: 60%,
-            65: 65%,
-            70: 70%,
-            75: 75%,
-            80: 80%,
-            85: 85%,
-            90: 90%,
-            95: 95%,
-            100: 100%
-        )
+        values: getDimensionValues('%')
     ),
     "min-width": (
         property: min-width,
         class: min-w,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5%,
-            10: 10%,
-            15: 15%,
-            20: 20%,
-            25: 25%,
-            30: 30%,
-            35: 35%,
-            40: 40%,
-            45: 45%,
-            50: 50%,
-            55: 55%,
-            60: 60%,
-            65: 65%,
-            70: 70%,
-            75: 75%,
-            80: 80%,
-            85: 85%,
-            90: 90%,
-            95: 95%,
-            100: 100%
-        )
+        values: getDimensionValues('%')
     ),
     "viewport-width": (
         property: width,
         class: vw,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5vw,
-            10: 10vw,
-            15: 15vw,
-            20: 20vw,
-            25: 25vw,
-            30: 30vw,
-            35: 35vw,
-            40: 40vw,
-            45: 45vw,
-            50: 50vw,
-            55: 55vw,
-            60: 60vw,
-            65: 65vw,
-            70: 70vw,
-            75: 75vw,
-            80: 80vw,
-            85: 85vw,
-            90: 90vw,
-            95: 95vw,
-            100: 100vw
-        )
+        values: getDimensionValues('vw')
     ),
     "max-viewport-width": (
         property: max-width,
         class: max-vw,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5vw,
-            10: 10vw,
-            15: 15vw,
-            20: 20vw,
-            25: 25vw,
-            30: 30vw,
-            35: 35vw,
-            40: 40vw,
-            45: 45vw,
-            50: 50vw,
-            55: 55vw,
-            60: 60vw,
-            65: 65vw,
-            70: 70vw,
-            75: 75vw,
-            80: 80vw,
-            85: 85vw,
-            90: 90vw,
-            95: 95vw,
-            100: 100vw
-        )
+        values: getDimensionValues('vw')
     ),
     "min-viewport-width": (
         property: min-width,
         class: min-vw,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5vw,
-            10: 10vw,
-            15: 15vw,
-            20: 20vw,
-            25: 25vw,
-            30: 30vw,
-            35: 35vw,
-            40: 40vw,
-            45: 45vw,
-            50: 50vw,
-            55: 55vw,
-            60: 60vw,
-            65: 65vw,
-            70: 70vw,
-            75: 75vw,
-            80: 80vw,
-            85: 85vw,
-            90: 90vw,
-            95: 95vw,
-            100: 100vw
-        )
+        values: getDimensionValues('vw')
     ),
     "height": (
         property: height,
         class: h,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5%,
-            10: 10%,
-            15: 15%,
-            20: 20%,
-            25: 25%,
-            30: 30%,
-            35: 35%,
-            40: 40%,
-            45: 45%,
-            50: 50%,
-            55: 55%,
-            60: 60%,
-            65: 65%,
-            70: 70%,
-            75: 75%,
-            80: 80%,
-            85: 85%,
-            90: 90%,
-            95: 95%,
-            100: 100%,
-            auto: auto
-        )
+        values: getDimensionValues('%')
     ),
     "max-height": (
         property: max-height,
         class: mh,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5%,
-            10: 10%,
-            15: 15%,
-            20: 20%,
-            25: 25%,
-            30: 30%,
-            35: 35%,
-            40: 40%,
-            45: 45%,
-            50: 50%,
-            55: 55%,
-            60: 60%,
-            65: 65%,
-            70: 70%,
-            75: 75%,
-            80: 80%,
-            85: 85%,
-            90: 90%,
-            95: 95%,
-            100: 100%
-        )
+        values: getDimensionValues('%')
     ),
     "min-height": (
         property: min-height,
         class: min-h,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5%,
-            10: 10%,
-            15: 15%,
-            20: 20%,
-            25: 25%,
-            30: 30%,
-            35: 35%,
-            40: 40%,
-            45: 45%,
-            50: 50%,
-            55: 55%,
-            60: 60%,
-            65: 65%,
-            70: 70%,
-            75: 75%,
-            80: 80%,
-            85: 85%,
-            90: 90%,
-            95: 95%,
-            100: 100%
-        )
+        values: getDimensionValues('%')
     ),
     "viewport-height": (
         property: height,
         class: vh,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5vh,
-            10: 10vh,
-            15: 15vh,
-            20: 20vh,
-            25: 25vh,
-            30: 30vh,
-            35: 35vh,
-            40: 40vh,
-            45: 45vh,
-            50: 50vh,
-            55: 55vh,
-            60: 60vh,
-            65: 65vh,
-            70: 70vh,
-            75: 75vh,
-            80: 80vh,
-            85: 85vh,
-            90: 90vh,
-            95: 95vh,
-            100: 100vh
-        )
-    ),"max-viewport-height": (
+        values: getDimensionValues('vh')
+    ),
+    "max-viewport-height": (
         property: max-height,
         class: max-vh,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5vh,
-            10: 10vh,
-            15: 15vh,
-            20: 20vh,
-            25: 25vh,
-            30: 30vh,
-            35: 35vh,
-            40: 40vh,
-            45: 45vh,
-            50: 50vh,
-            55: 55vh,
-            60: 60vh,
-            65: 65vh,
-            70: 70vh,
-            75: 75vh,
-            80: 80vh,
-            85: 85vh,
-            90: 90vh,
-            95: 95vh,
-            100: 100vh
-        )
+        values: getDimensionValues('vh')
     ),
     "min-viewport-height": (
         property: min-height,
         class: min-vh,
-        values: (
-            initial: initial,
-            inherit: inherit,
-            5: 5vh,
-            10: 10vh,
-            15: 15vh,
-            20: 20vh,
-            25: 25vh,
-            30: 30vh,
-            35: 35vh,
-            40: 40vh,
-            45: 45vh,
-            50: 50vh,
-            55: 55vh,
-            60: 60vh,
-            65: 65vh,
-            70: 70vh,
-            75: 75vh,
-            80: 80vh,
-            85: 85vh,
-            90: 90vh,
-            95: 95vh,
-            100: 100vh
-        )
+        values: getDimensionValues('vh')
     )
 );
 
@@ -516,111 +291,8 @@ $utilities: (
 
 // 4.
 $grays: map-merge($grays, $custom-gray);
-
-$expose-color-shades: (
-    "blue-100": $blue-100,
-    "blue-200": $blue-200,
-    "blue-300": $blue-300,
-    "blue-400": $blue-400,
-    "blue-500": $blue-500,
-    "blue-600": $blue-600,
-    "blue-700": $blue-700,
-    "blue-800": $blue-800,
-    "blue-900": $blue-900,
-    "indigo-100": $indigo-100,
-    "indigo-200": $indigo-200,
-    "indigo-300": $indigo-300,
-    "indigo-400": $indigo-400,
-    "indigo-500": $indigo-500,
-    "indigo-600": $indigo-600,
-    "indigo-700": $indigo-700,
-    "indigo-800": $indigo-800,
-    "indigo-900": $indigo-900,
-    "purple-100": $purple-100,
-    "purple-200": $purple-200,
-    "purple-300": $purple-300,
-    "purple-400": $purple-400,
-    "purple-500": $purple-500,
-    "purple-600": $purple-600,
-    "purple-700": $purple-700,
-    "purple-800": $purple-800,
-    "purple-900": $purple-900,
-    "pink-100": $pink-100,
-    "pink-200": $pink-200,
-    "pink-300": $pink-300,
-    "pink-400": $pink-400,
-    "pink-500": $pink-500,
-    "pink-600": $pink-600,
-    "pink-700": $pink-700,
-    "pink-800": $pink-800,
-    "pink-900": $pink-900,
-    "red-100": $red-100,
-    "red-200": $red-200,
-    "red-300": $red-300,
-    "red-400": $red-400,
-    "red-500": $red-500,
-    "red-600": $red-600,
-    "red-700": $red-700,
-    "red-800": $red-800,
-    "red-900": $red-900,
-    "orange-100": $orange-100,
-    "orange-200": $orange-200,
-    "orange-300": $orange-300,
-    "orange-400": $orange-400,
-    "orange-500": $orange-500,
-    "orange-600": $orange-600,
-    "orange-700": $orange-700,
-    "orange-800": $orange-800,
-    "orange-900": $orange-900,
-    "yellow-100": $yellow-100,
-    "yellow-200": $yellow-200,
-    "yellow-300": $yellow-300,
-    "yellow-400": $yellow-400,
-    "yellow-500": $yellow-500,
-    "yellow-600": $yellow-600,
-    "yellow-700": $yellow-700,
-    "yellow-800": $yellow-800,
-    "yellow-900": $yellow-900,
-    "green-100": $green-100,
-    "green-200": $green-200,
-    "green-300": $green-300,
-    "green-400": $green-400,
-    "green-500": $green-500,
-    "green-600": $green-600,
-    "green-700": $green-700,
-    "green-800": $green-800,
-    "green-900": $green-900,
-    "teal-100": $teal-100,
-    "teal-200": $teal-200,
-    "teal-300": $teal-300,
-    "teal-400": $teal-400,
-    "teal-500": $teal-500,
-    "teal-600": $teal-600,
-    "teal-700": $teal-700,
-    "teal-800": $teal-800,
-    "teal-900": $teal-900,
-    "cyan-100": $cyan-100,
-    "cyan-200": $cyan-200,
-    "cyan-300": $cyan-300,
-    "cyan-400": $cyan-400,
-    "cyan-500": $cyan-500,
-    "cyan-600": $cyan-600,
-    "cyan-700": $cyan-700,
-    "cyan-800": $cyan-800,
-    "cyan-900": $cyan-900,
-    "gray-100": $gray-100,
-    "gray-200": $gray-200,
-    "gray-300": $gray-300,
-    "gray-400": $gray-400,
-    "gray-500": $gray-500,
-    "gray-600": $gray-600,
-    "gray-700": $gray-700,
-    "gray-800": $gray-800,
-    "gray-900": $gray-900,
-    "gray-950": $gray-950
-);
-
-$colors: map-merge($colors, $expose-color-shades);
+$all-colors: getAllColors($colors, 20, $grays);
+$colors: map-merge($colors, $all-colors);
 
 // 6. 
 @import "bootstrap/scss/root";      //Optional
@@ -754,7 +426,7 @@ $colors: map-merge($colors, $expose-color-shades);
 
     .nav-link.active {
         * {
-            border-bottom: 3px solid $green;
+            border-bottom: 3px solid $primary;
         }
     }
 
