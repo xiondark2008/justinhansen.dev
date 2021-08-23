@@ -65,7 +65,7 @@ export default function Work() {
             </section>
             <section className="col-12 col-sm-6 align-self-stretch">
                 <img className="img-fluid"
-                    src="/images/gray-grid.png"
+                    src="/images/dice.jpg"
                     alt="phone screen shot"
                 />
             </section>
