@@ -45,18 +45,18 @@ export default function About() {
                     build a machine, could I tell it how to work?</p>
                     <p>So I taught myself to code.</p>
                     
-                    <h4 className="mt-4 text-primary font-bk">TECHNICAL SKILLS</h4>
+                    <h3 className="mt-4 text-primary font-bk">TECHNICAL SKILLS</h3>
                     <ul id={ style['tech-skills'] }
-                        className="d-flex flex-column flex-wrap align-content-start list-unstyled"
+                        className="row row-cols-4 list-unstyled"
                     >
-                        <li>JavaScript</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>Java</li>
-                        <li>React.js</li>
-                        <li>Sass</li>
-                        <li>Node.js</li>
-                        <li>SQL</li>
+                        <li className='col'>JavaScript</li>
+                        <li className='col'>HTML</li>
+                        <li className='col'>CSS</li>
+                        <li className='col'>Java</li>
+                        <li className='col'>React.js</li>
+                        <li className='col'>Sass</li>
+                        <li className='col'>Node.js</li>
+                        <li className='col'>SQL</li>
                     </ul>
                     <div className={ 'd-grid gap-2 d-'+breakpoint+'-block' }>
                         <a className='btn btn-primary btn-lg'>My Resume</a>

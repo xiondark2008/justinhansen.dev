@@ -1,13 +1,5 @@
 @import "Base.module";
 
-#tech-skills {
-    height: 6rem;
-
-    li {
-        margin-right: 4rem;
-    }
-}
-
 .headshot {
     &.headshot-small {
         width: calc( 50vw - 2rem - var(--bs-gutter-x) );
