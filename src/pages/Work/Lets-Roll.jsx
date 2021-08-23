@@ -32,6 +32,15 @@ export default function Work() {
                     smartphone, this web app is intended to be used to aid in making decisions 
                     regarding which combination of multi-sided dice to roll while playing a board
                     game.</p>
+                    <p>This single page web app is fully independent after the initial load. There
+                    is no additional ajax calls or server side calculations. This makes the app
+                    a perfect solution for use over paid data connection.</p>
+                    <h3 className='text-primary'><b>TECH STACK</b></h3>
+                    <ul className='row row-cols-2'>
+                        <li className='col'><b>React.js</b></li>
+                        <li className='col'><b>Bootstrap</b></li>
+                        <li className='col'><b>HTML5 Canvas</b></li>
+                    </ul>
                     { gotoLink }
                 </section>
                 <div className={ 'col-12 col-md-6 max-vh-85' }>
@@ -62,7 +71,7 @@ export default function Work() {
             </section>
         </div>
         <div className='row justify-content-evenly py-5'>
-            <section className="col-12 col-sm-6 d-flex flex-column justify-content-center text-center">
+            <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// The Needs</h6>
                 <h2 className="font-bk">Aid Gameplay, Not Hinder It</h2>
                 <p>For my web app to be useful, it would need to be used while playing the board
@@ -106,7 +115,9 @@ export default function Work() {
                 <h6 className="code-comment">// The Solution</h6>
                 <h2 className="font-bk">Fast Fingers</h2>
                 <p>Through the use of thoughtful design, a cleaver equation, and informative graph,
-                a web app was born. </p>
+                a web app was born. This web app only uses HTML, CSS, and JavaScript as a tech
+                stack with no server side reliance. In fact before hosting on this site, I would
+                run it off of a jsfiddle.</p>
                 <h6 className='code-comment'>// Highlights</h6>
                 <ol>
                     <li><b className='text-primary'>Design</b> - Large buttons and minimal use of form fields lead to an
