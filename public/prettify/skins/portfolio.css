@@ -1,5 +1,5 @@
 .pln {
-    color: #fff;
+    color: var(--bs-light);
 }
 @media screen {
     .str {
@@ -9,10 +9,10 @@
         color: var(--bs-pink-350);
     }
     .com {
-        color: #800;
+        color: var(--bs-primary);
     }
     .typ {
-        color: var(--bs-green-450);
+        color: var(--bs-green-400);
     }
     .lit {
         color: #20c997;
@@ -20,10 +20,10 @@
     .clo,
     .opn,
     .pun {
-        color: var(--bs-yellow-400);
+        color: var(--bs-yellow-250);
     }
     .tag {
-        color: #0d6efd;
+        color: var(--bs-cyan-400);
     }
     .atn {
         color: #a370f7;
@@ -33,7 +33,7 @@
     }
     .dec,
     .var {
-        color: #d63384;
+        color: var(--bs-orange-350);
     }
     .fun {
         color: red;
