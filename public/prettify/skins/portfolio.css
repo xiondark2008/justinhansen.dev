@@ -1,81 +1,41 @@
 .pln {
     color: var(--bs-light);
 }
-@media screen {
-    .str {
-        color: var(--bs-teal-400);
-    }
-    .kwd {
-        color: var(--bs-pink-350);
-    }
-    .com {
-        color: var(--bs-primary);
-    }
-    .typ {
-        color: var(--bs-green-400);
-    }
-    .lit {
-        color: #20c997;
-    }
-    .clo,
-    .opn,
-    .pun {
-        color: var(--bs-yellow-250);
-    }
-    .tag {
-        color: var(--bs-cyan-400);
-    }
-    .atn {
-        color: #a370f7;
-    }
-    .atv {
-        color: #080;
-    }
-    .dec,
-    .var {
-        color: var(--bs-orange-350);
-    }
-    .fun {
-        color: red;
-    }
+.atv,
+.str {
+    color: var(--bs-teal-400);
 }
-@media print, projection {
-    .kwd,
-    .tag,
-    .typ {
-        font-weight: 700;
-    }
-    .str {
-        color: #060;
-    }
-    .kwd {
-        color: #006;
-    }
-    .com {
-        color: #600;
-        font-style: italic;
-    }
-    .typ {
-        color: #404;
-    }
-    .lit {
-        color: #044;
-    }
-    .clo,
-    .opn,
-    .pun {
-        color: #440;
-    }
-    .tag {
-        color: #006;
-    }
-    .atn {
-        color: #404;
-    }
-    .atv {
-        color: #060;
-    }
+.kwd {
+    color: var(--bs-pink-350);
 }
+.com {
+    color: var(--bs-primary);
+}
+.typ {
+    color: var(--bs-green-400);
+}
+.lit {
+    color: var(--bs-indigo-300);
+}
+.clo,
+.opn,
+.pun {
+    color: var(--bs-yellow-250);
+}
+.tag {
+    color: var(--bs-blue-400);
+}
+.atn {
+    color: var(--bs-purple-350);
+}
+.dec,
+.var {
+    color: var(--bs-orange-350);
+}
+.fun {
+    color: red;
+}
+
 pre.prettyprint {
     padding: 2px;
 }

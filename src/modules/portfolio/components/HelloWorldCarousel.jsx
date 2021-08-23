@@ -39,33 +39,33 @@ export default class HelloWorldCarousel extends Component{
                 name: 'SQL',
                 prettifyLang: 'sql',
                 code: 'SELECT "Hello, World!" AS message;'
-            },
-            {
-                name: 'test',
-                code: '<!doctype html>\n' +
-                      '<html>\n' +
-                      '<head>\n' +
-                      '<title>HTML Test</title>\n' +
-                      '<script type="text/javascript">\n' +
-                      '// Say hello world until the user starts questioning\n' +
-                      '// the meaningfulness of their existence.\n' +
-                      'function helloWorld(world) {\n' +
-                      '\tfor (var i = 42; --i >= 0;) {\n' +
-                      '\t\talert(\'Hello \' + String(world));\n' +
-                      '\t}\n' +
-                      '}\n' +
-                      '</script>\n' +
-                      '<style type="text/css">\n' +
-                      'p { color: pink }\n' +
-                      'b { color: blue }\n' +
-                      'u { color: "umber" }\n' +
-                      '</style>\n' +
-                      '</head>\n' +
-                      '<body>\n' +
-                      '<h1>Hello world!</h1>\n' +
-                      '</body>\n' +
-                      '</html>'
-            }
+            }//,
+            // {
+            //     name: 'test',
+            //     code: '<!doctype html>\n' +
+            //           '<html>\n' +
+            //           '<head>\n' +
+            //           '<title>HTML Test</title>\n' +
+            //           '<script type="text/javascript">\n' +
+            //           '// Say hello world until the user starts questioning\n' +
+            //           '// the meaningfulness of their existence.\n' +
+            //           'function helloWorld(world) {\n' +
+            //           '\tfor (var i = 42; --i >= 0;) {\n' +
+            //           '\t\talert(\'Hello \' + String(world));\n' +
+            //           '\t}\n' +
+            //           '}\n' +
+            //           '</script>\n' +
+            //           '<style type="text/css">\n' +
+            //           'p { color: pink }\n' +
+            //           'b { color: blue }\n' +
+            //           'u { color: "umber" }\n' +
+            //           '</style>\n' +
+            //           '</head>\n' +
+            //           '<body>\n' +
+            //           '<h1>Hello world!</h1>\n' +
+            //           '</body>\n' +
+            //           '</html>'
+            // }
         ]
 
         this.runPrettify = this.runPrettify.bind(this)
@@ -117,14 +117,14 @@ export default class HelloWorldCarousel extends Component{
     render(){
         const slides = this.codeBlocks.map( (language, idx) => {
                 return(
-                <div key={ idx } className={ 'carousel-item' + (idx==4 ? ' active' : '') }>
+                <div key={ idx } className={ 'carousel-item' + (idx==0 ? ' active' : '') }>
                     <pre className="m-3"><code className={ "prettyprint linenums" + (language.prettifyLang ? ' language-'+language.prettifyLang : '') }>{ language.code }</code></pre>
                 </div>)
             })
         
         return(<>
         <div className={ ([style['hello-world'], 'shadow-lg', 'carousel', 'slide']).join(' ') }
-            // data-bs-ride="carousel"
+            data-bs-ride="carousel"
         >
             <div className="carousel-inner">
                 { slides }
