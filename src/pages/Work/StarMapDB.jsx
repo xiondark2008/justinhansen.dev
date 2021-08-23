@@ -68,8 +68,8 @@ export default function Work() {
             </section>
             <section className="col-12 col-sm-6 align-self-stretch">
                 <img className="img-fluid"
-                    src="/images/gray-grid.png"
-                    alt="phone screen shot"
+                    src="/images/StarCitizenStarmap2.jpg"
+                    alt="Star Citizen Starmap Screenshot"
                 />
             </section>
         </div>
@@ -85,18 +85,18 @@ export default function Work() {
         </div>
         <div className='row justify-content-evenly align-items-stretch py-5'>
             <section className="col-12 col-sm-4">
-                <img className=""
+                <img className={ style.icon }
                     src="/images/gray-grid.png"
-                    alt="phone screen shot"
+                    alt="Parse Icon"
                 />
                 <h3 className="font-bk">Parse</h3>
                 <p>The data used by Cloud Imperium's StarMap needs to be parsed. I was able to 
                 find a series of backend web calls that were used to retrieve data.</p>
             </section>
             <section className="col-12 col-sm-4">
-                <img className=""
+                <img className={ style.icon }
                     src="/images/gray-grid.png"
-                    alt="phone screen shot"
+                    alt="Store Icon"
                 />
                 <h3 className="font-bk">Store</h3>
                 <p>Since the data calls from the StarMap were structured to follow its own
@@ -104,9 +104,9 @@ export default function Work() {
                 data would need to be stored.</p>
             </section>
             <section className="col-12 col-sm-4">
-                <img className=""
+                <img className={ style.icon }
                     src="/images/gray-grid.png"
-                    alt="phone screen shot"
+                    alt="Display Icon"
                 />
                 <h3 className="font-bk">Display</h3>
                 <p>The data would need to be displayed in an interactive table so that the
