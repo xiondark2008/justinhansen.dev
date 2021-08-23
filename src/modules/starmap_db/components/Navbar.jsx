@@ -53,7 +53,7 @@ export default class Navbar extends Component {
                     className="collapse navbar-collapse"
                     aria-expanded="false"
                 >
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav ms-lg-0 mb-2 mb-lg-0">
                         { tabList }
                     </ul>
                 </div>

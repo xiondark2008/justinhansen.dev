@@ -4,6 +4,7 @@ import LandingSpace from '@/portfolio/components/layouts/LandingSpace';
 import FeaturedWorkLayout from '@/portfolio/components/layouts/FeatureSpace';
 import HelloWorldCarousel from "@/portfolio/components/HelloWorldCarousel";
 import InteractiveRPC from '@/portfolio/components/InteractiveRPC';
+import InteractiveStarMapDB from '@/portfolio/components/InteractiveStarMapDB';
 
 import style from "@/portfolio/styles/LandingSpace.module.scss";
 
@@ -72,12 +73,9 @@ export default function Home() {
                 </Link>
             </section>
             <section className="col-12 col-lg-6">
-                <figure className={style.laptop}>
-                    <img className="img-fluid"
-                        src="/images/gray-grid.png"
-                        alt="browser screen shot"
-                    />
-                </figure>
+                <InteractiveStarMapDB
+                    margin='10'
+                    args={ {useMin: true} }/>
             </section>
         </div>
     </FeaturedWorkLayout>
