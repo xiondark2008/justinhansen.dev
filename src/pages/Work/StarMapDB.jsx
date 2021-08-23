@@ -37,7 +37,7 @@ export default function Work() {
                     a data table format so that the user can easily sort and compare all the
                     records.</p>
                     <h3 className='text-primary'><b>TECH STACK</b></h3>
-                    <ul className='row row-cols-2'>
+                    <ul className='row row-cols-2 list-unstyled'>
                         <li className='col'><b>Node.js</b></li>
                         <li className='col'><b>MongoDB</b></li>
                         <li className='col'><b>React.js</b></li>

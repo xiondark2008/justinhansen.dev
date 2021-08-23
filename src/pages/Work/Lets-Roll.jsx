@@ -36,7 +36,7 @@ export default function Work() {
                     is no additional ajax calls or server side calculations. This makes the app
                     a perfect solution for use over paid data connection.</p>
                     <h3 className='text-primary'><b>TECH STACK</b></h3>
-                    <ul className='row row-cols-2'>
+                    <ul className='row row-cols-2 list-unstyled'>
                         <li className='col'><b>React.js</b></li>
                         <li className='col'><b>Bootstrap</b></li>
                         <li className='col'><b>HTML5 Canvas</b></li>
