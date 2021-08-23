@@ -51,14 +51,14 @@ export default class AjaxDatatable extends Component {
         const jqueryExists = !!jQuery,
             datatableExists = !!$.fn.DataTable
         
-        console.debug("DEBUG - in AjaxDatatable.didLibrariesLoad > jquery("+jqueryExists+") and datatable("+datatableExists+")")
+        //console.debug("DEBUG - in AjaxDatatable.didLibrariesLoad > jquery("+jqueryExists+") and datatable("+datatableExists+")")
         return jqueryExists && datatableExists
     }
 
     //Lifecycle
-    componentDidMount(){ console.debug("DEBUG - in AjaxDatatable.componentDidMount")
+    componentDidMount(){ //console.debug("DEBUG - in AjaxDatatable.componentDidMount")
         const opts = Object.assign( {}, this.props.opts ? this.props.opts : {} ),
-            initializeDatatable = (() => { console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable")
+            initializeDatatable = (() => { //console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable")
                 if( this.didLibrariesLoad() ){ 
                     const $table = $('#'+this.tableId).DataTable(opts),
                         afterInit = this.props.afterInit
@@ -66,7 +66,7 @@ export default class AjaxDatatable extends Component {
                     if(afterInit instanceof Function){
                         afterInit.bind(this)($table, this.props, this.state)
                     }
-                } else { console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable > try again later")
+                } else { //console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable > try again later")
                     setTimeout( initializeDatatable, 100)
                 }
             }).bind(this)
