@@ -6,8 +6,6 @@ import HelloWorldCarousel from "@/portfolio/components/HelloWorldCarousel";
 import InteractiveRPC from '@/portfolio/components/InteractiveRPC';
 import InteractiveStarMapDB from '@/portfolio/components/InteractiveStarMapDB';
 
-import style from "@/portfolio/styles/LandingSpace.module.scss";
-
 export default function Home() {
     return (<>
     <Head>
