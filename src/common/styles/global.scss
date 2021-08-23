@@ -430,15 +430,31 @@ $colors: map-merge($colors, $all-colors);
         }
     }
 
-    .navbar-collapse{
+    .navbar-collapse {
         & > ul {
 
             li.dropdown {
                 .dropdown-menu {
                     padding: 0;
 
-                    & > li > .nav-link.active{
+                    & > li > .nav-link.active {
                         background-color: inherit;
+                    }
+                }
+            }
+        }
+    }
+    @each $name, $color in $theme-colors{
+        @include withTheme( $name ){
+            .navbar-collapse > ul li.dropdown .dropdown-menu {
+                background-color: $color;
+
+                & > li > .dropdown-item {
+                    &:hover,
+                    &:focus {
+                        $mix-color: color-contrast($color, $light, $dark);
+                        
+                        background-color: mix($color, $mix-color, 90%);
                     }
                 }
             }
