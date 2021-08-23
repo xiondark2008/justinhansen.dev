@@ -1,1 +1,19 @@
+@use 'sass:math';
 @import "Base.module";
+
+.icon {
+    $icon-size: 10rem;
+    $icon-margin: 1rem;
+
+    width: $icon-size;
+    height: $icon-size;
+    margin: $icon-margin;
+
+    &.icon-speed {
+        $icon-shrink: 3;
+
+        width: $icon-size - $icon-shrink;
+        height: $icon-size - $icon-shrink;
+        margin: math.div(3, 2) + $icon-margin;
+    }
+}

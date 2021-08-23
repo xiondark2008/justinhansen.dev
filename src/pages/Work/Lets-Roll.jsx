@@ -82,18 +82,18 @@ export default function Work() {
         </div>
         <div className='row justify-content-evenly align-items-stretch py-5'>
             <section className="col-12 col-sm-4">
-                <img className=""
-                    src="/images/gray-grid.png"
-                    alt="phone screen shot"
+                <img className={ style.icon }
+                    src="/images/icons/svg/mobile first.svg"
+                    alt="Mobile First Icon"
                 />
                 <h3 className="font-bk">Mobile First</h3>
                 <p>The UX/UI needs to be optimized for use on the most readily available platform
                 while gathered around a board game: a smartphone.</p>
             </section>
             <section className="col-12 col-sm-4">
-                <img className=""
-                    src="/images/gray-grid.png"
-                    alt="phone screen shot"
+                <img className={ ([style.icon, style['icon-speed']]).join(' ') }
+                    src="/images/icons/svg/speed.svg"
+                    alt="Speec Icon"
                 />
                 <h3 className="font-bk">Speed</h3>
                 <p>No one wants to be "that person" that holds up gameplay every round, so this
@@ -101,9 +101,9 @@ export default function Work() {
                 fast and easy to use.</p>
             </section>
             <section className="col-12 col-sm-4">
-                <img className=""
-                    src="/images/gray-grid.png"
-                    alt="phone screen shot"
+                <img className={ style.icon }
+                    src="/images/icons/svg/education.svg"
+                    alt="Education Icon"
                 />
                 <h3 className="font-bk">Educational</h3>
                 <p>The best solution should help user learn how the probability changes based on
