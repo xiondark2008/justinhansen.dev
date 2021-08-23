@@ -77,7 +77,7 @@ export function addClassNames(toAddStr, classNames='', prepend=true){
 }
 //console.debug("DEBUG - in Utilities before mergeObjects")
 export function mergeObjects(a, b, overwrite=false, deepMerge=false, maxDepth=10, surpressWarning=false){
-    console.log('DEBUG - in Utilities.mergeObjects',arguments)
+    // console.log('DEBUG - in Utilities.mergeObjects',arguments)
     const aCopy = Object.assign({}, a),
         bCopy = Object.assign({}, b),
         isPrimative = val=>!(val instanceof Object),
