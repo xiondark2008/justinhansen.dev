@@ -38,30 +38,40 @@ export default class Navbar extends Component {
     }
 
     render(){
-        const buildLinkItem = (link, idx) => {
-                const liClassName = 'nav-item',
-                    aClassName = "nav-link " + (link.isActive(this.props.currentPage) ? ' active' : '')
+        const liBaseClassName = 'nav-item',
+            aBaseClassName = "nav-link ",
+            buildDropdownItem = (link, idx) => {
+                const liClassName = liBaseClassName,
+                    aClassName = addClassNames([
+                        'dropdown-item',
+                        (link.isActive(this.props.currentPage) ? ' active' : '')
+                    ], aBaseClassName, false)
+
+                return(
+                <li key={ idx } className={ liClassName }>
+                    <Link href={ link.href }>
+                        <a className={ aClassName }><b>{ link.label }</b></a>
+                    </Link>
+                </li>)
+            },
+            buildLinkItem = (link, idx) => {
+                const liClassName = liBaseClassName,
+                    aClassName = addClassNames([
+                        (link.isActive(this.props.currentPage) ? 'active' : '')
+                    ], aBaseClassName, false)
                 
                 if( !link.children || isEmpty(link.children) ){
+                    
                     return(
                     <li key={ idx } className={ liClassName }>
                         <Link href={ link.href }>
                             <a className={ aClassName }><b>{ link.label }</b></a>
                         </Link>
                     </li>)
+                    
                 } else {
-                    const id = link.label+'NavbarDropdownMenuLink',
-                        buildDropdownItem = (link, idx) => {
-                            const aClassName = 'nav-link dropdown-item ' + (link.isActive(this.props.currentPage) ? ' active' : '')
-
-                            return(
-                            <li className='nav-item'>
-                                <Link href={ link.href }>
-                                    <a className={ aClassName }><b>{ link.label }</b></a>
-                                </Link>
-                            </li>)
-                        }
-
+                    const id = link.label+'NavbarDropdownMenuLink'
+                    
                     return(
                     <li key={ idx } className={ liClassName + ' dropdown'}>
                         <a className={ addClassNames(aClassName, 'dropdown-toggle') }
