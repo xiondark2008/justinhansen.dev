@@ -3,7 +3,7 @@
 }
 .atv,
 .str {
-    color: var(--bs-teal-400);
+    color: var(--bs-green-400);
 }
 .kwd {
     color: var(--bs-pink-350);
@@ -12,7 +12,7 @@
     color: var(--bs-primary);
 }
 .typ {
-    color: var(--bs-green-400);
+    color: var(--bs-teal-400);
 }
 .lit {
     color: var(--bs-indigo-300);
