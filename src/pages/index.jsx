@@ -18,6 +18,9 @@ export default function Home() {
             <div className="row flex-fill justify-content-center align-items-center min-h-inherit">
                 <section className="col-12 col-sm-9 col-md-8 col-lg-7 col-xl-6 col-xxl-5 text-center">
                     <HelloWorldCarousel />
+                    <p>"Hello, World!" is traditionally a developer's first introduction to a 
+                    programming language. So may the above code serve as a greeting as I 
+                    introduce you to myself and my work.</p>
                     <Link href="/About">
                         <a className="btn btn-primary btn-lg shadow-lg font-bk fs-6 my-5"
                         >ABOUT ME</a>
