@@ -126,7 +126,7 @@ export default class HelloWorldCarousel extends Component{
             })
         
         return(<>
-        <h3 className='w-100 text-start text-dark m-0'>Hello World: <b
+        <h3 className='w-100 text-start text-dark m-0'>"Hello, World!" <b
             className='float-end font-monospace text-primary'
         >{ label }</b></h3>
         <figure className='figure w-100'>
@@ -140,7 +140,7 @@ export default class HelloWorldCarousel extends Component{
             <figcaption className='figure-caption float-end position-relative'
             ><a className='text-muted stretched-link'
                 href='https://en.wikipedia.org/wiki/%22Hello%2C_World!%22_program'
-            >Learn more</a> about Hello World.</figcaption>
+            >Learn more</a> about "Hello, World!"</figcaption>
         </figure>
         </>)
     }
