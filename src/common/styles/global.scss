@@ -293,6 +293,9 @@ $utilities: (
 $grays: map-merge($grays, $custom-gray);
 $all-colors: getAllColors($colors, 20, $grays);
 $colors: map-merge($colors, $all-colors);
+$theme-colors: map-merge($theme-colors, (
+    'darker': $gray-950
+) );
 
 // 6. 
 @import "bootstrap/scss/root";      //Optional
@@ -538,4 +541,9 @@ pre {
     &::-webkit-scrollbar {
         display: none;
     }
+}
+
+footer {
+    min-height: 15vh;
+    background-color: $gray-950;
 }
