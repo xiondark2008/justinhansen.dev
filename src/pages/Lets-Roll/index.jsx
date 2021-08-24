@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import RollProbabilityCalculator from "@/roll_probability/components/RollProbabilityCalculator.jsx";
 
-export default function Home() { //console.debug('DEBUG - in pages/Lets-Roll/index')
+export default function Home(props) { console.debug('DEBUG - in pages/Lets-Roll/index', props)
     const title = "Roll Probability Calculator"
     
     return (
@@ -13,7 +11,7 @@ export default function Home() { //console.debug('DEBUG - in pages/Lets-Roll/ind
             <meta name="description" content={title} />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <RollProbabilityCalculator/>
+        <RollProbabilityCalculator { ...props } />
 
     </div>
     )

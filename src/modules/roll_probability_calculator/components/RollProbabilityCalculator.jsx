@@ -22,7 +22,7 @@ export default withRouter( class RollProbabilityCalculator extends Component {
         new DieType(StandardDie.D10),
         new DieType(StandardDie.D12)
     ];
-    constructor( props ){ //console.debug("DEBUG - in RollProbabilityCalculator.constructor()");
+    constructor( props ){ //console.log("DEBUG - in RollProbabilityCalculator.constructor()", props);
         super(props)
         //console.log("DEBUG - in RollProbabilityCalculator.constructor() > router: ",this.props.rounter)
         this.state = {
@@ -38,6 +38,7 @@ export default withRouter( class RollProbabilityCalculator extends Component {
         this.getDiceList = this.getDiceList.bind(this);
 
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.render = this.render.bind(this)
     }
 
     componentDidMount(){ //console.debug("DEBUG - in RollProbabilityCalculator.componentDidMount()");
@@ -100,14 +101,15 @@ export default withRouter( class RollProbabilityCalculator extends Component {
     }
 
     render(){ //console.debug("DEBUG - in RollProbabilityCalculator.render()")
-        const dieTypeList = this.state.dieTypes.map( (dieType, idx) =>
-            <DieTypeInput
-                key={ idx }
-                index={ idx }
-                dieType={ dieType }
-                update={ this.updateDieTypeQuantity }
-            />
-        )
+        const Footer = this.props.footer,
+            dieTypeList = this.state.dieTypes.map( (dieType, idx) =>
+                <DieTypeInput
+                    key={ idx }
+                    index={ idx }
+                    dieType={ dieType }
+                    update={ this.updateDieTypeQuantity }
+                />
+            )
 
         return(<>
         <div className={ ([
@@ -130,8 +132,8 @@ export default withRouter( class RollProbabilityCalculator extends Component {
                     target={ this.state.target }
                 />
             </div>
-            <WelcomeModal show={ this.state.showWelcomeMessage }
-            />
+            <WelcomeModal show={ this.state.showWelcomeMessage }/>
+            { !!Footer && <Footer/> }
         </div>
         </>);
     }
