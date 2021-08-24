@@ -1,0 +1,13 @@
+.contactLine {
+    font-size: 1.5rem;
+    margin: 3rem auto;
+
+    :first-child {
+        text-align: end;
+    }
+
+    :not(:first-child,:last-child) {
+        border-bottom: 4px dotted var(--bs-primary);
+    }
+
+}
