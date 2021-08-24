@@ -46,7 +46,9 @@ export default function Home() {
     >
         <main className='container'>
             { contacts.map( contact =>
-                <div className={ addClassNames( style.contactLine, 'row') }>
+                <div className={ addClassNames( style.contactLine, 'row') }
+                    key={ contact.label }
+                >
                     <div className='col-auto'>
                         { contact.label }
                     </div>
