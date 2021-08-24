@@ -18,7 +18,6 @@ $border-radius: $base-dimension * ratio(6px); //6px;
 
 $body-width: $base-dimension * ratio(1600px); //1600px;
 $body-height: $base-dimension * ratio(60px); //60px;
-$body-margin-top: $base-dimension * ratio(80px); //80px;
 $body-margin-left: $base-dimension * ratio(-110px); //-110px;
 $body-radius: $base-dimension * ratio(6px); //6px;
 
@@ -29,10 +28,8 @@ $latch-radius: $base-dimension * ratio(5px); //5px;
 
 .laptop {
     /* The laptop with borders */
-    -webkit-transform: scale( ratio($content-width, $body-width) ); /* Scaled down for a better Try-it experience (change to 1 for full scale) */
-    transform: scale( ratio($content-width, $body-width) ); /* Scaled down for a better Try-it experience (change to 1 for full scale) */
     position: relative;
-    margin: auto;
+    box-sizing: content-box;
     width: $content-width; //1366px;
     height: $content-height; //800px;
     border-radius: $border-radius; //6px;
@@ -40,8 +37,7 @@ $latch-radius: $base-dimension * ratio(5px); //5px;
     border-color: black;
     border-width: $border-base-size; //24px;
     border-bottom-width: $border-bottom-size; //80px;
-    //background-color: black;
-    box-sizing: content-box;
+    margin: auto #{ math.div($body-width - ($content-width + 2*$border-base-size), 2) };
 
     /* The body of the laptop */
     &:after {
@@ -50,8 +46,8 @@ $latch-radius: $base-dimension * ratio(5px); //5px;
         position: absolute;
         width: $body-width; //1600px;
         height: $body-height; //60px;
-        margin: 0px;
-        margin-top: $body-margin-top; //80px;
+        margin: 0;
+        margin-top: $border-bottom-size; //80px;
         margin-left: $body-margin-left; //-110px;
         background: black;
         border-radius: $body-radius; //6px;
@@ -65,7 +61,6 @@ $latch-radius: $base-dimension * ratio(5px); //5px;
         height:$latch-hieght; //30px;
         bottom: $latch-bottom; //-110px;
         left: 50%;
-        -webkit-transform: translate(-50%);
         transform: translate(-50%);
         background: #f1f1f1;
         border-bottom-left-radius: $latch-radius; //5px;

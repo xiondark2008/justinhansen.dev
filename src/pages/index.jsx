@@ -70,10 +70,10 @@ export default function Home() {
                         target="_blank">EXPLORE THE 'VERSE</a>
                 </Link>
             </section>
-            <section className="col-12 col-lg-6">
+            <section className="col-12 col-lg-8">
                 <InteractiveStarMapDB
                     margin='10'
-                    args={ {useMin: true} }/>
+                    args={ {useMin: true, preserveTop: true} }/>
             </section>
         </div>
     </FeaturedWorkLayout>
