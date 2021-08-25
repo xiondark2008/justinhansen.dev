@@ -5,6 +5,7 @@ import FeaturedWorkLayout from '@/portfolio/components/layouts/FeatureSpace';
 import HelloWorldCarousel from "@/portfolio/components/HelloWorldCarousel";
 import InteractiveRPC from '@/portfolio/components/InteractiveRPC';
 import InteractiveStarMapDB from '@/portfolio/components/InteractiveStarMapDB';
+import Footer from '@/portfolio/components/Footer';
 
 export default function Home() {
     return (<>
@@ -80,5 +81,6 @@ export default function Home() {
             </section>
         </div>
     </FeaturedWorkLayout>
+    <Footer/>
     </>)
 }

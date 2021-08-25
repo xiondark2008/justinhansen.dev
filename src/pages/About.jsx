@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import LandingSpace from '@/portfolio/components/layouts/LandingSpace';
+import Footer from '@/portfolio/components/Footer';
 
 import style from '@/portfolio/styles/About.module.scss';
 
@@ -66,5 +67,6 @@ export default function About() {
             </div>
         </div>
     </LandingSpace>
+    <Footer/>
     </>)
 }

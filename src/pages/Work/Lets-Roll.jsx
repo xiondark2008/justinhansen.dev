@@ -5,6 +5,7 @@ import InteractiveRPC from '@/portfolio/components/InteractiveRPC';
 import FeatureSpace from '@/portfolio/components/layouts/FeatureSpace';
 
 import style from '@/portfolio/styles/Work.module.scss';
+import Footer from '@/portfolio/components/Footer';
 
 export default function Work() {
     const breakpoint = 'md',
@@ -159,5 +160,6 @@ export default function Work() {
             </section>
         </div>
     </FeatureSpace>
+    <Footer/>
     </>)
 }

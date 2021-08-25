@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import App from "@/starmap_db/components/StarMapDB.jsx";
+import Footer from '@/portfolio/components/Footer';
 
 //import "@/starmap_db/styles/StarMapDB.module.scss"
 
@@ -17,5 +18,6 @@ export default function Home() { //console.debug("DEBUG - in /StarMapDB/index.js
             src="/datatables/datatables.min.js"></script>
     </Head>
     <App/>
+    <Footer/>
     </>)
 }

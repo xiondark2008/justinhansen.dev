@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import LandingSpace from '@/portfolio/components/layouts/LandingSpace';
 import { addClassNames } from '@/common/utils/Utilities';
+import Footer from '@/portfolio/components/Footer';
 
 import style from '@/portfolio/styles/Contact.module.scss'
 
@@ -60,5 +61,6 @@ export default function Home() {
             ) }
         </main>
     </LandingSpace>
+    <Footer/>
     </>)
 }
