@@ -8,12 +8,12 @@ import style from '@/portfolio/styles/Work.module.scss';
 import Footer from '@/portfolio/components/Footer';
 
 export default function Work() {
-    const breakpoint = 'md',
-        gotoLink = (<Link href='/Lets-Roll'>
-                        <a className='btn btn-primary btn-lg shadow-lg font-bk fs-6 my-md-4'
-                            target='_blank'
-                        >GO TO APP</a>
-                    </Link>)
+    const gotoLink = (
+            <Link href='/StarMapDB'>
+                <a className='btn btn-primary btn-lg shadow-lg font-bk fs-6 my-md-4'
+                    target='_blank'
+                >GO TO APP</a>
+            </Link>)
 
     return (<>
     <Head>
