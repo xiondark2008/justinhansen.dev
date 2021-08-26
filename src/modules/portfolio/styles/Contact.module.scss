@@ -7,7 +7,7 @@
     }
 
     :not(:first-child,:last-child) {
-        border-bottom: 4px dotted var(--bs-primary);
+        border-bottom: 4px dotted var(--bs-secondary);
     }
 
 }

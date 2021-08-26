@@ -10,9 +10,9 @@ export default function Home() {
     const contacts = [
         {
             label: 'Email',
-            value: <a href='mailto:xiondark2008@gmail.com'
+            value: <a href='mailto:me@justinhansen.dev'
                       target='_blank'
-                    >xiondark2008@gmail.com</a>
+                    >me@justinhansen.dev</a>
         },{
             label: 'LinkedIn',
             value: <a href='https://www.linkedin.com/in/justin-hansen-26a44546'
