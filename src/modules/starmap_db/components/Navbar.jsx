@@ -1,6 +1,10 @@
 import { Component } from "react";
+import Link from "next/dist/client/link";
+import BootstrapNavbar from "@/common/components/BootstrapNavbar";
 import { UI_ENTITY_STUBS } from "@/starmap_db/utils/Utilities";
-import { toHTMLName } from '@/utils/Utilities.js'
+import { toHTMLName, addClassNames } from '@/utils/Utilities.js'
+
+import style from '@/portfolio/styles/Navbar.module.scss';
 
 export default class Navbar extends Component {
     constructor(props) { //console.debug("in NavBar.constructor", arguements)
@@ -29,36 +33,23 @@ export default class Navbar extends Component {
                     <a className={ "nav-link" + (isActive ? " active": "") }
                         id={ "entity_tab_"+htmlName } 
                         href={ "#"+htmlName }
-                    >{ entityStub.label }</a>
+                    ><b>{ entityStub.label }</b></a>
                 </li>)
             })
 
-        return(
-        <nav className="navbar navbar-expand-lg navbar-light bg-light py-1">
-            <div className="container-fluid">
-                <a className="navbar-brand"
-                    href="#"
-                >StarMapDB</a>
-                <button className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target={ "#"+containerId }
-                    aria-controls={ containerId }
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div id={ containerId }
-                    className="collapse navbar-collapse"
-                    aria-expanded="false"
-                >
-                    <ul className="navbar-nav ms-lg-0 mb-2 mb-lg-0">
-                        { tabList }
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        );
+        return(<>
+        <BootstrapNavbar
+            id="main_navbar"
+            brandElement={  
+                            <span className={ addClassNames(style.brand, 'text-primary') }>StarMapDB</span> 
+                        }
+            navAttr={ {className: 'navbar-expand-md navbar-'+this.props.theme} }
+            collapseAttr={ {className:''} }
+        >
+            <ul className="navbar-nav">
+                { tabList }
+            </ul>
+        </BootstrapNavbar>
+        </>);
     }
 }
