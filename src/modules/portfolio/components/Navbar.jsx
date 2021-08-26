@@ -1,9 +1,9 @@
 import { Component } from "react";
-import BootstrapNavbar from "@/components/BootstrapNavbar";
 import Link from 'next/link';
+import BootstrapNavbar from "@/components/BootstrapNavbar";
+import { addClassNames, isEmpty } from "@/common/utils/Utilities";
 
 import style from '@/portfolio/styles/Navbar.module.scss';
-import { addClassNames, isEmpty } from "@/common/utils/Utilities";
 
 //TODO: document props
 export default class Navbar extends Component {
@@ -95,7 +95,7 @@ export default class Navbar extends Component {
             brandElement={  <Link href="/">
                                 <a className={ style.brand }><b>JUSTIN<br/>HANSEN</b></a>
                             </Link> }
-            navAttr={ {className: 'navbar-expand-md navbar-'+this.props.theme} }
+            navAttr={ {className: 'navbar-expand-md bg-transparent navbar-'+this.props.theme} }
             collapseAttr={ {className:''} }
         >
             <ul className="navbar-nav">
