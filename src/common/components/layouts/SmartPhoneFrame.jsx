@@ -69,7 +69,7 @@ export default class SmartPhoneFrame extends Component {
             || prevProps.availableHeight !== this.props.availableHeight
             || prevProps.useMin !== this.props.useMin
         ){
-            console.log('Props have changed...')
+            // console.log('Props have changed...')
             if(!this.preserveTransform || !this.preserveTransformOrigin){
                 const style = {},
                     transformProperties = this.getTransformProperties(
