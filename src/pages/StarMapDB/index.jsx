@@ -1,5 +1,4 @@
 import Head from 'next/head'
-//import App from "@/starmap_db/components/StarMapDB.jsx";
 import Footer from '@/portfolio/components/Footer';
 
 import { Component } from "react";
@@ -8,7 +7,7 @@ import ListView from "@/starmap_db/components/ListView.jsx";
 import DetailsView from "@/modules/starmap_db/components/DetailsView.jsx";
 import { ENTITY_PATHS, UI_ENTITY_STUBS } from "@/starmap_db/utils/Utilities";
 
-//import "@/starmap_db/styles/StarMapDB.module.scss"
+//import style from "@/starmap_db/styles/StarMapDB.module.scss"
 
 export default class StarMapDB extends Component {
     constructor(props) { //console.debug("in StarMapDB.constructor", arguements)
@@ -44,10 +43,8 @@ export default class StarMapDB extends Component {
         })
     }
     setTableEntityStub( entityStub ){
-        this.setState( prevState => {
-            return {
-                tableEntityStub: entityStub
-            }
+        this.setState({
+            tableEntityStub: entityStub
         })
     }
 
@@ -66,20 +63,15 @@ export default class StarMapDB extends Component {
             <title>{title}</title>
             <meta name="description" content={title} />
             <link rel="icon" href="/favicon.ico" />
-
-            <link rel="stylesheet" type="text/css"
-                href="/datatables/datatables.min.css"/>
-            <script type="text/javascript"
-                src="/datatables/datatables.min.js"></script>
         </Head>
         <Navbar
             currentEntityStub={ this.state.tableEntityStub }
             setEntityStub={ this.setTableEntityStub }
             theme='light'
         />
-        <main className='navbar-spacer overflow-auto'>
-            <div className="container-fluid h-100">
-                <div className="row h-100">
+        <main className='navbar-spacer'>
+            {/* <div className="container-fluid h-100"> */}
+                <div className="h-100 d-flex align-items-stretch">
                     <ListView
                         entityStub={ this.state.tableEntityStub }
                         setRecord={ this.setRecord }
@@ -91,7 +83,7 @@ export default class StarMapDB extends Component {
                         setRecord={ this.setRecord }
                     />
                 </div>
-            </div>
+            {/* </div> */}
         </main>
         <Footer/>
         </>);

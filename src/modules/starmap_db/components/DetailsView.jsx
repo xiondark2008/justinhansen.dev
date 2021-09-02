@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { UI_ENTITY_STUBS } from "@/starmap_db/utils/Utilities";
 
+import style from '@/starmap_db/styles/StarMapDB.module.scss'
+
 export default class DetailsView extends Component {
     constructor(props) { //console.debug("in DetailsView.constructor", arguements)
         super(props)
@@ -13,7 +15,9 @@ export default class DetailsView extends Component {
             EntityDetailView = entityStub ? entityStub.detailsView : undefined
 
         return(<>
-        <aside className="col-lg-4 h-100 overflow-auto">
+        <aside className="d-none d-md-block container-fluid"
+            id={ style.details_panel }
+        >
             { EntityDetailView ? 
                 <EntityDetailView
                     record={ record }

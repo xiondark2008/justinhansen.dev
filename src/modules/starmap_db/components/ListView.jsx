@@ -3,6 +3,8 @@ import TableViewNav from "@/starmap_db/components/TableViewNav.jsx";
 import AjaxDatatable from "@/common/components/AjaxDatatable";
 import { toHTMLName } from '@/utils/Utilities.js'
 
+import style from '@/starmap_db/styles/StarMapDB.module.scss'
+
 export default class ListView extends Component {
     constructor(props) { //console.debug("in ListView.constructor", arguements)
         super(props)
@@ -24,12 +26,10 @@ export default class ListView extends Component {
         const entityKey = this.getEntityKey( nextProps.entityStub.label )
 
         if( !nextState[entityKey] ){
-            this.setState( prevState => {
-                return {
-                    [entityKey]: {
-                        view: nextProps.entityStub.views[0],
-                        page: 0
-                    }
+            this.setState({
+                [entityKey]: {
+                    view: nextProps.entityStub.views[0],
+                    page: 0
                 }
             })
 
@@ -41,13 +41,11 @@ export default class ListView extends Component {
 
     //Update Methods
     setView(view){
-        this.setState( prevState => {
-            const entityKey = this.getEntityKey()
-            
-            return {
-                [entityKey]: {
-                    view: view
-                }
+        const entityKey = this.getEntityKey()
+        
+        this.setState({
+            [entityKey]: {
+                view: view
             }
         })
     }
@@ -63,25 +61,30 @@ export default class ListView extends Component {
             setRecord = this.props.setRecord
 
         return(<>
-        <nav className="col-sm-2 col-lg-1 h-100">
+        <nav className="mx-1"
+            id={ style.side_nav }
+        >
             <TableViewNav
                 views={ entityStub.views }
                 currentView={ this.state[ entityKey ].view }
                 setView={ this.setView }
             />
         </nav>
-        <article className="col-sm-10 col-lg-7 h-100">
+        <article className="mx-1"
+            id={ style.main_table }
+        >
             <AjaxDatatable key={ entityStub.label /* NOTE: when the key changes, the component
                                                      will remount. This is needed to rebuild 
                                                      the data table when the entity changes */ }
                 dataUrl={ entityStub.dataUrl }
                 columns={ this.state[ entityKey ].view.columns }
                 opts={ {
+                    //searching: false,
                     select: { style: 'single' },
                     lengthChange: false,
                     scrollX: true,
                     scrollY: 'calc(100vh - 14rem)',
-                    initComplete: (settings, json) => {
+                    initComplete: (settings, json) => { //console.log('in initComplete', settings)
                         if( !this.props.record ){
                             const api = new $.fn.dataTable.Api( settings );
 
@@ -89,7 +92,7 @@ export default class ListView extends Component {
                         }
                     }
                 } }
-                afterInit={ ($table) => {
+                afterInit={ ($table) => { //console.log('in afterInit', $table)
                     $table.on('select', function selectHandler( e, dt, type, indexes ) {
                         //console.debug("DEBUG - in selectHandler.",type,indexes)
                         if ( type === 'row' ) {

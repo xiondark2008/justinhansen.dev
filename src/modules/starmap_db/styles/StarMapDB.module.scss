@@ -1,0 +1,15 @@
+$sideNavWidth: 6.4rem;
+$mainTableWidth: .70;
+$detailsPanel: 1 - $mainTableWidth;
+#side_nav {
+    width: $sideNavWidth;
+}
+#main_table {
+    width: calc(#{ $mainTableWidth } * (100% - #{ $sideNavWidth }));
+    font-size: 14px;
+}
+#details_panel {
+    width: calc(#{ $detailsPanel } * (100% - #{ $sideNavWidth }));
+    overflow: auto;
+    font-size: 14px;
+}

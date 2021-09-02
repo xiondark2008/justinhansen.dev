@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Link from "next/dist/client/link";
 import BootstrapNavbar from "@/common/components/BootstrapNavbar";
 import { UI_ENTITY_STUBS } from "@/starmap_db/utils/Utilities";
 import { toHTMLName, addClassNames } from '@/utils/Utilities.js'

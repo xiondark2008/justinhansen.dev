@@ -1,33 +1,26 @@
-//console.debug("DEBUG - in Utilities before toHTMLName")
 export function toHTMLName(val='') {
     return (val+'').toLowerCase().replace(/\s/g, '_')
 }
-//console.debug("DEBUG - in Utilities before hasElapsedSince")
 export function hasElapsedSince(interval, start, end=new Date(), isInclusive=true ){
     const diff = end - start
     return isInclusive ? diff>=interval : diff>interval
 }
-//console.debug("DEBUG - in Utilities before originalOrParseInt")
 export function originalOrParseInt(val){
     return !isNaN(val) && val !== null ? parseInt(val) : val 
 }
-//console.debug("DEBUG - in Utilities before originalOrParseFloat")
 export function originalOrParseFloat(val){
     return !isNaN(val) && val !== null ? parseFloat(val) : val
 }
-//console.debug("DEBUG - in Utilities before toUTF16Codes")
 export function toUTF16Codes(val){
     return Array.prototype.map.call( val, (c) => {
         return c.charCodeAt().toString(16)
     } )
 }
-//console.debug("DEBUG - in Utilities before toUnicodeCodes")
 export function toUnicodeCodes(val){
     return Array.prototype.map.call( val, (c) => {
         return c.charCodeAt().toString()
     } )
 }
-//console.debug("DEBUG - in Utilities before propertyToLabel")
 export function propertyToLabel(prop){
     let label = '',
         isFirstLetter = true
@@ -51,7 +44,6 @@ export function propertyToLabel(prop){
 
     return label
 }
-//console.debug("DEBUG - in Utilities before concatStringList")
 export function concatStringList(additionStrList, currentStrList='', deliminator=',', prepend=false){
     const additionList = Array.from( new Set( (additionStrList).trim().split(deliminator) ) ),
         currentList = currentStrList.split(deliminator),
@@ -67,7 +59,6 @@ export function concatStringList(additionStrList, currentStrList='', deliminator
     }
     return currentStrList
 }
-//console.debug("DEBUG - in Utilities before addClassNames")
 export function addClassNames(toAddStr, classNames='', prepend=true){
     if( toAddStr instanceof Array ){
         toAddStr = toAddStr.join(' ')
@@ -75,7 +66,6 @@ export function addClassNames(toAddStr, classNames='', prepend=true){
     
     return concatStringList(toAddStr, classNames, ' ', prepend)
 }
-//console.debug("DEBUG - in Utilities before mergeObjects")
 export function mergeObjects(a, b, overwrite=false, deepMerge=false, maxDepth=10, surpressWarning=false){
     // console.log('DEBUG - in Utilities.mergeObjects',arguments)
     const aCopy = Object.assign({}, a),
@@ -111,11 +101,9 @@ export function mergeObjects(a, b, overwrite=false, deepMerge=false, maxDepth=10
     }
     
 }
-//console.debug("DEBUG - in Utilities before addStyle")
 export function addStyle(toAddObj, styleObj){
     return mergeObjects(toAddObj, styleObj, true)
 }
-//console.debug("DEBUG - in Utilities before cleanAttributesObject")
 export function cleanAttributesObject(attr, warn=(val)=>{
     console.warn("WARN - Attributes need to be an Object. Ignoring value and using "
                 +"an empty object instead. Found type: "+(typeof val), val )
@@ -129,7 +117,6 @@ export function cleanAttributesObject(attr, warn=(val)=>{
 
     return Object.assign({}, attr)
 }
-//console.debug("DEBUG - in Utilities before cleanAttributesObjectArray")
 export function cleanAttributesObjectArray(attrs, warn=(val)=>{
     console.warn("WARN - Attributes need to be an Object or Array of Objects. Ignoring value and using "
                 +"an array with empty object instead. Found type: "+(typeof val), val )
@@ -147,7 +134,6 @@ export function cleanAttributesObjectArray(attrs, warn=(val)=>{
 
     return Object.assign([], attrs)
 }
-//console.debug("DEBUG - in Utilities before ListEditor")
 export const ListEditor = (()=>{
     const PRIVATE = Symbol("Private")
     
@@ -214,7 +200,6 @@ export const ListEditor = (()=>{
     
     return ListEditor
 })()
-//console.debug("DEBUG - in Utilities before isEmpty")
 export function isEmpty(val){
     if( typeof val === 'string' || val instanceof Array ){
         return val.length < 1
@@ -228,7 +213,6 @@ export function isEmpty(val){
 
     return false
 }
-//console.debug("DEBUG - in Utilities before getUniqueId")
 export function getUniqueId(instanceIdList, base=getRandomString(4), warning=(instanceIdList)=>{
     console.warn("WARN - was not able to generate unique id for instance id list: ",instanceIdList)
 }){
@@ -245,7 +229,65 @@ export function getUniqueId(instanceIdList, base=getRandomString(4), warning=(in
 
     warning( instanceIdList )
 }
-//console.debug("DEBUG - in Utilities before getRandomString")
+export const InstanceTracker = (()=>{
+    const PRIVATE = Symbol("Private"),
+        DEFAULT_WARNING = (key, baseId, instanceIdList)=>{
+            console.warn("WARN - was not able to generate unique id for key("+key
+            +") with baseId \""+baseId+"\" in list: ",instanceIdList)
+        }
+
+    class InstanceTracker {
+        constructor(base='instance_'+getRandomString(4), warning=DEFAULT_WARNING){
+            this[PRIVATE] = {
+                instances: new Map()
+            }
+            this.base = base
+            this.warning = warning
+        }
+    
+        get(key){
+            return this[PRIVATE].instances.get( key )
+        }
+    
+        getKeyOf( id ){
+            for(const [key, value] of this[PRIVATE].instances){
+                if(value === id){
+                    return key
+                }
+            }
+    
+            return undefined
+        }
+    
+        hasId( id ){
+            return this.getKeyOf( id ) !== undefined
+        }
+    
+        getUniqueId(key=this[PRIVATE].instances.size, requestedId=this.base){
+            if( this[PRIVATE].instances.has(key) ){
+                return this.get( key )
+            }
+            for(var mod=null; mod<=this[PRIVATE].instances.size; mod++){
+                const id = toHTMLName( mod === null ? requestedId : requestedId+'_'+mod )
+    
+                if( !this.hasId(id) ){
+                    this[PRIVATE].instances.set(key, id)
+    
+                    return id
+                }
+            }
+
+            this.warning( key, requestedId, this[PRIVATE].instances )
+            return null
+        }
+    
+        remove(key){
+            return this[PRIVATE].instances.delete( key )
+        }
+    }
+
+    return InstanceTracker;
+})() 
 export function getRandomString(length){
     let str = ''
     
@@ -256,7 +298,6 @@ export function getRandomString(length){
 
     return str
 }
-//console.debug("DEBUG - in Utilities before tryFor")
 export function tryFor(func, timeout=500, limit=100){
     const recursive = (attempts=0) => {
         try{

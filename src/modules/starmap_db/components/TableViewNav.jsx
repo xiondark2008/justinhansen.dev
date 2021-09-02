@@ -26,7 +26,7 @@ export default class TableViewNav extends Component {
         })
 
         return(<>
-        <h4>Views</h4>
+        <h4 className='ps-3'>Views</h4>
         <ul className="nav nav-pills flex-column nav-sm">
             { viewList }
         </ul>

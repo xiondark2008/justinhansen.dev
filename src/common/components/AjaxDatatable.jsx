@@ -1,84 +1,55 @@
 import { Component } from "react";
-import { toHTMLName,
-         cleanAttributesObject,
+import { cleanAttributesObject,
          addClassNames,
-         addStyle } from "@/common/utils/Utilities";
+         addStyle, 
+         mergeObjects,
+         isEmpty,
+         InstanceTracker} from "@/common/utils/Utilities";
+import DataTable from "datatables.net-select-bs5/js/select.bootstrap5";
 
 //TODO: document props
 export default class AjaxDatatable extends Component {
-    static TABLE_STATES = new Map()
-    static getGenericId(){
-        const base = 'table_'
-        let count = 0
+    static INSTANCES = new InstanceTracker('DataTable')
 
-        do{
-            const id = base + count++,
-                isUniqueId = Array.from(AjaxDatatable.TABLE_STATES, ([key, val]) => val)
-                        .every( it => it.id !== id )
-            
-            if( isUniqueId ){
-                return id
-            }
-        }while(count <= AjaxDatatable.TABLE_STATES.size)
-
-        console.warn("WARN - was not able to generate AjaxDatatable id.",AjaxDatatable.TABLE_STATES)
-    }
     constructor(props){ 
         super(props)
-        this.tableAttr = cleanAttributesObject(this.props.tableAttr)
+        this.tableAttr = cleanAttributesObject( this.props.tableAttr )
+        this.theadAttr = cleanAttributesObject( this.props.theadAttr )
+        this.tbodyAttr = cleanAttributesObject( this.props.tbodyAttr )
+        this.tfootAttr = cleanAttributesObject( this.props.tfootAttr )
 
-        this.stateKey = this.tableAttr.id || this.props.dataUrl
-        if( !AjaxDatatable.TABLE_STATES.has( this.stateKey ) ){
-            AjaxDatatable.TABLE_STATES.set(this.stateKey, {
-                id: toHTMLName( this.tableAttr.id || AjaxDatatable.getGenericId() ),
-                state: {} 
-            })
-        }
-        this.tableId = AjaxDatatable.TABLE_STATES.get( this.stateKey ).id
+        this.instanceKey = this.tableAttr.id || this.props.dataUrl
+        this.tableId = AjaxDatatable.INSTANCES.getUniqueId( this.instanceKey )
         delete this.tableAttr.id
 
-        this.state = {}
-
-        this.didLibrariesLoad = this.didLibrariesLoad.bind(this)
         this.componentDidMount = this.componentDidMount.bind(this)
         this.componentDidUpdate = this.componentDidUpdate.bind(this)
         this.componentWillUnmount = this.componentWillUnmount.bind(this)
         this.render = this.render.bind(this)
     }
 
-    //Utility
-    didLibrariesLoad(){
-        const jqueryExists = !!jQuery,
-            datatableExists = !!$.fn.DataTable
-        
-        //console.debug("DEBUG - in AjaxDatatable.didLibrariesLoad > jquery("+jqueryExists+") and datatable("+datatableExists+")")
-        return jqueryExists && datatableExists
-    }
-
     //Lifecycle
     componentDidMount(){ //console.debug("DEBUG - in AjaxDatatable.componentDidMount")
-        const opts = Object.assign( {}, this.props.opts ? this.props.opts : {} ),
-            initializeDatatable = (() => { //console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable")
-                if( this.didLibrariesLoad() ){ 
-                    const $table = $('#'+this.tableId).DataTable(opts),
-                        afterInit = this.props.afterInit
-
-                    if(afterInit instanceof Function){
-                        afterInit.bind(this)($table, this.props, this.state)
-                    }
-                } else { //console.debug("DEBUG - in AjaxDatatable.componentDidMount > initializeDatatable > try again later")
-                    setTimeout( initializeDatatable, 100)
-                }
-            }).bind(this)
-
-        if( this.props.dataUrl ){
-            opts.ajax = this.props.dataUrl
-        }
-        if( this.props.columns ){
-            opts.columns = this.props.columns
+        if( !window.$.fn.dataTable ){
+            window.$ = DataTable.$
         }
 
-        initializeDatatable()
+        const opts = mergeObjects({
+                ajax: this.props.dataUrl,
+                columns: this.props.columns
+            }, this.props.opts),
+            afterInit = this.props.afterInit instanceof Function ?
+                this.props.afterInit.bind(this) :
+                undefined,
+            $table = $('#'+this.tableId).DataTable( opts )
+
+        if( afterInit ){
+            afterInit($table, this.props, this.state)
+        }
+        
+        this.setState({
+            $table: $table
+        })
     }
     shouldComponentUpdate(nextProps, nextState){
         //console.log("is same columns: ", this.props.columns == nextProps.columns )
@@ -87,42 +58,34 @@ export default class AjaxDatatable extends Component {
         }
         return true
     }
-    componentDidUpdate(prevProps){
-        if( this.didLibrariesLoad() ){
-            const $table = $('#'+this.tableId).DataTable()
+    componentDidUpdate(prevProps){ //console.log('in componentDidUpdate')
+        const $table = this.state.$table
 
-            for(let propsColumn of this.props.columns){
-                const name = propsColumn.name + ':name',
-                    isVisible = propsColumn.visible
+        for(let propsColumn of this.props.columns){
+            const name = propsColumn.name + ':name',
+                isVisible = propsColumn.visible
 
-                $table.column( name ).visible( isVisible, false )
-            }
-
-            $table.draw()
+            $table.column( name ).visible( isVisible, false )
         }
+
+        $table.draw()
     }
     componentWillUnmount(){ //console.debug("DEBUG - in AjaxDatatable.componentWillUnmount for "+this.tableId)
-        if( this.didLibrariesLoad() ){
-            $('#'+this.tableId).DataTable().destroy()
+        if(this.state.$table ){
+            this.state.$table.destroy()
         }
-        AjaxDatatable.TABLE_STATES.delete( this.stateKey )
+        AjaxDatatable.INSTANCES.remove( this.instanceKey )
     }
 
     render(){ //console.debug("DEBUG - in AjaxDataTable.render for "+this.tableId, this.props.dataUrl)
-        const tableId = this.tableId,
-            tableAttr = this.tableAttr,
-            theadAttr = this.props.theadAttr,
-            tbodyAttr = this.props.tbodyAttr,
-            tfootAttr = this.props.tfootAttr
-        
-        tableAttr.className = addClassNames('table', tableAttr.className)
-        tableAttr.style = addStyle({width:100+'%'}, tableAttr.style)
+        this.tableAttr.className = addClassNames('table', this.tableAttr.className)
+        this.tableAttr.style = addStyle({width:100+'%'}, this.tableAttr.style)
         
         return(<>
-        <table id={ tableId } {...tableAttr}>
-            { theadAttr && <thead {...theadAttr}></thead> }
-            { tbodyAttr && <tbody {...tbodyAttr}></tbody> }
-            { tfootAttr && <tfoot {...tfootAttr}></tfoot> } 
+        <table id={ this.tableId } {...this.tableAttr}>
+            { !isEmpty( this.theadAttr ) && <thead {...this.theadAttr}></thead> }
+            { !isEmpty( this.tbodyAttr ) && <tbody {...this.tbodyAttr}></tbody> }
+            { !isEmpty( this.tfootAttr ) && <tfoot {...this.tfootAttr}></tfoot> } 
         </table>
         </>)
     }
