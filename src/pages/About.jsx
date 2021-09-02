@@ -21,8 +21,8 @@ export default function About() {
 
     return (<>
     <Head>
-        <title>Justin Hansen</title>
-        <meta name="description" content="Justin Hansen's portfolio" />
+        <title>Justin Hansen's Portfolio - About</title>
+        <meta name="description" content="About Justin Hansen" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <LandingSpace theme='dark'

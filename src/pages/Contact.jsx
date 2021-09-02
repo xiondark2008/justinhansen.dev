@@ -38,8 +38,8 @@ export default function Home() {
 
     return (<>
     <Head>
-        <title>Justin Hansen</title>
-        <meta name="description" content="Justin Hansen's portfolio" />
+        <title>Justin Hansen's Portfolio - Contact</title>
+        <meta name="description" content="Contact Justin Hansen" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <LandingSpace theme='dark'

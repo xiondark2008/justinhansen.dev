@@ -17,8 +17,8 @@ export default function Work() {
 
     return (<>
     <Head>
-        <title>Justin Hansen</title>
-        <meta name="description" content="Justin Hansen's portfolio" />
+        <title>Justin Hansen - Roll Probability Calculator</title>
+        <meta name="description" content="Justin Hansen's portfolio project: Roll Propability Calculator" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <LandingSpace theme='light'

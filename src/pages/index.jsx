@@ -10,8 +10,8 @@ import Footer from '@/portfolio/components/Footer';
 export default function Home() {
     return (<>
     <Head>
-        <title>Justin Hansen</title>
-        <meta name="description" content="Justin Hansen's portfolio" />
+        <title>Justin Hansen's Portfolio - Home</title>
+        <meta name="description" content="Welcome to Justin Hansen's portfolio site" />
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <LandingSpace theme='light'>

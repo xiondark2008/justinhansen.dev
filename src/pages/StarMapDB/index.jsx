@@ -56,12 +56,10 @@ export default class StarMapDB extends Component {
     }
 
     render(){ //console.debug("in StarMapDB.render", arguements)
-        const title = "StarMapDB"
-
         return(<>
         <Head>
-            <title>{title}</title>
-            <meta name="description" content={title} />
+            <title>StarMapDB</title>
+            <meta name="description" content="A data table view of Star Citizen's Star Map data." />
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <Navbar
