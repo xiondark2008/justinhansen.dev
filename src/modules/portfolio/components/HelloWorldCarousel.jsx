@@ -65,21 +65,23 @@ export default class HelloWorldCarousel extends Component{
         }
 
         //Set up the bootstrap carousel
-        const $carousel = $('#'+this.id),
-            carousel = bootstrap.Carousel.getOrCreateInstance( $carousel.get(0), {
+        const Carousel = require('node_modules/bootstrap/js/dist/carousel'),
+            $carousel = $('#'+this.id),
+            carousel = Carousel.getOrCreateInstance( $carousel.get(0), {
                 interval: this.interval,
                 ride: 'carousel'
             } )
+
         $carousel.on('slide.bs.carousel', event => {
             this.setState({
                 activeIndex: event.to
             })
         })
-        this.setState({
-            carousel: carousel
-        }, () => {
-            carousel.cycle()
-        })
+
+        this.setState(
+            { carousel: carousel }, 
+            () => { carousel.cycle() }
+        )
     }
 
     componentDidUpdate(prevProps, prevState){}

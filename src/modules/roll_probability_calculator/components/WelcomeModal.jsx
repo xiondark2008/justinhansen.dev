@@ -20,8 +20,9 @@ export default class WelcomeModal extends Component {
     }
 
     componentDidMount() { //console.log("DEBUG - in WelcomeModal.componentDidMount()", this.props);
+        const Modal = require('node_modules/bootstrap/js/dist/modal')
         this.setState({
-            modal: bootstrap.Modal.getOrCreateInstance( document.getElementById( this.modalId, {} ) )
+            modal: Modal.getOrCreateInstance( document.getElementById( this.modalId, {} ) )
         })
     }
 

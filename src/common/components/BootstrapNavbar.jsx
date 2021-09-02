@@ -34,6 +34,20 @@ export default class BootstrapNavbar extends Component {
         this.collapseAttr.className = addClassNames('collapse navbar-collapse', this.collapseAttr.className)
     }
 
+    componentDidMount(){
+        const idSelector = '#' + this.collapseAttr.id,
+            Collapse = require('node_modules/bootstrap/js/dist/collapse')
+        
+        const $collapse = $(idSelector)
+        this.collapse = Collapse.getOrCreateInstance( $collapse.get(0), {
+            toggle: false
+        } )
+    }
+
+    componentWillUnmount(){
+        this.collapse.dispose()
+    }
+
     render(){ //console.debug("in BootstapNavbar.render", arguments)
         return(
         <nav {...this.navAttr}>

@@ -10,6 +10,7 @@ export default class Navbar extends Component {
     constructor(props){
         super(props)
 
+        this.id = 'main_navbar'
         this.linkObjs = [{
             label: 'Work',
             href: '/Work',
@@ -35,6 +36,20 @@ export default class Navbar extends Component {
             href: '/Contact',
             isActive: (val) => val == 'Contact'
         }]
+    }
+
+    componentDidMount(){
+        const idSelector = '#' + this.id,
+            Dropdown = require('node_modules/bootstrap/js/dist/dropdown')
+        
+        this.dropdowns = $('.dropdown-toggle', idSelector).get()
+                .map( el => Dropdown.getOrCreateInstance( el ) )
+    }
+
+    componentWillUnmount(){
+        for(let dropdown of this.dropdowns){
+            dropdown.dispose()
+        }
     }
 
     render(){
@@ -91,12 +106,11 @@ export default class Navbar extends Component {
         
         return(<>
         <BootstrapNavbar
-            id="main_navbar"
+            id={ this.id }
             brandElement={  <Link href="/">
                                 <a className={ style.brand }><b>JUSTIN<br/>HANSEN</b></a>
                             </Link> }
             navAttr={ {className: 'navbar-expand-md bg-transparent navbar-'+this.props.theme} }
-            collapseAttr={ {className:''} }
         >
             <ul className="navbar-nav">
                 { this.linkObjs.map( buildLinkItem ) }
