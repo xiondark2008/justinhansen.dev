@@ -98,7 +98,7 @@ export default class InteractiveRPC extends Component {
     render(){
         return(
         <SmartPhoneFrame {...this.state.args}>
-            <iframe src='/Lets-Roll?instructions=false&scrollbar=false'
+            <iframe src='/RPC?instructions=false&scrollbar=false'
                 className="scrollbar-hide"
             ></iframe>
         </SmartPhoneFrame>

@@ -38,11 +38,11 @@ export default function Home() {
                 <h6 className="code-comment">// My Work</h6>
                 <h1 className="font-bk">Roll Probability Calculator</h1>
                 <p>Used to calculate probability when rolling multiple multi-sided dice, this
-                app focuses on responsive design and fast calculations. <Link href='/Work/Lets-Roll'>
+                app focuses on responsive design and fast calculations. <Link href='/Work/RPC'>
                         <a>Learn more.</a>
                     </Link>
                 </p>
-                <Link href="/Lets-Roll">
+                <Link href="/RPC">
                     <a className="btn btn-primary btn-lg"
                         target="_blank">LET'S ROLL</a>
                 </Link>

@@ -20,7 +20,7 @@ export default class Navbar extends Component {
             },
             children:[{
                 label: 'Roll Probability Calculator',
-                href: '/Work/Lets-Roll',
+                href: '/Work/RPC',
                 isActive: (val) => val=='RPC'
             },{
                 label: 'StarMapDB',
