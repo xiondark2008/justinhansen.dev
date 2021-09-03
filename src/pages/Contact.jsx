@@ -15,7 +15,7 @@ export default function Home() {
                     >me@justinhansen.dev</a>
         },{
             label: 'LinkedIn',
-            value: <a href='https://www.linkedin.com/in/justin-hansen-26a44546'
+            value: <a href='https://www.linkedin.com/in/justin-hansen-dev'
                       target='_blank'
                     >Go To</a>
         },{
