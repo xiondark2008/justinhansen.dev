@@ -25,16 +25,29 @@ export default withRouter( class RollProbabilityCalculator extends Component {
     constructor( props ){ //console.log("DEBUG - in RollProbabilityCalculator.constructor()", props);
         super(props)
         //console.log("DEBUG - in RollProbabilityCalculator.constructor() > router: ",this.props.rounter)
+        let defaultWelcomeMessage = true,
+            defaultScrollbar = true
+        
+        if( process.browser ){ console.log('is browser')
+            const urlQuery = urlQueryFromString( this.props.router.asPath )
+            //console.log("url query: ",urlQuery)
+            if( !isEmpty(urlQuery) ){
+                defaultWelcomeMessage = urlQuery.instructions === 'false' ? false : true
+                defaultScrollbar = urlQuery.scrollbar === 'false' ? false : true
+            }
+        }
+        
         this.state = {
             dieTypes: RollProbabilityCalculator.INITIAL_DIETYPES,
             roll: new Roll( this.getDiceList.call(this, RollProbabilityCalculator.INITIAL_DIETYPES) ),
             target: new Target(0),
-            showWelcomeMessage: true,
-            showScrollbar: true
+            showWelcomeMessage: defaultWelcomeMessage,
+            showScrollbar: defaultScrollbar
         }
 
         this.updateDieTypeQuantity = this.updateDieTypeQuantity.bind(this);
         this.updateTarget = this.updateTarget.bind(this);
+        this.updateWelcomeMessage = this.updateWelcomeMessage.bind(this);
         this.getDiceList = this.getDiceList.bind(this);
 
         this.componentDidMount = this.componentDidMount.bind(this)
@@ -42,19 +55,9 @@ export default withRouter( class RollProbabilityCalculator extends Component {
     }
 
     componentDidMount(){ //console.debug("DEBUG - in RollProbabilityCalculator.componentDidMount()");
-        //console.log("router: ", this.props.router)
-        const urlQuery = urlQueryFromString( this.props.router.asPath )
-        //console.log("url query: ",urlQuery)
-        if( !isEmpty(urlQuery) ){
-            this.setState({
-                showWelcomeMessage: urlQuery.instructions === 'false' ? false : true,
-                showScrollbar: urlQuery.scrollbar === 'false' ? false : true
-            })
-        }
     }
 
     componentWillUnmount(){ //console.debug('DEBUG - in RollProbabilityCalculator.componentWillUnmount()')
-
     }
 
     //Update functions
@@ -81,6 +84,12 @@ export default withRouter( class RollProbabilityCalculator extends Component {
             return {
                 target: prevState.target.copy(val, equal, lesser, greater)
             }
+        })
+    }
+
+    updateWelcomeMessage(show){
+        this.setState({
+            showWelcomeMessage: show
         })
     }
 
@@ -132,7 +141,10 @@ export default withRouter( class RollProbabilityCalculator extends Component {
                     target={ this.state.target }
                 />
             </div>
-            <WelcomeModal show={ this.state.showWelcomeMessage }/>
+            <WelcomeModal 
+                show={ this.state.showWelcomeMessage }
+                updateVisibility={ this.updateWelcomeMessage }
+            />
             { !!Footer && <Footer/> }
         </div>
         </>);

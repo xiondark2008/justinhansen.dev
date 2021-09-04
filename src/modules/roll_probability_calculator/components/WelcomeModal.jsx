@@ -19,10 +19,16 @@ export default class WelcomeModal extends Component {
         this.render = this.render.bind(this)
     }
 
-    componentDidMount() { //console.log("DEBUG - in WelcomeModal.componentDidMount()", this.props);
-        const Modal = require('node_modules/bootstrap/js/dist/modal')
+    componentDidMount() { console.log("DEBUG - in WelcomeModal.componentDidMount()", this.props);
+        const Modal = require('node_modules/bootstrap/js/dist/modal'),
+            $modal = $( '#'+this.modalId ),
+            modal = Modal.getOrCreateInstance( $modal )
+
+        $modal.on('hide.bs.modal', event => {
+            this.props.updateVisibility(false)
+        })
         this.setState({
-            modal: Modal.getOrCreateInstance( document.getElementById( this.modalId, {} ) )
+            modal: modal
         })
     }
 
