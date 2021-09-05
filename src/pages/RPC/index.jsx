@@ -10,11 +10,10 @@ import DieTypeInput from '@/roll_probability/components/DieTypeInput.jsx';
 import TargetInput from '@/roll_probability/components/TargetInput.jsx';
 import Results from '@/roll_probability/components/Results.jsx';
 import { StandardDie } from '@/roll_probability/utils/Utilities.js';
-
-import style from '@/roll_probability/styles/Base.module.scss';
 import { isEmpty, 
          urlQueryFromString } from "@/common/utils/Utilities";
 
+import style from '@/roll_probability/styles/Base.module.scss';
 
 export default withRouter( class RollProbabilityCalculator extends Component {
     static INITIAL_DIETYPES = [
@@ -28,30 +27,29 @@ export default withRouter( class RollProbabilityCalculator extends Component {
     constructor( props ){ //console.log("DEBUG - in RollProbabilityCalculator.constructor()", props);
         super(props)
         //console.log("DEBUG - in RollProbabilityCalculator.constructor() > router: ",this.props.rounter)
-        let defaultWelcomeMessageVisibility = true,
-            defaultScrollbarVisibility = true
-        
-        if( process.browser ){ console.log('is browser')
-            const urlQuery = urlQueryFromString( this.props.router.asPath )
-            //console.log("url query: ",urlQuery)
-            if( !isEmpty(urlQuery) ){
-                defaultWelcomeMessageVisibility = urlQuery.instructions === 'false' ? false : true
-                defaultScrollbarVisibility = urlQuery.scrollbar === 'false' ? false : true
-            }
-        }
-        
         this.state = {
             dieTypes: RollProbabilityCalculator.INITIAL_DIETYPES,
             roll: new Roll( this.getDiceList.call(this, RollProbabilityCalculator.INITIAL_DIETYPES) ),
             target: new Target(0),
-            showWelcomeMessage: defaultWelcomeMessageVisibility,
-            showScrollbar: defaultScrollbarVisibility
+            showWelcomeMessage: true,
+            showScrollbar: true
         }
 
         this.updateDieTypeQuantity = this.updateDieTypeQuantity.bind(this);
         this.updateTarget = this.updateTarget.bind(this);
         this.updateWelcomeMessage = this.updateWelcomeMessage.bind(this);
         this.getDiceList = this.getDiceList.bind(this);
+    }
+
+    componentDidMount(){
+        const urlQuery = urlQueryFromString( this.props.router.asPath )
+        //console.log("url query: ",urlQuery)
+        if( !isEmpty(urlQuery) ){
+            this.setState( prevState => ({
+                showWelcomeMessage: urlQuery.instructions === 'false' ? false : prevState.showWelcomeMessage,
+                showScrollbar: urlQuery.scrollbar === 'false' ? false : prevState.showScrollbar
+            }) )
+        }
     }
 
     //Update functions
@@ -74,11 +72,9 @@ export default withRouter( class RollProbabilityCalculator extends Component {
     }
 
     updateTarget(val, equal, lesser, greater){ //console.debug("in RollProbabilityCalculator.updateTarget()",arguments);
-        this.setState( prevState => {
-            return {
+        this.setState( prevState => ({
                 target: prevState.target.copy(val, equal, lesser, greater)
-            }
-        })
+            }) )
     }
 
     updateWelcomeMessage(show){
