@@ -16,7 +16,7 @@ export default class Custom404 extends Component {
         <Head>
             <title>404 - Not Found</title>
             <meta name="description" content="Could not find request page." />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/JH.svg"/>
         </Head>
         <LandingSpace theme='dark'>
             <div className='container'>

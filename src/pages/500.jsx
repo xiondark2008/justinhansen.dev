@@ -16,7 +16,7 @@ export default class Custom404 extends Component {
         <Head>
             <title>Error - 500</title>
             <meta name="description" content="Server error." />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/JH.svg"/>
         </Head>
         <LandingSpace theme='dark'>
             <div className='container'>

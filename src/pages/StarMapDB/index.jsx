@@ -60,7 +60,7 @@ export default class StarMapDB extends Component {
         <Head>
             <title>StarMapDB</title>
             <meta name="description" content="A data table view of Star Citizen's Star Map data." />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/JH.svg"/>
         </Head>
         <Navbar
             currentEntityStub={ this.state.tableEntityStub }

@@ -24,7 +24,7 @@ export default function About() {
     <Head>
         <title>Justin Hansen's Portfolio - About</title>
         <meta name="description" content="About Justin Hansen" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/JH.svg"/>
     </Head>
     <LandingSpace theme='dark'
         navbarProps={ {currentPage: 'About'} }

@@ -11,8 +11,8 @@ export default function Home() {
     return (<>
     <Head>
         <title>Justin Hansen's Portfolio - Home</title>
-        <meta name="description" content="Welcome to Justin Hansen's portfolio site" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Welcome to Justin Hansen's portfolio site"/>
+        <link rel="icon" href="/JH.svg"/>
     </Head>
     <LandingSpace theme='light'>
         <div className="container-fluid min-h-inherit">

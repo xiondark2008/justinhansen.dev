@@ -113,7 +113,7 @@ export default withRouter( class RollProbabilityCalculator extends Component {
         <Head>
             <title>Roll Probability Calculator</title>
             <meta name="description" content="A utility to calculate the odds of rolling a target sum." />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/JH.svg"/>
         </Head>
         <div className={ ([
                 'container-fluid',

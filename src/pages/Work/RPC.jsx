@@ -26,7 +26,7 @@ export default function Work() {
     <Head>
         <title>Justin Hansen - Roll Probability Calculator</title>
         <meta name="description" content="Justin Hansen's portfolio project: Roll Propability Calculator" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/JH.svg"/>
     </Head>
     <LandingSpace theme='light'
         navbarProps={ {currentPage: 'RPC'} }

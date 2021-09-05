@@ -26,7 +26,7 @@ export default function Work() {
     <Head>
         <title>Justin Hansen's Portfolio - StarMapDB</title>
         <meta name="description" content="Justin Hansen's portfolio project: StarMapDB" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/JH.svg"/>
     </Head>
     <LandingSpace theme='light'
         navbarProps={ {currentPage: 'StarMapDB'} }

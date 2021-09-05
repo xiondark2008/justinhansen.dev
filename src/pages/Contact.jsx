@@ -40,7 +40,7 @@ export default function Home() {
     <Head>
         <title>Justin Hansen's Portfolio - Contact</title>
         <meta name="description" content="Contact Justin Hansen" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/JH.svg"/>
     </Head>
     <LandingSpace theme='dark'
         navbarProps={ {currentPage: 'Contact'} }
