@@ -1,11 +1,18 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import LandingSpace from '@/portfolio/components/layouts/LandingSpace';
 import FeatureSpace from '@/portfolio/components/layouts/FeatureSpace';
+import Footer from '@/portfolio/components/Footer';
 import InteractiveStarMapDB from '@/portfolio/components/InteractiveStarMapDB';
+import { addClassNames } from '@/common/utils/Utilities';
 
 import style from '@/portfolio/styles/Work.module.scss';
-import Footer from '@/portfolio/components/Footer';
+import img_starmap from 'public/images/StarCitizenStarmap2.jpg';
+import icon_parse from 'public/images/icons/parse.svg';
+import icon_store from 'public/images/icons/store.svg';
+import icon_display from 'public/images/icons/display.svg';
+import img_in_use from 'public/images/Star-Map.jpg';
 
 export default function Work() {
     const gotoLink = (
@@ -56,7 +63,7 @@ export default function Work() {
         </div>
     </LandingSpace>
     <FeatureSpace theme='dark'>
-        <div className='row justify-content-evenly align-items-center py-5'>
+        <div className='row justify-content-evenly align-items-center my-5'>
             <section className="col-12 col-sm-6">
                 <h6 className="code-comment">// The Problem</h6>
                 <h2 className="font-bk">View the Data</h2>
@@ -68,13 +75,12 @@ export default function Work() {
                 view the raw data behind the StarMap instead.</p>
             </section>
             <section className="col-12 col-sm-6 align-self-stretch">
-                <img className="img-fluid"
-                    src="/images/StarCitizenStarmap2.jpg"
+                <Image src={ img_starmap }
                     alt="Star Citizen Starmap Screenshot"
                 />
             </section>
         </div>
-        <div className='row justify-content-evenly py-5'>
+        <div className='row justify-content-evenly my-5'>
             <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// The Needs</h6>
                 <h2 className="font-bk">It's all about the Data</h2>
@@ -84,37 +90,40 @@ export default function Work() {
                 displayed in an interactive table. A classic web app senario.</p>
             </section>
         </div>
-        <div className='row justify-content-evenly align-items-stretch py-5'>
+        <div className='row justify-content-evenly align-items-stretch my-5'>
             <section className="col-12 col-sm-4">
-                <img className={ style.icon }
-                    src="/images/gray-grid.png"
-                    alt="Parse Icon"
-                />
+                <div className={ addClassNames(style.icon, style['icon-parse'], false) }>
+                    <Image src={ icon_parse }
+                        alt="Parse Icon"
+                    />
+                </div>
                 <h3 className="font-bk">Parse</h3>
                 <p>The data used by Cloud Imperium's StarMap needs to be parsed. I was able to 
                 find a series of backend web calls that were used to retrieve data.</p>
             </section>
             <section className="col-12 col-sm-4">
-                <img className={ style.icon }
-                    src="/images/gray-grid.png"
-                    alt="Store Icon"
-                />
+                <div className={ addClassNames(style.icon, style['icon-store'], false) }>
+                    <Image src={ icon_store }
+                        alt="Store Icon"
+                    />
+                </div>
                 <h3 className="font-bk">Store</h3>
                 <p>Since the data calls from the StarMap were structured to follow its own
                 interaction paradime, it was not conducive to querying by entity. So the parsed
                 data would need to be stored.</p>
             </section>
             <section className="col-12 col-sm-4">
-                <img className={ style.icon }
-                    src="/images/gray-grid.png"
-                    alt="Display Icon"
-                />
+                <div className={ addClassNames(style.icon, style['icon-display'], false) }>
+                    <Image src={ icon_display }
+                        alt="Display Icon"
+                    />
+                </div>
                 <h3 className="font-bk">Display</h3>
                 <p>The data would need to be displayed in an interactive table so that the
                 data can be searched and sorted.</p>
             </section>
         </div>
-        <div className='row justify-content-evenly align-items-center py-5'>
+        <div className='row justify-content-evenly align-items-center my-5'>
             <section className="col-12 col-sm-6">
                 <h6 className="code-comment">// The Solution</h6>
                 <h2 className="font-bk">Tech Stack</h2>
@@ -131,13 +140,12 @@ export default function Work() {
                 </ol>
             </section>
             <section className="col-12 col-sm-6 d-flex flex-column justify-content-center">
-                <img className="img-fluid"
-                    src="/images/gray-grid.png"
+                <Image src={ img_in_use }
                     alt="phone screen shot"
                 />
             </section>
         </div>
-        <div className='row justify-content-evenly py-5'>
+        <div className='row justify-content-evenly my-5'>
             <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// Hurdles</h6>
                 <h2 className="font-bk">An Apostrophe</h2>
@@ -148,7 +156,7 @@ export default function Work() {
         </div>
     </FeatureSpace>
     <FeatureSpace theme='light'>
-        <div className='row justify-content-evenly py-5'>
+        <div className='row justify-content-evenly my-5'>
             <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// Expore the 'verse</h6>
                 <h2 className="font-bk">Test it out</h2>

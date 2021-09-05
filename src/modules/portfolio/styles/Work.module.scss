@@ -2,18 +2,54 @@
 @import "Base.module";
 
 .icon {
-    $icon-size: 10rem;
-    $icon-margin: 1rem;
+    $icon-size: 6rem;
+    $icon-margin: 0.25rem;
 
+    position: relative;
+    display: block;
     width: $icon-size;
-    height: $icon-size;
     margin: $icon-margin;
 
-    &.icon-speed {
-        $icon-shrink: 3;
+    &.icon-mobile-first {
+        $width: 114;
+        $height: 196;
+        $ratio: math.div($width, $height);
 
-        width: $icon-size - $icon-shrink;
-        height: $icon-size - $icon-shrink;
-        margin: math.div(3, 2) + $icon-margin;
+        width: $icon-size * $ratio;
+    }
+    &.icon-speed {
+        $width: 153;
+        $height: 152;
+        $ratio: math.div($width, $height);
+
+        width: $icon-size * $ratio;
+    }
+    &.icon-education {
+        $width: 122;
+        $height: 199;
+        $ratio: math.div($width, $height);
+
+        width: $icon-size * $ratio;
+    }
+    &.icon-parse {
+        $width: 167;
+        $height: 103;
+        $ratio: math.div($width, $height);
+
+        width: $icon-size * $ratio;
+    }
+    &.icon-store {
+        $width: 119;
+        $height: 173;
+        $ratio: math.div($width, $height);
+
+        width: $icon-size * $ratio;
+    }
+    &.icon-display {
+        $width: 133;
+        $height: 140;
+        $ratio: math.div($width, $height);
+
+        width: $icon-size * $ratio;
     }
 }

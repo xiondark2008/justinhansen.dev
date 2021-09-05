@@ -1,19 +1,26 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import LandingSpace from '@/portfolio/components/layouts/LandingSpace';
-import InteractiveRPC from '@/portfolio/components/InteractiveRPC';
 import FeatureSpace from '@/portfolio/components/layouts/FeatureSpace';
+import Footer from '@/portfolio/components/Footer';
+import InteractiveRPC from '@/portfolio/components/InteractiveRPC';
+import { addClassNames } from '@/common/utils/Utilities';
 
 import style from '@/portfolio/styles/Work.module.scss';
-import Footer from '@/portfolio/components/Footer';
+import dice from 'public/images/dice.jpg';
+import mobile_first from 'public/images/icons/mobile first.svg';
+import speed from 'public/images/icons/speed.svg';
+import education from 'public/images/icons/education.svg';
+import in_use from 'public/images/Roll-Prob.jpg';
 
 export default function Work() {
-    const breakpoint = 'md',
-        gotoLink = (<Link href='/RPC'>
-                        <a className='btn btn-primary btn-lg shadow-lg font-bk fs-6 my-md-4'
-                            target='_blank'
-                        >GO TO APP</a>
-                    </Link>)
+    const gotoLink = (
+            <Link href='/RPC'>
+                <a className='btn btn-primary btn-lg shadow-lg font-bk fs-6 my-md-4'
+                    target='_blank'
+                >GO TO APP</a>
+            </Link>)
 
     return (<>
     <Head>
@@ -53,7 +60,7 @@ export default function Work() {
         </div>
     </LandingSpace>
     <FeatureSpace theme='dark'>
-        <div className='row justify-content-evenly align-items-center py-5'>
+        <div className='row justify-content-evenly align-items-center my-5'>
             <section className="col-12 col-sm-6">
                 <h6 className="code-comment">// The Problem</h6>
                 <h2 className="font-bk">What to Roll?</h2>
@@ -65,13 +72,12 @@ export default function Work() {
                 situation in the future.</p>
             </section>
             <section className="col-12 col-sm-6 align-self-stretch">
-                <img className="img-fluid"
-                    src="/images/dice.jpg"
+                <Image src={ dice }
                     alt="phone screen shot"
                 />
             </section>
         </div>
-        <div className='row justify-content-evenly py-5'>
+        <div className='row justify-content-evenly my-5'>
             <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// The Needs</h6>
                 <h2 className="font-bk">Aid Gameplay, Not Hinder It</h2>
@@ -81,37 +87,43 @@ export default function Work() {
                 as different dice are added.</p>
             </section>
         </div>
-        <div className='row justify-content-evenly align-items-stretch py-5'>
-            <section className="col-12 col-sm-4">
-                <img className={ style.icon }
-                    src="/images/icons/svg/mobile first.svg"
-                    alt="Mobile First Icon"
-                />
+        <div className='row justify-content-evenly align-items-stretch my-5'>
+            <section className="col-12 col-sm-4 position-relative">
+                <div className={ addClassNames(style.icon, style['icon-mobile-first'], false) }>
+                    <Image src={ mobile_first }
+                        alt="Mobile First Icon"
+                        layout='responsive'
+                    />
+                </div>
                 <h3 className="font-bk">Mobile First</h3>
                 <p>The UX/UI needs to be optimized for use on the most readily available platform
                 while gathered around a board game: a smartphone.</p>
             </section>
-            <section className="col-12 col-sm-4">
-                <img className={ ([style.icon, style['icon-speed']]).join(' ') }
-                    src="/images/icons/svg/speed.svg"
-                    alt="Speec Icon"
-                />
+            <section className="col-12 col-sm-4 position-relative">
+                <div className={ addClassNames(style.icon, style['icon-speed'], false) }>
+                    <Image src={ speed }
+                        alt="Speed Icon"
+                        layout='responsive'
+                    />
+                </div>
                 <h3 className="font-bk">Speed</h3>
                 <p>No one wants to be "that person" that holds up gameplay every round, so this
                 web app would need to be quick. Both UX/UI to calculating the results need to be
                 fast and easy to use.</p>
             </section>
-            <section className="col-12 col-sm-4">
-                <img className={ style.icon }
-                    src="/images/icons/svg/education.svg"
-                    alt="Education Icon"
-                />
+            <section className="col-12 col-sm-4 position-relative">
+                <div className={ addClassNames(style.icon, style['icon-education'], false) }>
+                    <Image src={ education }
+                        alt="Education Icon"
+                        layout='responsive'
+                    />
+                </div>
                 <h3 className="font-bk">Educational</h3>
                 <p>The best solution should help user learn how the probability changes based on
                 choice of dice.</p>
             </section>
         </div>
-        <div className='row justify-content-evenly align-items-center py-5'>
+        <div className='row justify-content-evenly align-items-center my-5'>
             <section className="col-12 col-sm-6">
                 <h6 className="code-comment">// The Solution</h6>
                 <h2 className="font-bk">Fast Fingers</h2>
@@ -131,13 +143,13 @@ export default function Work() {
                 </ol>
             </section>
             <section className="col-12 col-sm-6 d-flex flex-column justify-content-center">
-                <img className="img-fluid"
-                    src="/images/gray-grid.png"
+                <Image className="img-fluid"
+                    src={ in_use }
                     alt="phone screen shot"
                 />
             </section>
         </div>
-        <div className='row justify-content-evenly py-5'>
+        <div className='row justify-content-evenly my-5'>
             <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// Hurdles</h6>
                 <h2 className="font-bk">Design & Calculation</h2>
@@ -151,7 +163,7 @@ export default function Work() {
         </div>
     </FeatureSpace>
     <FeatureSpace theme='light'>
-        <div className='row justify-content-evenly py-5'>
+        <div className='row justify-content-evenly my-5'>
             <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// Let's Roll</h6>
                 <h2 className="font-bk">Test it out</h2>

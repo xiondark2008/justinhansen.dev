@@ -1,4 +1,8 @@
 .feature-space {
+    $padding-y: 1px;
+    padding-top: $padding-y;
+    padding-bottom: $padding-y;
+
     &.feature-light {
         color: var(--bs-dark);
         background-image: linear-gradient( var(--bs-gray-100), var(--bs-gray-200) );

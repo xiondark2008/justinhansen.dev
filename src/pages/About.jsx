@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import LandingSpace from '@/portfolio/components/layouts/LandingSpace';
 import Footer from '@/portfolio/components/Footer';
 
 import style from '@/portfolio/styles/About.module.scss';
+import img_headshot from 'public/images/Justin.jpg';
 
 export default function About() {
     const breakpoint = 'lg',
@@ -11,8 +13,7 @@ export default function About() {
         headshot = ( className ) => {
             return(
             <figure className={ className }>
-                <img className="img-fluid"
-                    src="/images/gray-grid.png"
+                <Image src={ img_headshot }
                     alt="headshot"
                 />
             </figure>
@@ -59,7 +60,7 @@ export default function About() {
                         <li className='col'>Node.js</li>
                         <li className='col'>SQL</li>
                     </ul>
-                    <div className={ 'd-grid gap-2 d-'+breakpoint+'-block' }>
+                    <div className={ 'd-grid gap-2 d-md-block' }>
                         <a className='btn btn-primary btn-lg'>My Resume</a>
                     </div>
                 </section>
