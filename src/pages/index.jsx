@@ -20,8 +20,9 @@ export default function Home() {
                 <section className="col-12 col-sm-9 col-md-8 col-lg-7 col-xl-6 col-xxl-5 text-center">
                     <HelloWorldCarousel />
                     <p>"Hello, World!" is traditionally a developer's first introduction to a 
-                    programming language. So may the above code serve as a greeting as I 
-                    introduce you to myself and my work.</p>
+                    programming language. So let the above code serve as a greeting to you
+                    as I introduce myself and my work. I am Justing Hansen, a full stack
+                    developer with 10+ years of experience. Hello to my world.</p>
                     <Link href="/About">
                         <a className="btn btn-primary btn-lg shadow-lg font-bk fs-6 my-5"
                         >ABOUT ME</a>
@@ -37,11 +38,9 @@ export default function Home() {
             <section className="col-12 col-sm-6 col-md-5 col-lg-4 mb-3">
                 <h6 className="code-comment">// My Work</h6>
                 <h1 className="font-bk">Roll Probability Calculator</h1>
-                <p>Used to calculate probability when rolling multiple multi-sided dice, this
-                app focuses on responsive design and fast calculations. <Link href='/Work/RPC'>
-                        <a>Learn more.</a>
-                    </Link>
-                </p>
+                <p>A mobile-first web app used to calculate probability when rolling several
+                multi-sided dice, this app focuses on responsive design and fast
+                calculations. <Link href='/Work/RPC'><a>Learn more.</a></Link></p>
                 <Link href="/RPC">
                     <a className="btn btn-primary btn-lg"
                         target="_blank">LET'S ROLL</a>
@@ -61,14 +60,11 @@ export default function Home() {
             <section className="col-12 col-sm-8 order-sm-2 col-lg-4">
                 <h6 className="code-comment">// My Work</h6>
                 <h1 className="font-bk">StarMap DB</h1>
-                <p>Data parsed from <a
+                <p>An application built to display data parsed from <a
                     href='https://robertsspaceindustries.com/starmap'
                     target='_blank'
-                >Roberts Space Industry's StarMap</a>, displayed in a manor that is 
-                easier to query and compare records. <Link href='/Work/StarMapDB'>
-                        <a>Learn more.</a>
-                    </Link>
-                </p>
+                >Star Citizen's StarMap</a> in a user first format for easy queries and
+                record comparisons. <Link href='/Work/StarMapDB'><a>Learn more.</a></Link></p>
                 <Link href="/StarMapDB">
                     <a className="btn btn-primary btn-lg"
                         target="_blank">EXPLORE THE 'VERSE</a>

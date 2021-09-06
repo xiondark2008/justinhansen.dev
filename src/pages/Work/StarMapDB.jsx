@@ -35,21 +35,22 @@ export default function Work() {
             <div className="row justify-content-center align-items-center min-h-inherit">
                 <section className={ 'col-12 col-md-6 my-5 px-5' }>
                     <h1 className='font-bk'>StarMapDB</h1>
-                    <p>For their video game Star Citizen, the company Cloud Imperium published
-                    a web app they call <a
+                    <p>Star Citizen published a web application, <a
                         href='https://robertsspaceindustries.com/starmap'
                         target='_blank'
-                    >StarMap</a>. It is an amazing bit of coding that allows the user to view
-                    a map of all the different star systems and planets in the game.</p>
-                    <p>This web app uses the backend data from the StarMap but displays it in
-                    a data table format so that the user can easily sort and compare all the
-                    records.</p>
+                    >StarMap</a>, that allows users to view a map of all the different star
+                    systems and planets in their game Star Citizen. Think of it like a 3D
+                    Google Map for a universe.</p>
+                    <p>Using the backend data from StarMap, I built a web application that
+                    displays the data in a table format so that the user can easily sort and
+                    compare all the records.</p>
                     <h3 className='text-primary'><b>TECH STACK</b></h3>
-                    <ul className='row row-cols-2 list-unstyled'>
+                    <ul className='row row-cols-3 list-unstyled'>
+                        <li className='col'><b>React.js</b></li>
                         <li className='col'><b>Node.js</b></li>
                         <li className='col'><b>MongoDB</b></li>
-                        <li className='col'><b>React.js</b></li>
                         <li className='col'><b>Bootstrap</b></li>
+                        <li className='col'><b>jQuery</b></li>
                         <li className='col'><b>DataTables</b></li>
                     </ul>
                     { gotoLink }
@@ -69,10 +70,10 @@ export default function Work() {
                 <h2 className="font-bk">View the Data</h2>
                 <p>While using Cloud Imperium's StarMap, I found myself wondering how many
                 of the planets were marked as habitable. Unfortunately the StarMap was
-                designed to be a map, not a database. This meant I would have to click into
-                hundreds of planets to see their details to find out which are habitable.
-                I decided to build the my own app and designe it to allow users to query and 
-                view the raw data behind the StarMap instead.</p>
+                designed to be a map, not a database. This meant I would have to click
+                into hundreds of planets to see their details to find out which are habitable.
+                I decided to design and build my own app that allows users to query and view
+                the raw data behind the StarMap instead.</p>
             </section>
             <section className="col-12 col-sm-6 align-self-stretch">
                 <Image src={ img_starmap }
@@ -84,9 +85,9 @@ export default function Work() {
             <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// The Needs</h6>
                 <h2 className="font-bk">It's all about the Data</h2>
-                <p>The first and most obvious need is that the app would need to reference the
-                used by Cloud Imperium's StarMap. Then the data would need to be stored in a way
-                that could be referenced by entity type. Finally, the data would need to be 
+                <p>The first and most importantly, the application needs to access the Star
+                Citizen's StarMap data calls. Then the data would need to be stored in a way
+                that could be referenced by entity type. Finally, the data would need to be
                 displayed in an interactive table. A classic web app senario.</p>
             </section>
         </div>
@@ -108,9 +109,9 @@ export default function Work() {
                     />
                 </div>
                 <h3 className="font-bk">Store</h3>
-                <p>Since the data calls from the StarMap were structured to follow its own
-                interaction paradime, it was not conducive to querying by entity. So the parsed
-                data would need to be stored.</p>
+                <p>Since the data calls from the StarMap were structured to follow its own 
+                interaction paradigm, it was not conducive to querying by entity. So the 
+                parsed data would need to be stored together in a database.</p>
             </section>
             <section className="col-12 col-sm-4">
                 <div className={ addClassNames(style.icon, style['icon-display'], false) }>
@@ -119,19 +120,19 @@ export default function Work() {
                     />
                 </div>
                 <h3 className="font-bk">Display</h3>
-                <p>The data would need to be displayed in an interactive table so that the
-                data can be searched and sorted.</p>
+                <p>The data would need to be displayed in an interactive table that allows 
+                users to search and sort it.</p>
             </section>
         </div>
         <div className='row justify-content-evenly align-items-center my-5'>
             <section className="col-12 col-sm-6">
                 <h6 className="code-comment">// The Solution</h6>
                 <h2 className="font-bk">Tech Stack</h2>
-                <p>For this app I chose to use MongoDB for my backend due to it's growing
-                popularity and this would be a great opportunity to get some experience with 
-                it. I chose to use Node.js as a backend for similar reasons. It also has the
-                added benefit of not making me switch be languages while developing.
-                DataTables made a perfect front end solution for displaying the data.</p>
+                <p>For this app I chose to use MongoDB for my backend due to its ease to use 
+                with JavaScript programming languages and growing popularity. I chose to use 
+                Node.js as a backend for similar reasons. It also has the added benefit of 
+                not making me switch languages while developing. DataTables made a perfect 
+                front end solution for displaying the data.</p>
                 <h6 className='code-comment'>// Highlights</h6>
                 <ol>
                     <li></li>
@@ -149,9 +150,9 @@ export default function Work() {
             <section className="col-12 col-sm-6 text-center">
                 <h6 className="code-comment">// Hurdles</h6>
                 <h2 className="font-bk">An Apostrophe</h2>
-                <p>While setting up the code in Node.js to parse the StarMap data calls,
-                I ran into an issue that left me perplexed. After turning to stackoverflow,
-                I realized that it was do to a simple apostrophe.</p>
+                <p>While setting up the code in Node.js to parse the StarMap data calls, I 
+                ran into an issue that left me perplexed. After turning to stackoverflow, 
+                I realized that it was due to a simple apostrophe.</p>
             </section>
         </div>
     </FeatureSpace>
