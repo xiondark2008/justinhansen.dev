@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import LandingSpace from '@/portfolio/components/layouts/LandingSpace';
 import Footer from '@/portfolio/components/Footer';
+import { addClassNames } from '@/common/utils/Utilities';
 
 import style from '@/portfolio/styles/About.module.scss';
 import img_headshot from 'public/images/Justin.jpg';
@@ -35,30 +36,54 @@ export default function About() {
                     <h5 className="code-comment">//HELLO</h5>
                     <h1 className="display-4 font-bk">ABOUT ME</h1>
                     { headshot( headshotSmallClassName ) }
-                    <p>I’m a Front-End Developer with over 8+ years of experience developing clean 
-                    user experiences.</p>
-                    <p>My road to development started like every great creator of our time - in my 
-                    college dorm room. My freshman friend was really into computers so much so that 
-                    he had built his own. One afternoon he decided to take it apart to rebuild it 
-                    cleaner, more efficiently. Being a life long tinkerer and genuinely curious I was 
-                    intrigued so I joined him.</p>
-                    <p>Quickly I was hooked. I was fascinated with how the peaces fit together - worked 
-                    together - to make something bigger. But that was just the start. Now that I could 
-                    build a machine, could I tell it how to work?</p>
-                    <p>So I taught myself to code.</p>
+                    <p>I am a Full-stack Developer with 10+ years of experience developing web
+                    applications and java programs. I enjoy working on projects that require
+                    out-of-the-box thinking and are user facing. I have a talent for interacting
+                    with business and users because of my ability to communicate technical
+                    details with non-technical people.</p>
+                    <p>My road to development started like every great creator of our time - in
+                    my college dorm room. Freshman year, I helped my friend do a clean build on
+                    the PC he built himself. Being a lifelong tinkerer and genuinely curious, I
+                    kept asking “What does this part do?” as we stripped out and dusted all the
+                    parts.</p>
+                    <p>From that moment on, I was hooked. I went on to build my own PC, which I
+                    have updated and maintained ever since. I declared my major as being
+                    Management Information Systems. Intro to Java was my first experience with
+                    coding. Despite having an incredibly dull professor, I loved coding right
+                    away.</p>
+                    <p>I have enjoyed devising the optimal solution for every coding challenge
+                    I have face in my career. And I look forward to what new problems I will
+                    have the opportunity to solve in the future.</p>
                     
                     <h3 className="mt-4 text-primary font-bk">TECHNICAL SKILLS</h3>
-                    <ul id={ style['tech-skills'] }
-                        className="row row-cols-4 list-unstyled"
-                    >
-                        <li className='col'>JavaScript</li>
-                        <li className='col'>HTML</li>
-                        <li className='col'>CSS</li>
-                        <li className='col'>Java</li>
+                    <ul className={ addClassNames(style['skill-list'], "row row-cols-2 row-cols-md-4 list-unstyled") }>
                         <li className='col'>React.js</li>
-                        <li className='col'>Sass</li>
                         <li className='col'>Node.js</li>
+                        <li className='col'>Next.js</li>
+                        <li className='col'>JavaScript</li>
+                        <li className='col'>ECMAScript</li>
+                        <li className='col'>CSS3</li>
+                        <li className='col'>SASS</li>
+                        <li className='col'>Java</li>
+                        <li className='col'>Java EE</li>
                         <li className='col'>SQL</li>
+                        <li className='col'>MongoDB</li>
+                        <li className='col'>HTML5</li>
+                        <li className='col'>JSON</li>
+                        <li className='col'>XML</li>
+                        <li className='col'>jQuery</li>
+                        <li className='col'>Bootstrap</li>
+                    </ul>
+                    <h3 className="mt-4 text-primary font-bk">CONCEPTS</h3>
+                    <ul className={ addClassNames(style['skill-list'], "row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-2 list-unstyled") }>
+                        <li className='col'>Agile Methodologies</li>
+                        <li className='col'>Test Driven Development</li>
+                        <li className='col'>Responsive Web Design</li>
+                        <li className='col'>RESTful WebServices</li>
+                        <li className='col'>Object-Oriented Programming (OOP)</li>
+                        <li className='col'>Model-View-Controller (MVC)</li>
+                        <li className='col'>Data Architecture</li>
+                        <li className='col'>Version Control</li>
                     </ul>
                     <div className={ 'd-grid gap-2 d-md-block' }>
                         <a className='btn btn-primary btn-lg'>My Resume</a>

@@ -11,3 +11,9 @@
         width: 100%;
     }
 }
+
+.skill-list {
+    & > li {
+        margin-bottom: 0.5rem;
+    }
+}
