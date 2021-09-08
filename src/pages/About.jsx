@@ -86,7 +86,9 @@ export default function About() {
                         <li className='col'>Version Control</li>
                     </ul>
                     <div className={ 'd-grid gap-2 d-md-block' }>
-                        <a className='btn btn-primary btn-lg'>My Resume</a>
+                        <a className='btn btn-primary btn-lg'
+                            href='https://drive.google.com/file/d/141flaSRaUuagmI0-L-GdH1e1lM1LhkYW/view?usp=sharing'
+                            target='_blank'>My Resume</a>
                     </div>
                 </section>
                 { headshot( headshotBigClassName ) }
