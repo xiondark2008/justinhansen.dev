@@ -23,6 +23,13 @@ export default class MyApp extends Component {
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+      {/* Opengraph Image */}
+      <meta property="og:image" content="https://justinhansen.dev/Opengraph.jpg" />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="628" />
+      <meta property="og:image:alt" content="Justin Hansen; justinhansen.dev" />
+
       {/* Global site tag (gtag.js) - Google Analytics */}
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-8T4WR8CDBF"></script>
       <script dangerouslySetInnerHTML={ {
