@@ -21,7 +21,7 @@ export default function Home() {
                     <HelloWorldCarousel />
                     <p>"Hello, World!" is traditionally a developer's first introduction to a 
                     programming language. So let the above code serve as a greeting to you
-                    as I introduce myself and my work. I am Justing Hansen, a full stack
+                    as I introduce myself and my work. I am Justin Hansen, a full stack
                     developer with 10+ years of experience. Hello to my world.</p>
                     <Link href="/About">
                         <a className="btn btn-primary btn-lg shadow-lg font-bk fs-6 my-5"
