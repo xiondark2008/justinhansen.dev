@@ -87,7 +87,7 @@ export default function About() {
                     </ul>
                     <div className={ 'd-grid gap-2 d-md-block' }>
                         <a className='btn btn-primary btn-lg'
-                            href='https://drive.google.com/file/d/141flaSRaUuagmI0-L-GdH1e1lM1LhkYW/view?usp=sharing'
+                            href='https://drive.google.com/file/d/1-IjV6nx7PqfKgfTmyw5vMfaH9GTRcXoe/view?usp=sharing'
                             target='_blank'>My Resume</a>
                     </div>
                 </section>
